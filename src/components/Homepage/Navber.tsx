@@ -10,9 +10,6 @@ import {
   X,
   UserRound,
   LogOut,
-  Library,
-  BookPlus,
-  BookMarked,
   ChevronDown,
 } from "lucide-react";
 
@@ -26,23 +23,21 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { authClient, useSession } from "@/lib/auth-client";
-import type { ElementType } from "react";
 
 type NavLink = {
   name: string;
   href: string;
-  icon: ElementType;
 };
 
 const publicLinks = [
-  { name: "Home", href: "/", icon: Library },
-  { name: "All Books", href: "/books", icon: BookOpen },
+  { name: "Home", href: "/" },
+  { name: "All Books", href: "/books" },
 ];
 
 const privateLinks = [
-  { name: "Add Book", href: "/add-book", icon: BookPlus },
-  { name: "My Books", href: "/my-books", icon: BookMarked },
-  { name: "My Borrows", href: "/my-borrows", icon: Library },
+  { name: "Add Book", href: "/add-book" },
+  { name: "My Books", href: "/my-books" },
+  { name: "My Borrows", href: "/my-borrows" },
 ];
 
 export default function Navbar() {
@@ -71,20 +66,17 @@ export default function Navbar() {
   };
 
   const renderLink = (link: NavLink) => {
-    const Icon = link.icon;
-
     return (
       <Link
         key={link.href}
         href={link.href}
         onClick={() => setIsMenuOpen(false)}
-        className={`flex items-center gap-2 rounded-lg px-3 py-2 text-sm font-medium transition-all duration-200 ${
+        className={`flex items-center rounded-lg px-3 py-2 text-sm font-medium transition-all duration-200 ${
           isActive(link.href)
             ? "bg-[#123C3A] text-white shadow-sm"
             : "text-[#123C3A] hover:bg-[#D5B982] hover:text-[#123C3A]"
         }`}
       >
-        <Icon size={17} />
         {link.name}
       </Link>
     );
@@ -92,7 +84,7 @@ export default function Navbar() {
 
   return (
     <header className="sticky top-0 z-50 w-full border-b border-[#D5B982]/50 bg-[#E2ECE8] shadow-sm">
-      <nav className="mx-auto flex h-20 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
+      <nav className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
 
         {/* Logo */}
         <Link href="/" className="flex shrink-0 items-center gap-2.5">
@@ -146,6 +138,7 @@ export default function Navbar() {
                     src={user.image || ""}
                     alt={user.name || "User"}
                   />
+
                   <AvatarFallback className="bg-[#123C3A] font-semibold text-white">
                     {user.name?.charAt(0).toUpperCase() || "U"}
                   </AvatarFallback>
@@ -166,6 +159,7 @@ export default function Navbar() {
                   <p className="text-sm font-bold text-[#123C3A]">
                     {user.name}
                   </p>
+
                   <p className="truncate text-xs font-normal text-[#6B8279]">
                     {user.email}
                   </p>
@@ -245,6 +239,7 @@ export default function Navbar() {
               <div className="flex items-center gap-3 rounded-xl border border-[#D5B982]/40 bg-white/60 p-3">
                 <Avatar className="size-10">
                   <AvatarImage src={user.image || ""} />
+
                   <AvatarFallback className="bg-[#123C3A] text-white">
                     {user.name?.charAt(0).toUpperCase() || "U"}
                   </AvatarFallback>
@@ -254,6 +249,7 @@ export default function Navbar() {
                   <p className="truncate text-sm font-bold text-[#123C3A]">
                     {user.name}
                   </p>
+
                   <p className="truncate text-xs text-[#6B8279]">
                     {user.email}
                   </p>

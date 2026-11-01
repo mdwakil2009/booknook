@@ -19,7 +19,7 @@ export default function HowBookNookWorks() {
           </span>
 
           <h2 className="text-3xl font-bold text-[#123C3A] sm:text-4xl lg:text-5xl">
-            How BookNook Works
+            How  Borrowing  Works
           </h2>
 
           <p className="mx-auto mt-4 max-w-xl text-sm leading-7 text-[#405A51] sm:text-base">
