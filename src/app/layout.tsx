@@ -2,8 +2,8 @@ import type { Metadata } from "next";
 import { Josefin_Sans, Geist } from "next/font/google";
 import "./globals.css";
 import { cn } from "@/lib/utils";
-import Navbar from "@/components/Navber";
-import Footer from "@/components/Footer";
+import Navbar from "@/components/Homepage/Navber";
+import Footer from "@/components/Homepage/Footer";
 
 const geist = Geist({subsets:['latin'],variable:'--font-sans'});
 
