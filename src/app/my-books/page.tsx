@@ -6,7 +6,7 @@ import {
   BookOpen,
   BookPlus,
   Loader2,
-  Pencil,
+
   Trash2,
   BookMarked,
 } from "lucide-react";
@@ -14,8 +14,9 @@ import {
 import { authClient } from "@/lib/auth-client";
 import { IBook } from "@/lib/type";
 import Image from "next/image";
+import EditBook from "@/components/EditBook";
 
-const MyBooksPage = () => {
+const MyBooksPage = ({book}:{book:IBook[]}) => {
      const [books, setBooks] = useState<IBook[]>([]);
      const [loading, setLoading] = useState(true);
      
@@ -180,13 +181,8 @@ const MyBooksPage = () => {
 
                   {/* Action Buttons */}
                   <div className="mt-3 grid grid-cols-2 gap-2">
-                    <Link
-                      href={`/edit-book/${book._id}`}
-                      className="inline-flex items-center justify-center gap-1.5 rounded-lg border border-[#123C3A]/20 bg-[#E9EDE7] py-2 text-xs font-semibold text-[#123C3A] transition hover:bg-[#123C3A] hover:text-white"
-                    >
-                      <Pencil size={13} />
-                      Edit
-                    </Link>
+                   
+                      <EditBook book={book}></EditBook>
 
                     <button
                       type="button"
