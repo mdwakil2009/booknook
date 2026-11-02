@@ -31,10 +31,10 @@ const TopCategories = () => {
 
           <h2 className="text-3xl font-bold tracking-tight text-[#123C3A] sm:text-4xl lg:text-5xl">
             Explore Top
-            <span className="text-[#A88B54]">Categories</span>
+            <span className="text-[#A88B54]"> Categories</span>
           </h2>
 
-          <p className="mt-4 text-sm leading-7 text-[#6B8279] sm:text-base">
+          <p className="mt-4 text-sm leading-7 text-[#60766D] sm:text-base">
             Find your next favorite book from collections made for
             every curious mind.
           </p>
@@ -82,11 +82,11 @@ const TopCategories = () => {
               Fiction
             </h3>
 
-            <p className="mt-2 min-h-12 text-sm leading-6 text-[#6B8279]">
+            <p className="mt-2 min-h-12 text-sm leading-6 text-[#60766D]">
               Stories that take you beyond imagination.
             </p>
 
-            <div className="mt-5 flex flex-wrap gap-2">
+    <div className="mt-5 flex min-h-[64px] flex-wrap content-start gap-2">
               <span className="rounded-lg bg-[#F4F7F5] px-3 py-1.5 text-xs font-medium text-[#405A51]">
                 Romance
               </span>
@@ -98,14 +98,14 @@ const TopCategories = () => {
               </span>
             </div>
 
-            <Link
-              href="/categories"
+               <Link
+              href="/books"
               onClick={(event) => event.stopPropagation()}
-              className="mt-7 flex items-center justify-between border-t border-[#E2ECE8] pt-5 text-sm font-bold text-[#123C3A] transition-colors hover:text-[#A88B54]"
+              className="mt-7 flex w-full items-center justify-between rounded-xl bg-[#123C3A] px-4 py-3.5 text-sm font-bold text-white shadow-md shadow-[#123C3A]/15 transition-all duration-300 hover:-translate-y-1 hover:bg-[#60766D] hover:shadow-lg"
             >
               Explore Collection
-              <span className="flex h-9 w-9 items-center justify-center rounded-full bg-[#E2ECE8] transition-all duration-300 group-hover:bg-[#123C3A] group-hover:text-white">
-                <ArrowUpRight size={18} />
+              <span className="flex size-8 items-center justify-center rounded-lg bg-white/15 transition-all duration-300 group-hover:rotate-45 group-hover:bg-white/25">
+                <ArrowUpRight size={19} />
               </span>
             </Link>
           </div>
@@ -151,11 +151,11 @@ const TopCategories = () => {
               Science & Tech
             </h3>
 
-            <p className="mt-2 min-h-12 text-sm leading-6 text-[#6B8279]">
+            <p className="mt-2 min-h-12 text-sm leading-6 text-[#60766D]">
               Discover ideas that shape our future.
             </p>
 
-            <div className="mt-5 flex flex-wrap gap-2">
+      <div className="mt-5 flex min-h-[64px] flex-wrap content-start gap-2">
               <span className="rounded-lg bg-[#F4F7F5] px-3 py-1.5 text-xs font-medium text-[#405A51]">
                 Programming
               </span>
@@ -168,13 +168,13 @@ const TopCategories = () => {
             </div>
 
             <Link
-              href="/categories"
+              href="/books"
               onClick={(event) => event.stopPropagation()}
-              className="mt-7 flex items-center justify-between border-t border-[#E2ECE8] pt-5 text-sm font-bold text-[#123C3A] transition-colors hover:text-[#A88B54]"
+              className="mt-7 flex w-full items-center justify-between rounded-xl bg-[#123C3A] px-4 py-3.5 text-sm font-bold text-white shadow-md shadow-[#123C3A]/15 transition-all duration-300 hover:-translate-y-1 hover:bg-[#60766D] hover:shadow-lg"
             >
               Explore Collection
-              <span className="flex h-9 w-9 items-center justify-center rounded-full bg-[#E2ECE8] transition-all duration-300 group-hover:bg-[#123C3A] group-hover:text-white">
-                <ArrowUpRight size={18} />
+              <span className="flex size-8 items-center justify-center rounded-lg bg-white/15 transition-all duration-300 group-hover:rotate-45 group-hover:bg-white/25">
+                <ArrowUpRight size={19} />
               </span>
             </Link>
           </div>
@@ -218,11 +218,11 @@ const TopCategories = () => {
               History
             </h3>
 
-            <p className="mt-2 min-h-12 text-sm leading-6 text-[#6B8279]">
+            <p className="mt-2 min-h-12 text-sm leading-6 text-[#60766D]">
               Explore the past and learn from history.
             </p>
 
-            <div className="mt-5 flex flex-wrap gap-2">
+        <div className="mt-5 flex min-h-[64px] flex-wrap content-start gap-2">
               <span className="rounded-lg bg-[#F4F7F5] px-3 py-1.5 text-xs font-medium text-[#405A51]">
                 Ancient
               </span>
@@ -235,13 +235,13 @@ const TopCategories = () => {
             </div>
 
             <Link
-              href="/categories"
+              href="/books"
               onClick={(event) => event.stopPropagation()}
-              className="mt-7 flex items-center justify-between border-t border-[#E2ECE8] pt-5 text-sm font-bold text-[#123C3A] transition-colors hover:text-[#A88B54]"
+              className="mt-7 flex w-full items-center justify-between rounded-xl bg-[#123C3A] px-4 py-3.5 text-sm font-bold text-white shadow-md shadow-[#123C3A]/15 transition-all duration-300 hover:-translate-y-1 hover:bg-[#60766D] hover:shadow-lg"
             >
               Explore Collection
-              <span className="flex h-9 w-9 items-center justify-center rounded-full bg-[#E2ECE8] transition-all duration-300 group-hover:bg-[#123C3A] group-hover:text-white">
-                <ArrowUpRight size={18} />
+              <span className="flex size-8 items-center justify-center rounded-lg bg-white/15 transition-all duration-300 group-hover:rotate-45 group-hover:bg-white/25">
+                <ArrowUpRight size={19} />
               </span>
             </Link>
           </div>
@@ -287,11 +287,10 @@ const TopCategories = () => {
               Kids & Comics
             </h3>
 
-            <p className="mt-2 min-h-12 text-sm leading-6 text-[#6B8279]">
+            <p className="mt-2 min-h-12 text-sm leading-6 text-[#60766D]">
               Fun stories and adventures for young readers.
             </p>
-
-            <div className="mt-5 flex flex-wrap gap-2">
+<div className="mt-5 flex min-h-[64px] flex-wrap content-start gap-2">
               <span className="rounded-lg bg-[#F4F7F5] px-3 py-1.5 text-xs font-medium text-[#405A51]">
                 Fairy Tales
               </span>
@@ -304,29 +303,29 @@ const TopCategories = () => {
             </div>
 
             <Link
-              href="/categories"
+              href="/books"
               onClick={(event) => event.stopPropagation()}
-              className="mt-7 flex items-center justify-between border-t border-[#E2ECE8] pt-5 text-sm font-bold text-[#123C3A] transition-colors hover:text-[#A88B54]"
+              className="mt-7 flex w-full items-center justify-between rounded-xl bg-[#123C3A] px-4 py-3.5 text-sm font-bold text-white shadow-md shadow-[#123C3A]/15 transition-all duration-300 hover:-translate-y-1 hover:bg-[#60766D] hover:shadow-lg"
             >
               Explore Collection
-              <span className="flex h-9 w-9 items-center justify-center rounded-full bg-[#E2ECE8] transition-all duration-300 group-hover:bg-[#123C3A] group-hover:text-white">
-                <ArrowUpRight size={18} />
+              <span className="flex size-8 items-center justify-center rounded-lg bg-white/15 transition-all duration-300 group-hover:rotate-45 group-hover:bg-white/25">
+                <ArrowUpRight size={19} />
               </span>
             </Link>
           </div>
         </div>
 
         {/* Bottom Note */}
-        <div className="mt-10 flex flex-col items-center justify-center gap-3 text-center sm:flex-row">
-          <p className="text-sm text-[#6B8279]">
+        <div className="mt-10 flex flex-col items-center justify-center gap-4 text-center sm:flex-row">
+          <p className="text-sm text-[#60766D]">
             Your next favorite book is waiting to be discovered.
           </p>
 
           <Link
-            href="/categories"
-            className="inline-flex items-center gap-1 text-sm font-bold text-[#123C3A] transition-colors hover:text-[#A88B54]"
+            href="/books"
+            className="inline-flex items-center gap-2 rounded-full border border-[#123C3A] bg-transparent px-5 py-2.5 text-sm font-bold text-[#123C3A] transition-all duration-300 hover:bg-[#123C3A] hover:text-white"
           >
-            View All Categories
+            View All Books
             <ArrowUpRight size={16} />
           </Link>
         </div>
