@@ -4,14 +4,13 @@ import "./globals.css";
 import { cn } from "@/lib/utils";
 import Navbar from "@/components/Homepage/Navber";
 import Footer from "@/components/Homepage/Footer";
+import { Toaster } from "sonner";
 
-const geist = Geist({subsets:['latin'],variable:'--font-sans'});
+const geist = Geist({ subsets: ["latin"], variable: "--font-sans" });
 
 const JosefinSans = Josefin_Sans({
   subsets: ["latin"],
 });
-
-
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -21,14 +20,21 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
-    lang="en"
-      className ={cn("h-full", "antialiased", JosefinSans.className, "font-sans", geist.variable)}
+      lang="en"
+      className={cn(
+        "h-full",
+        "antialiased",
+        JosefinSans.className,
+        "font-sans",
+        geist.variable,
+      )}
     >
       <body className="min-h-full flex flex-col">
         <Navbar></Navbar>
         {children}
+        <Toaster position="top-right" richColors />
         <Footer></Footer>
-        </body>
+      </body>
     </html>
   );
 }

@@ -18,23 +18,24 @@ import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
-  DropdownMenuLabel,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+
 import { authClient, useSession } from "@/lib/auth-client";
+import { toast } from "sonner";
 
 type NavLink = {
   name: string;
   href: string;
 };
 
-const publicLinks = [
+const publicLinks: NavLink[] = [
   { name: "Home", href: "/" },
   { name: "All Books", href: "/books" },
 ];
 
-const privateLinks = [
+const privateLinks: NavLink[] = [
   { name: "Add Book", href: "/add-book" },
   { name: "My Books", href: "/my-books" },
   { name: "My Borrows", href: "/my-borrows" },
@@ -48,44 +49,58 @@ export default function Navbar() {
   const user = session?.user;
 
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isSigningOut, setIsSigningOut] = useState(false);
 
   const isActive = (href: string) => {
     if (href === "/") return pathname === "/";
     return pathname === href || pathname.startsWith(`${href}/`);
   };
 
-  const handleLogout = async () => {
+  // Sign Out
+  const handleSignOut = async () => {
+    if (isSigningOut) return;
+
+    setIsSigningOut(true);
+
     try {
-      await authClient.signOut();
+      const { error } = await authClient.signOut();
+
+      if (error) {
+        console.error("Sign Out Error:", error);
+        toast.error("Logout failed!");
+        setIsSigningOut(false);
+        return;
+      }
+
       setIsMenuOpen(false);
-      router.push("/");
-      router.refresh();
+      toast.success("Logged out successfully!");
+      window.location.replace("/");
     } catch (error) {
-      console.error("Logout Error:", error);
+      console.error("Sign Out Error:", error);
+      toast.error("Something went wrong!");
+      setIsSigningOut(false);
     }
   };
 
-  const renderLink = (link: NavLink) => {
-    return (
-      <Link
-        key={link.href}
-        href={link.href}
-        onClick={() => setIsMenuOpen(false)}
-        className={`flex items-center rounded-lg px-3 py-2 text-sm font-medium transition-all duration-200 ${
-          isActive(link.href)
-            ? "bg-[#123C3A] text-white shadow-sm"
-            : "text-[#123C3A] hover:bg-[#D5B982] hover:text-[#123C3A]"
-        }`}
-      >
-        {link.name}
-      </Link>
-    );
-  };
+  // Navigation Link
+  const renderLink = (link: NavLink) => (
+    <Link
+      key={link.href}
+      href={link.href}
+      onClick={() => setIsMenuOpen(false)}
+      className={`flex items-center rounded-lg px-3 py-2 text-sm font-medium transition-all duration-200 ${
+        isActive(link.href)
+          ? "bg-[#123C3A] text-white shadow-sm"
+          : "text-[#123C3A] hover:bg-[#D5B982] hover:text-[#123C3A]"
+      }`}
+    >
+      {link.name}
+    </Link>
+  );
 
   return (
     <header className="sticky top-0 z-50 w-full border-b border-[#D5B982]/50 bg-[#E2ECE8] shadow-sm">
       <nav className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
-
         {/* Logo */}
         <Link href="/" className="flex shrink-0 items-center gap-2.5">
           <div className="flex size-11 items-center justify-center rounded-xl bg-[#123C3A] text-[#D5B982] shadow-sm">
@@ -155,36 +170,40 @@ export default function Navbar() {
                 align="end"
                 className="w-60 border-[#D5B982]/60 bg-[#F4F7F5] p-2 text-[#123C3A] shadow-xl"
               >
-                <DropdownMenuLabel className="px-3 py-2">
+                {/* User Information */}
+                <div className="px-3 py-2">
                   <p className="text-sm font-bold text-[#123C3A]">
                     {user.name}
                   </p>
 
-                  <p className="truncate text-xs font-normal text-[#6B8279]">
+                  <p className="truncate text-xs text-[#6B8279]">
                     {user.email}
                   </p>
-                </DropdownMenuLabel>
+                </div>
 
                 <DropdownMenuSeparator className="bg-[#D5B982]/50" />
 
-                <DropdownMenuItem className="cursor-pointer rounded-md text-[#123C3A] focus:bg-[#D5B982]/40 focus:text-[#123C3A]">
-                  <Link
-                    href="/dashboard/profile"
-                    className="flex w-full items-center gap-2"
-                  >
-                    <UserRound size={16} />
-                    My Profile
-                  </Link>
+                {/* Profile */}
+                <DropdownMenuItem
+                  className="cursor-pointer rounded-md text-[#123C3A] focus:bg-[#D5B982]/40 focus:text-[#123C3A]"
+                  onClick={() => router.push("/dashboard/profile")}
+                >
+                  <UserRound size={16} />
+                  My Profile
                 </DropdownMenuItem>
 
                 <DropdownMenuSeparator className="bg-[#D5B982]/50" />
 
+                {/* Desktop Logout */}
                 <DropdownMenuItem
-                  onClick={handleLogout}
-                  className="cursor-pointer gap-2 rounded-md text-red-600 focus:bg-red-50 focus:text-red-700"
+                  variant="destructive"
+                  disabled={isSigningOut}
+                  onClick={handleSignOut}
                 >
-                  <LogOut size={16} />
-                  Logout
+                  <LogOut className="mr-2 h-4 w-4" />
+                  <span>
+                    {isSigningOut ? "Logging out..." : "Logout"}
+                  </span>
                 </DropdownMenuItem>
               </DropdownMenuContent>
             </DropdownMenu>
@@ -214,6 +233,7 @@ export default function Navbar() {
 
           <div className="my-4 border-t border-[#D5B982]/50" />
 
+          {/* Mobile Login & Register */}
           {!isPending && !user && (
             <div className="flex gap-3">
               <Link
@@ -234,11 +254,16 @@ export default function Navbar() {
             </div>
           )}
 
+          {/* Mobile User Section */}
           {!isPending && user && (
             <div className="space-y-3">
+              {/* User Information */}
               <div className="flex items-center gap-3 rounded-xl border border-[#D5B982]/40 bg-white/60 p-3">
                 <Avatar className="size-10">
-                  <AvatarImage src={user.image || ""} />
+                  <AvatarImage
+                    src={user.image || ""}
+                    alt={user.name || "User"}
+                  />
 
                   <AvatarFallback className="bg-[#123C3A] text-white">
                     {user.name?.charAt(0).toUpperCase() || "U"}
@@ -256,6 +281,7 @@ export default function Navbar() {
                 </div>
               </div>
 
+              {/* Mobile Profile */}
               <Link
                 href="/dashboard/profile"
                 onClick={() => setIsMenuOpen(false)}
@@ -265,12 +291,15 @@ export default function Navbar() {
                 My Profile
               </Link>
 
+              {/* Mobile Logout */}
               <button
-                onClick={handleLogout}
-                className="flex w-full items-center gap-2 rounded-lg px-3 py-2.5 text-sm font-semibold text-red-600 transition hover:bg-red-50"
+                type="button"
+                onClick={handleSignOut}
+                disabled={isSigningOut}
+                className="flex w-full items-center gap-2 rounded-lg px-3 py-2.5 text-sm font-semibold text-red-600 transition hover:bg-red-50 disabled:opacity-50"
               >
                 <LogOut size={17} />
-                Logout
+                {isSigningOut ? "Logging out..." : "Logout"}
               </button>
             </div>
           )}
