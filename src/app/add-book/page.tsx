@@ -1,3 +1,4 @@
+
 "use client";
 
 import { useState } from "react";
@@ -36,6 +37,7 @@ export default function AddBookPage() {
   const router = useRouter();
 
   const [category, setCategory] = useState("");
+  const [totalCopies, setTotalCopies] = useState("1");
   const [image, setImage] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const { data: session, isPending } = authClient.useSession();
@@ -69,6 +71,7 @@ export default function AddBookPage() {
       title: String(bookData.title).trim(),
       author: String(bookData.author).trim(),
       category,
+      totalCopies: Number(totalCopies),
       image: image.trim(),
       description: String(bookData.description).trim(),
       userName: user.name,
@@ -101,6 +104,7 @@ export default function AddBookPage() {
 
       form.reset();
       setCategory("");
+      setTotalCopies("1");
       setImage("");
 
       router.refresh();
@@ -124,7 +128,7 @@ export default function AddBookPage() {
   }
 
   return (
-  <main className="min-h-screen bg-[#E2ECE8] px-4 pt-4 pb-10 sm:px-6 lg:pt-4 lg:pb-14">
+    <main className="min-h-screen bg-[#E2ECE8] px-4 pt-4 pb-10 sm:px-6 lg:pt-4 lg:pb-14">
       <div className="mx-auto max-w-4xl">
         {/* Page Heading */}
         <div className="mb-3 text-center">
@@ -243,6 +247,37 @@ export default function AddBookPage() {
                   </Select>
                 </div>
 
+                {/* Total Copies */}
+                <div className="space-y-2">
+                  <Label className="font-semibold text-[#123C3A]">
+                    Total Copies <span className="text-red-500">*</span>
+                  </Label>
+
+                  <Select
+                    value={totalCopies}
+                    onValueChange={(value) => setTotalCopies(value ?? "1")}
+                  >
+                    <SelectTrigger className="h-12 w-full border-[#D5B982]/50 bg-[#F4F7F5]">
+                      <SelectValue placeholder="Choose total copies" />
+                    </SelectTrigger>
+
+                    <SelectContent>
+                      {Array.from({ length: 20 }, (_, index) => index + 1).map(
+                        (number) => (
+                          <SelectItem key={number} value={String(number)}>
+                            {number} {number === 1 ? "Copy" : "Copies"}
+                          </SelectItem>
+                        ),
+                      )}
+                    </SelectContent>
+                  </Select>
+
+                  <p className="text-xs leading-5 text-[#6B8279]">
+                    Select how many copies of this book are available in your
+                    library.
+                  </p>
+                </div>
+
                 {/* Book Image */}
                 <div className="space-y-3">
                   <Label
@@ -349,7 +384,7 @@ export default function AddBookPage() {
                     </Label>
 
                     <Input
-                      value={user.name || ""}
+                      value={user?.name || ""}
                       readOnly
                       className="h-12 border-[#D5B982]/40 bg-[#F4F7F5] text-[#405A51]"
                     />
@@ -363,7 +398,7 @@ export default function AddBookPage() {
                     </Label>
 
                     <Input
-                      value={user.email || ""}
+                      value={user?.email || ""}
                       readOnly
                       className="h-12 border-[#D5B982]/40 bg-[#F4F7F5] text-[#405A51]"
                     />
