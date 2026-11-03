@@ -1,4 +1,3 @@
-
 import React from "react";
 import Link from "next/link";
 import {
@@ -19,9 +18,13 @@ const BookDetailsPage = async ({
 }) => {
   const { id } = await params;
 
+  console.log("Details Page ID:", id);
+
   const res = await fetch(`http://localhost:8000/book/${id}`, {
     cache: "no-store",
   });
+
+  console.log("API Status:", res.status);
 
   if (!res.ok) {
     return (
@@ -43,12 +46,15 @@ const BookDetailsPage = async ({
     );
   }
 
-  const book:IBook = await res.json();
+  const text = await res.text();
+
+  console.log("API Response:", text);
+
+  const book: IBook = JSON.parse(text);
 
   return (
     <main className="min-h-screen bg-[#E2ECE8] px-4 py-8 sm:px-6 lg:px-10 lg:py-12">
       <div className="mx-auto max-w-6xl">
-
         {/* Back Navigation */}
         <Link
           href="/books"
@@ -64,7 +70,6 @@ const BookDetailsPage = async ({
         {/* Details Card */}
         <div className="overflow-hidden rounded-[28px] border border-[#D5E0D9] bg-[#FAFCFA] shadow-xl shadow-[#123C3A]/10">
           <div className="grid grid-cols-1 lg:grid-cols-2">
-
             {/* Book Cover Section */}
             <div className="relative flex min-h-[450px] items-center justify-center overflow-hidden bg-[#E9EDE7] p-8 sm:p-12 lg:min-h-[650px]">
               <div className="absolute -left-20 -top-20 size-64 rounded-full bg-[#123C3A]/10 blur-3xl" />
@@ -95,7 +100,6 @@ const BookDetailsPage = async ({
 
             {/* Book Information */}
             <div className="flex flex-col justify-center p-6 sm:p-10 lg:p-12">
-
               {/* Category */}
               <div className="mb-6 flex items-center gap-2">
                 <span className="rounded-lg border border-[#D5E0D9] bg-[#E9EDE7] px-4 py-2 text-[10px] font-bold uppercase tracking-[1.8px] text-[#123C3A]">
@@ -116,9 +120,7 @@ const BookDetailsPage = async ({
               {/* Author */}
               <p className="mt-4 flex flex-wrap items-center gap-2 text-sm text-[#60766D]">
                 Written by
-                <span className="font-bold text-[#123C3A]">
-                  {book?.author}
-                </span>
+                <span className="font-bold text-[#123C3A]">{book?.author}</span>
               </p>
 
               <div className="my-8 h-px bg-[#D5E0D9]" />
@@ -130,15 +132,15 @@ const BookDetailsPage = async ({
                 </h2>
 
                 <p className="text-sm leading-8 text-[#60766D]">
-                  {book?.description || "No description available for this book."}
+                  {book?.description ||
+                    "No description available for this book."}
                 </p>
               </div>
 
               <div className="my-8 h-px bg-[#D5E0D9]" />
 
-              {/* Book Information Cards */}
+           
               <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-
                 {/* Added By */}
                 <div className="flex items-center gap-3 rounded-2xl border border-[#D5E0D9] bg-[#E9EDE7] p-4">
                   <div className="flex size-11 shrink-0 items-center justify-center rounded-xl bg-[#123C3A] text-white">
@@ -173,11 +175,38 @@ const BookDetailsPage = async ({
                               day: "numeric",
                               month: "short",
                               year: "numeric",
-                            }
+                            },
                           )
                         : "Date unavailable"}
                     </p>
                   </div>
+                </div>
+              </div>
+
+              {/* Available Copies */}
+              <div className="mt-4 flex items-center justify-between rounded-2xl border border-[#D5E0D9] bg-gradient-to-r from-[#E9EDE7] to-[#FAFCFA] p-5 shadow-sm">
+                <div className="flex items-center gap-3">
+                  <div className="flex size-12 items-center justify-center rounded-xl bg-[#123C3A] text-white shadow-md shadow-[#123C3A]/15">
+                    <BookOpen size={22} />
+                  </div>
+
+                  <div>
+                    <h3 className="text-sm font-bold text-[#123C3A]">
+                      Available Copies
+                    </h3>
+                    <p className="mt-1 text-xs text-[#60766D]">
+                      Books currently in the library
+                    </p>
+                  </div>
+                </div>
+
+                <div className="flex items-center gap-2">
+                  <span className="text-3xl font-extrabold tabular-nums text-[#123C3A]">
+                    {book?.totalCopies ?? 0}
+                  </span>
+                  <span className="text-xs font-semibold text-[#60766D]">
+                    Copies
+                  </span>
                 </div>
               </div>
 

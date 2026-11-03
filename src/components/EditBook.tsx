@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
 
@@ -91,7 +91,7 @@ const EditBook = ({ book }: EditBookProps) => {
   };
 
   // Update Book
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.SubmitEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     if (!book?._id) {
@@ -146,6 +146,7 @@ const EditBook = ({ book }: EditBookProps) => {
       );
 
       const result = await res.json();
+      console.log(result)
 
       toast.success("Book updated successfully!");
 
@@ -167,19 +168,18 @@ const EditBook = ({ book }: EditBookProps) => {
 
   return (
     <Dialog open={open} onOpenChange={setOpen}>
-      {/* Edit Button */}
-      <DialogTrigger>
-        {
-          <Button
-            type="button"
-            variant="outline"
-            className="h-9 gap-2 rounded-lg border border-[#123C3A]/20 bg-[#E9EDE7] px-4 text-xs font-semibold text-[#123C3A] transition hover:bg-[#123C3A] hover:text-white"
-          >
-            <Pencil size={15} />
-            Edit
-          </Button>
-        }
-      </DialogTrigger>
+ <DialogTrigger
+  render={
+    <Button
+      type="button"
+      variant="outline"
+      className="group h-10 gap-2 rounded-xl border border-[#123C3A]/20 bg-[#E9EDE7] px-5 text-sm font-semibold text-[#123C3A] shadow-sm transition-all duration-300 hover:-translate-y-0.5 hover:border-[#123C3A] hover:bg-[#123C3A] hover:text-white"
+    >
+      <Pencil size={16} />
+      Edit
+    </Button>
+  }
+/>
 
       {/* Dialog Content */}
       <DialogContent className="max-h-[90vh] overflow-y-auto border-[#D5E0D9] bg-[#FAFCFA] p-0 sm:max-w-2xl">

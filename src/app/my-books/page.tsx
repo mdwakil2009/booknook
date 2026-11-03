@@ -6,7 +6,7 @@ import {
   BookOpen,
   BookPlus,
   Loader2,
-
+  Pencil,
   Trash2,
   BookMarked,
 } from "lucide-react";
@@ -15,18 +15,18 @@ import { authClient } from "@/lib/auth-client";
 import { IBook } from "@/lib/type";
 import Image from "next/image";
 import EditBook from "@/components/EditBook";
+import DeleteBook from "@/components/DeleteBook";
 
-const MyBooksPage = ({book}:{book:IBook[]}) => {
-     const [books, setBooks] = useState<IBook[]>([]);
-     const [loading, setLoading] = useState(true);
-     
-     const { data: session, isPending } = authClient.useSession();
+const MyBooksPage = ({ book }: { book: IBook[] }) => {
+  const [books, setBooks] = useState<IBook[]>([]);
+  const [loading, setLoading] = useState(true);
 
-     const email = session?.user?.email;
+  const { data: session, isPending } = authClient.useSession();
+
+  const email = session?.user?.email;
 
   useEffect(() => {
     if (isPending) return;
-
 
     if (!email) {
       setBooks([]);
@@ -90,7 +90,6 @@ const MyBooksPage = ({book}:{book:IBook[]}) => {
           </Link>
         </div>
 
-        {/* Book Count */}
         <div className="mb-6 flex items-center justify-between rounded-xl border border-[#D5E0D9] bg-[#FAFCFA] px-5 py-4 shadow-sm">
           <div>
             <p className="text-sm font-medium text-[#6B8279]">
@@ -110,7 +109,6 @@ const MyBooksPage = ({book}:{book:IBook[]}) => {
           </div>
         </div>
 
-        {/* Empty State */}
         {books.length === 0 ? (
           <div className="flex min-h-[350px] flex-col items-center justify-center rounded-2xl border border-dashed border-[#A8BDB2] bg-[#FAFCFA] px-5 text-center shadow-sm">
             <div className="mb-5 flex size-16 items-center justify-center rounded-2xl bg-[#E2ECE8] text-[#123C3A]">
@@ -134,65 +132,66 @@ const MyBooksPage = ({book}:{book:IBook[]}) => {
             </Link>
           </div>
         ) : (
-          /* Books Grid */
           <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 sm:gap-5 lg:grid-cols-3 xl:grid-cols-4">
             {books.map((book) => (
               <div
                 key={book._id}
-                className="group overflow-hidden rounded-xl border border-[#D5E0D9] bg-[#FAFCFA] shadow-sm transition duration-300 hover:-translate-y-1 hover:shadow-lg"
+                className="group relative overflow-hidden rounded-2xl border border-[#D5E0D9] bg-[#FAFCFA] shadow-sm transition-all duration-500 hover:-translate-y-2 hover:border-[#123C3A]/30 hover:shadow-xl hover:shadow-[#123C3A]/10"
               >
-                {/* Cover Image */}
-                <div className="relative overflow-hidden bg-[#E9EDE7]">
+                <div className="relative h-44 w-full overflow-hidden bg-gradient-to-br from-[#E9EDE7] via-[#F5F5EF] to-[#D5E0D9] sm:h-48">
+                  <div className="absolute -right-10 -top-10 size-28 rounded-full bg-[#123C3A]/5 blur-2xl" />
+                  <div className="absolute -bottom-10 -left-10 size-28 rounded-full bg-[#9B704B]/10 blur-2xl" />
+
                   <Image
                     src={book.image}
                     alt={book.title}
-                    width={300}
-                    height={100}
-                    className="h-44 w-full object-cover transition duration-500 group-hover:scale-105 sm:h-48"
+                    fill
+                    sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
+                    className="z-10 object-cover transition-transform duration-500 group-hover:scale-105"
                   />
 
-                  <span className="absolute left-2 top-2 rounded-full bg-[#123C3A]/90 px-2.5 py-1 text-[10px] font-semibold text-white shadow-sm">
+                  <span className="absolute left-3 top-3 z-20 rounded-full border border-white/50 bg-[#123C3A]/90 px-2.5 py-1 text-[9px] font-bold uppercase tracking-wider text-white shadow-md backdrop-blur-sm">
                     {book.category}
                   </span>
                 </div>
 
-                {/* Book Information */}
                 <div className="p-3 sm:p-4">
-                  <h2
-                    className="line-clamp-1 text-sm font-bold text-[#123C3A] sm:text-base"
-                    title={book.title}
-                  >
-                    {book.title}
-                  </h2>
+                  <div className="min-h-[58px]">
+                    <h2
+                      className="line-clamp-2 font-serif text-sm font-bold leading-snug text-[#123C3A] transition-colors group-hover:text-[#9B704B] sm:text-base"
+                      title={book.title}
+                    >
+                      {book.title}
+                    </h2>
 
-                  <p className="mt-1 truncate text-xs text-[#6B8279] sm:text-sm">
-                    By {book.author}
-                  </p>
+                    <p className="mt-1 truncate text-[11px] font-medium text-[#6B8279] sm:text-xs">
+                      By {book.author}
+                    </p>
+                  </div>
 
-                  <div className="mt-3 flex items-center justify-between border-t border-[#E2ECE8] pt-3">
-                    <span className="text-[11px] text-[#6B8279] sm:text-xs">
-                      Available Copies
-                    </span>
+                  <div className="my-3 h-px bg-[#D5E0D9]" />
 
-                    <span className="rounded-md bg-[#E2ECE8] px-2 py-1 text-xs font-bold text-[#123C3A]">
+                  <div className="flex items-center justify-between rounded-lg bg-[#E9EDE7] px-2.5 py-2">
+                    <div className="flex items-center gap-2">
+                      <BookMarked size={15} className="text-[#123C3A]" />
+
+                      <span className="text-[10px] font-semibold text-[#6B8279] sm:text-xs">
+                        Available Copies
+                      </span>
+                    </div>
+
+                    <span className="flex size-7 items-center justify-center rounded-md bg-white text-xs font-bold text-[#123C3A] shadow-sm">
                       {book.totalCopies}
                     </span>
                   </div>
 
-                  {/* Action Buttons */}
                   <div className="mt-3 grid grid-cols-2 gap-2">
-                   
-                      <EditBook book={book}></EditBook>
-
-                    <button
-                      type="button"
-                      className="inline-flex items-center justify-center gap-1.5 rounded-lg border border-red-100 bg-red-50 py-2 text-xs font-semibold text-red-600 transition hover:bg-red-600 hover:text-white"
-                    >
-                      <Trash2 size={13} />
-                      Delete
-                    </button>
+                    <EditBook book={book} />
+                    <DeleteBook book={book} />
                   </div>
                 </div>
+
+                <div className="h-1 w-0 bg-[#123C3A] transition-all duration-500 group-hover:w-full" />
               </div>
             ))}
           </div>
