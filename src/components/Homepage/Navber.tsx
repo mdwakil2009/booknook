@@ -184,13 +184,13 @@ export default function Navbar() {
                 <DropdownMenuSeparator className="bg-[#D5B982]/50" />
 
                 {/* Profile */}
-                <DropdownMenuItem
+               <Link href={"/profile"} > <DropdownMenuItem
                   className="cursor-pointer rounded-md text-[#123C3A] focus:bg-[#D5B982]/40 focus:text-[#123C3A]"
                   onClick={() => router.push("/dashboard/profile")}
                 >
                   <UserRound size={16} />
                   My Profile
-                </DropdownMenuItem>
+                </DropdownMenuItem></Link>
 
                 <DropdownMenuSeparator className="bg-[#D5B982]/50" />
 

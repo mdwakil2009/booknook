@@ -10,6 +10,7 @@ import {
   Sparkles,
 } from "lucide-react";
 import { IBook } from "@/lib/type";
+import BorrowButton from "@/components/Borrows/BorrowButton";
 
 const BookDetailsPage = async ({
   params,
@@ -139,7 +140,6 @@ const BookDetailsPage = async ({
 
               <div className="my-8 h-px bg-[#D5E0D9]" />
 
-           
               <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
                 {/* Added By */}
                 <div className="flex items-center gap-3 rounded-2xl border border-[#D5E0D9] bg-[#E9EDE7] p-4">
@@ -209,18 +209,11 @@ const BookDetailsPage = async ({
                   </span>
                 </div>
               </div>
-
-              {/* Borrow Button */}
-              <button
-                type="button"
-                className="group mt-8 flex w-full items-center justify-center gap-2 rounded-xl bg-[#123C3A] px-6 py-4 text-sm font-bold text-white shadow-lg shadow-[#123C3A]/15 transition-all duration-300 hover:-translate-y-1 hover:bg-[#60766D] hover:shadow-xl"
-              >
-                <BookmarkPlus
-                  size={19}
-                  className="transition-transform duration-300 group-hover:scale-110"
-                />
-                Borrow This Book
-              </button>
+              <BorrowButton
+                bookId={String(book._id)}
+                bookTitle={book.title}
+                bookImage={book.image}
+              />
 
               <p className="mt-4 text-center text-xs text-[#60766D]">
                 Discover your next favorite story with BookNook.
