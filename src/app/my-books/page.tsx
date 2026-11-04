@@ -1,4 +1,3 @@
-
 "use client";
 
 import { useEffect, useState } from "react";
@@ -9,9 +8,12 @@ import {
   BookPlus,
   Loader2,
   BookMarked,
-  Sparkles,
+  Plus,
   Library,
-  ArrowRight,
+  Sparkles,
+  Feather,
+  Layers,
+  Copy,
 } from "lucide-react";
 
 import { authClient } from "@/lib/auth-client";
@@ -19,7 +21,7 @@ import { IBook } from "@/lib/type";
 import EditBook from "@/components/EditBook";
 import DeleteBook from "@/components/DeleteBook";
 
-const MyBooksPage = ({ book }: { book: IBook[] }) => {
+const MyBooksPage = ({ book: _book }: { book: IBook[] }) => {
   const [books, setBooks] = useState<IBook[]>([]);
   const [loading, setLoading] = useState(true);
 
@@ -63,269 +65,210 @@ const MyBooksPage = ({ book }: { book: IBook[] }) => {
 
   if (isPending || loading) {
     return (
-      <div className="flex min-h-[70vh] items-center justify-center bg-[#E2ECE8]">
-        <Loader2 className="size-9 animate-spin text-[#123C3A]" />
+      <div className="flex min-h-[60vh] items-center justify-center bg-[#E2ECE8]">
+        <Loader2 className="size-7 animate-spin text-[#123C3A]" />
       </div>
     );
   }
 
   return (
-    <main className="min-h-screen bg-[#E2ECE8] px-4 py-8 sm:px-6 lg:px-10">
+    <main className="min-h-screen bg-[#E2ECE8] px-3 py-5 sm:px-5 lg:px-7 lg:py-7">
       <div className="mx-auto max-w-7xl">
-
         {/* Header */}
-        <section className="relative isolate overflow-hidden rounded-2xl shadow-xl">
+        <section className="mb-6 flex flex-col justify-between gap-4 sm:flex-row sm:items-center">
+          <div>
+            <div className="mb-1 flex items-center gap-2">
+              <h1 className="text-xl font-bold tracking-tight text-[#123C3A] sm:text-2xl">
+                Manage My Books
+              </h1>
+              <Sparkles size={15} className="text-[#92764E]" />
+            </div>
 
-          {/* Banner Image */}
-          <Image
-            src="/image/banner8.avif"
-            alt="BookNook Library Banner"
-            fill
-            priority
-            sizes="100vw"
-            className="object-cover"
-          />
+            <p className="text-xs text-[#81948A] sm:text-sm">
+              Manage, organize and update your personal book collection.
+            </p>
+          </div>
 
-          {/* Dark Overlay */}
-          <div className="absolute inset-0 bg-[#123C3A]/75" />
+          <Link
+            href="/add-book"
+            className="inline-flex w-fit items-center justify-center gap-2 rounded-lg bg-[#123C3A] px-5 py-2.5 text-xs font-semibold text-white shadow-sm transition duration-300 hover:-translate-y-0.5 hover:bg-[#1C514D] hover:shadow-md"
+          >
+            <Plus size={16} />
+            Add New Book
+          </Link>
+        </section>
 
-          {/* Header Content */}
-          <div className="relative z-10 flex min-h-[230px] flex-col justify-center px-6 py-7 text-white sm:min-h-[250px] sm:px-10">
+        {/* Decorative Line */}
+        <div className="mb-6 h-px bg-gradient-to-r from-[#A9BEB3] via-[#123C3A]/40 to-transparent" />
 
-            <div className="mb-3 inline-flex w-fit items-center gap-2 rounded-full border border-white/20 bg-white/10 px-3 py-1.5 text-[11px] font-semibold tracking-wider text-[#D8E8DF] backdrop-blur-sm">
-              <Sparkles size={13} />
+        {/* Empty State */}
+        {books.length === 0 ? (
+          <section className="relative flex min-h-[350px] flex-col items-center justify-center overflow-hidden rounded-2xl border border-[#D4E1DA] bg-[#FAFCFA] px-4 py-8 text-center shadow-sm">
+            {/* Illustration */}
+            <div className="relative mb-3 flex h-24 w-28 items-center justify-center">
+              <Image
+                src="/image/logo1.jpg"
+                alt="Colorful stacked books illustration"
+                width={120}
+                height={120}
+                priority
+                className="h-full w-full object-contain mix-blend-multiply"
+              />
+            </div>
+
+            <p className="mb-2 text-[9px] font-bold tracking-[0.25em] text-[#92764E]">
               YOUR PERSONAL LIBRARY
-            </div>
-
-            <h1 className="text-2xl font-bold tracking-tight sm:text-3xl lg:text-4xl">
-              My Bookshelf
-            </h1>
-
-            <p className="mt-2 max-w-xl text-xs leading-6 text-[#E0EAE5] sm:text-sm">
-              Your personal collection of favorite books. Manage your library
-              and keep your reading journey organized.
             </p>
 
-            <p className="mt-3 text-xs text-[#D0DFD9] sm:text-sm">
-              Welcome back,{" "}
-              <span className="font-bold text-white">
-                {session?.user?.name}
-              </span>
+            <h2 className="text-xl font-bold text-[#123C3A] sm:text-2xl">
+              No Books Listed Yet
+            </h2>
+
+            <p className="mx-auto mt-2 max-w-sm text-xs leading-6 text-[#81948A] sm:text-sm">
+              Your bookshelf is waiting for its first story. Add your favorite
+              books and start building your personal collection.
             </p>
-          </div>
-        </section>
-
-        {/* Summary Cards */}
-        <section className="mt-4 grid grid-cols-2 gap-3">
-
-          {/* Total Books */}
-          <div className="flex items-center gap-2.5 rounded-xl border border-[#D4E1DA] bg-[#FAFCFA] p-3 shadow-sm sm:gap-3 sm:p-3.5">
-
-            <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-[#E2ECE8] text-[#123C3A] sm:h-10 sm:w-10">
-              <Library size={19} />
-            </div>
-
-            <div className="min-w-0">
-              <p className="text-[10px] font-medium text-[#81948A] sm:text-xs">
-                Total Books
-              </p>
-
-              <h2 className="text-lg font-bold text-[#123C3A] sm:text-xl">
-                {books.length}
-              </h2>
-            </div>
-          </div>
-
-          {/* Library Status */}
-          <div className="flex items-center gap-2.5 rounded-xl border border-[#E5DCCB] bg-[#FBF8F1] p-3 shadow-sm sm:gap-3 sm:p-3.5">
-
-            <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-[#F0E7D7] text-[#92764E] sm:h-10 sm:w-10">
-              <BookMarked size={19} />
-            </div>
-
-            <div className="min-w-0">
-              <p className="text-[10px] font-medium text-[#92764E] sm:text-xs">
-                Library Status
-              </p>
-
-              <h2 className="truncate text-sm font-bold text-[#765D3E] sm:text-base">
-                {books.length > 0 ? "Collection Active" : "No Books Yet"}
-              </h2>
-            </div>
-          </div>
-
-        </section>
-
-        {/* Book Collection */}
-        <section className="mt-12">
-
-          <div className="mb-7 flex flex-col justify-between gap-3 sm:flex-row sm:items-end">
-
-            <div>
-              <p className="text-xs font-bold tracking-[0.2em] text-[#8A9D93]">
-                YOUR READING SPACE
-              </p>
-
-              <h2 className="mt-2 text-2xl font-bold text-[#123C3A] sm:text-3xl">
-                Your Book Collection
-              </h2>
-
-              <p className="mt-2 text-sm text-[#60766D]">
-                Manage your books and organize your personal library.
-              </p>
-            </div>
 
             <Link
               href="/add-book"
-              className="inline-flex w-fit items-center gap-2 text-sm font-bold text-[#123C3A] transition hover:gap-3"
+              className="mt-5 inline-flex items-center justify-center gap-2 rounded-lg bg-[#123C3A] px-5 py-2.5 text-xs font-semibold text-white shadow-sm transition duration-300 hover:-translate-y-0.5 hover:bg-[#1C514D] hover:shadow-md"
             >
-              Add Another Book <ArrowRight size={17} />
+              <BookPlus size={16} />
+              Add Your First Book
             </Link>
-          </div>
 
-          {books.length === 0 ? (
+            <div className="mt-6 flex items-center gap-1.5 text-[10px] font-medium text-[#81948A]">
+              <Feather size={13} />
+              Every great library starts with one book.
+            </div>
+          </section>
+        ) : (
+          /* Book Collection */
+          <section>
+            {/* Collection Heading */}
+            <div className="mb-5 flex flex-col justify-between gap-3 sm:flex-row sm:items-end">
+              <div>
+                <div className="mb-1.5 flex items-center gap-1.5 text-[#81948A]">
+                  <Library size={15} />
+                  <p className="text-[9px] font-bold tracking-[0.22em]">
+                    YOUR READING SPACE
+                  </p>
+                </div>
 
-            /* Empty State */
-            <div className="rounded-[2rem] border border-dashed border-[#A9BEB3] bg-[#FAFCFA] px-6 py-16 text-center">
+                <h2 className="text-xl font-bold text-[#123C3A] sm:text-2xl">
+                  Your Book Collection
+                </h2>
 
-              <div className="mx-auto flex h-20 w-20 items-center justify-center rounded-3xl bg-[#E2ECE8] text-[#123C3A]">
-                <BookOpen size={38} />
+                <p className="mt-1 text-xs text-[#81948A]">
+                  Manage your books and organize your personal library.
+                </p>
               </div>
 
-              <h3 className="mt-6 text-2xl font-bold text-[#123C3A]">
-                Your Bookshelf Is Empty
-              </h3>
-
-              <p className="mx-auto mt-3 max-w-md text-sm leading-7 text-[#60766D]">
-                You haven't added any books yet. Start building your personal
-                library with your favorite books.
-              </p>
-
-              <Link
-                href="/add-book"
-                className="mt-7 inline-flex items-center gap-2 rounded-xl bg-[#123C3A] px-6 py-3 text-sm font-semibold text-white transition hover:bg-[#1C514D]"
-              >
-                <BookPlus size={17} />
-                Add Your First Book
-              </Link>
+              <div className="flex w-fit items-center gap-2 rounded-lg border border-[#D4E1DA] bg-[#FAFCFA] px-3.5 py-2.5 text-xs font-semibold text-[#123C3A]">
+                <BookMarked size={15} />
+                {books.length} Books Listed
+              </div>
             </div>
 
-          ) : (
+            {/* Books Grid */}
 
-            /* Books Grid */
-            <div className="grid grid-cols-1 gap-6 md:grid-cols-2 xl:grid-cols-3">
-
+            {/* Books Grid */}
+            <div className="grid grid-cols-1 gap-4">
               {books.map((book) => (
-                <article
+                <div
                   key={book._id}
-                  className="group overflow-hidden rounded-[1.75rem] border border-[#D4E1DA] bg-[#FAFCFA] shadow-sm transition duration-300 hover:-translate-y-1 hover:shadow-xl"
+                  className="group overflow-hidden rounded-2xl border border-[#D4E1DA] bg-[#FAFCFA] p-3 shadow-sm transition hover:shadow-lg sm:p-4"
                 >
-
-                  {/* Book Cover */}
-                  <div className="relative h-64 overflow-hidden bg-[#D9E5DE]">
-
-                    {book.image ? (
-                      <Image
-                        src={book.image}
-                        alt={book.title}
-                        fill
-                        sizes="(max-width: 768px) 100vw, 33vw"
-                        className="object-cover transition duration-700 group-hover:scale-105"
-                      />
-                    ) : (
-                      <div className="flex h-full items-center justify-center text-[#60766D]">
-                        <BookOpen size={60} />
-                      </div>
-                    )}
-
-                    <div className="absolute inset-0 bg-gradient-to-t from-[#123C3A]/80 via-transparent to-transparent" />
-
-                    <div className="absolute left-5 top-5 rounded-full border border-white/30 bg-[#123C3A]/80 px-3 py-2 text-xs font-semibold text-white backdrop-blur-md">
-                      {book.category}
+                  <div className="flex items-center gap-4">
+                    {/* 1. Book Image */}
+                    <div className="relative h-32 w-24 shrink-0 overflow-hidden rounded-xl bg-[#EAF1EC] sm:h-40 sm:w-28">
+                      {book.image ? (
+                        <Image
+                          src={book.image}
+                          alt={book.title}
+                          fill
+                          sizes="112px"
+                          className="object-cover transition-transform duration-500 group-hover:scale-105"
+                        />
+                      ) : (
+                        <div className="flex h-full items-center justify-center text-[#81948A]">
+                          <BookOpen size={28} strokeWidth={1.3} />
+                        </div>
+                      )}
                     </div>
 
-                    <div className="absolute bottom-5 left-5 right-5">
-
-                      <p className="mb-2 text-[10px] font-bold tracking-[0.2em] text-[#D8E8DF]">
-                        BOOKNOOK COLLECTION
+                    {/* 2. Book Title */}
+                    <div className="min-w-0 flex-1">
+                      <p className="mb-1 text-[10px] text-[#81948A]">
+                        Book Title
                       </p>
 
-                      <h3 className="line-clamp-2 text-2xl font-bold leading-tight text-white">
+                      <h3 className="line-clamp-2 text-sm font-bold text-[#123C3A] sm:text-base">
                         {book.title}
                       </h3>
 
-                    </div>
-                  </div>
-
-                  {/* Book Details */}
-                  <div className="p-5 sm:p-6">
-
-                    <p className="truncate text-sm font-medium text-[#60766D]">
-                      By {book.author}
-                    </p>
-
-                    <div className="my-5 border-t border-dashed border-[#D4E1DA]" />
-
-                    {/* Available Copies */}
-                    <div className="flex items-center justify-between rounded-2xl bg-[#EAF1EC] p-4">
-
-                      <div className="flex items-center gap-2 text-[#60766D]">
-                        <BookMarked size={17} />
-
-                        <span className="text-xs font-semibold">
-                          Available Copies
-                        </span>
-                      </div>
-
-                      <span className="flex size-9 items-center justify-center rounded-lg bg-white text-sm font-bold text-[#123C3A] shadow-sm">
-                        {book.totalCopies}
-                      </span>
-
+                      <p className="mt-1 truncate text-[11px] text-[#81948A] sm:text-xs">
+                        By {book.author}
+                      </p>
                     </div>
 
-                    <div className="my-5 border-t border-dashed border-[#D4E1DA]" />
+                    {/* 3. Category */}
+                    <div className="min-w-0 flex-1">
+                      <p className="mb-1 flex items-center gap-1 text-[10px] text-[#81948A]">
+                        <Layers className="size-3" />
+                        Category
+                      </p>
 
-                    {/* Manage Book */}
-                    <div className="flex items-center justify-between gap-3">
+                      <p className="text-xs font-semibold text-[#60766D] sm:text-sm">
+                        {book.category}
+                      </p>
+                    </div>
 
-                      <div>
-                        <p className="text-xs font-bold text-[#123C3A]">
-                          Manage Your Book
-                        </p>
+                    {/* 4. Total Copies */}
+                    <div className="min-w-0 flex-1">
+                      <p className="mb-1 flex items-center gap-1 text-[10px] text-[#92764E]">
+                        <Copy className="size-3" />
+                        Total Copies
+                      </p>
 
-                        <p className="mt-1 text-[11px] text-[#81948A]">
-                          Edit or remove this book
-                        </p>
+                      <p className="text-xs font-bold text-[#765D3E] sm:text-sm">
+                        {book.totalCopies} Copies
+                      </p>
+                    </div>
+
+                    {/* 5. Manage Book */}
+                    <div className="shrink-0">
+                      <div className="mb-2 text-center text-[10px] font-bold text-[#123C3A] sm:text-xs">
+                        Manage Book
                       </div>
 
-                      <div className="flex items-center gap-2">
+                      <div className="flex items-center gap-1.5">
                         <EditBook book={book} />
                         <DeleteBook book={book} />
                       </div>
-
                     </div>
                   </div>
-                </article>
+                </div>
               ))}
-
             </div>
-          )}
-
-        </section>
+          </section>
+        )}
 
         {/* Footer */}
-        <div className="mt-10 flex flex-col items-center justify-center gap-2 border-t border-[#C9D9D0] pt-7 text-center">
+        <footer className="mt-8 border-t border-[#C9D9D0] py-6 text-center">
+          <div className="mb-2 flex items-center justify-center gap-1.5 text-[#123C3A]">
+            <BookOpen size={18} />
+            <p className="text-sm font-bold">BookNook</p>
+          </div>
 
-          <p className="text-sm font-semibold text-[#123C3A]">
+          <p className="text-xs font-semibold text-[#123C3A]">
             Your Books, Your Stories!
           </p>
 
-          <p className="text-xs text-[#81948A]">
+          <p className="mt-1 text-[10px] text-[#81948A]">
             Every book opens a new world of possibilities.
           </p>
-
-        </div>
-
+        </footer>
       </div>
     </main>
   );
