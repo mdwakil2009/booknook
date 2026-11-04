@@ -1,4 +1,3 @@
-
 "use client";
 
 import { useState } from "react";
@@ -121,31 +120,31 @@ export default function AddBookPage() {
 
   if (isPending) {
     return (
-      <div className="flex min-h-[70vh] items-center justify-center bg-[#E2ECE8]">
-        <Loader2 className="size-9 animate-spin text-[#123C3A]" />
+      <div className="flex min-h-[70vh] items-center justify-center bg-[#E2ECE8] dark:bg-[#172522]">
+        <Loader2 className="size-9 animate-spin text-[#123C3A] dark:text-[#A8C9B5]" />
       </div>
     );
   }
 
   return (
-    <main className="min-h-screen bg-[#E2ECE8] px-4 pt-4 pb-10 sm:px-6 lg:pt-4 lg:pb-14">
+    <main className="min-h-screen bg-[#E2ECE8] px-4 pt-4 pb-10 dark:bg-[#172522] sm:px-6 lg:pt-4 lg:pb-14">
       <div className="mx-auto max-w-4xl">
         {/* Page Heading */}
         <div className="mb-3 text-center">
-          <h1 className=" text-3xl font-extrabold tracking-tight text-[#123C3A] sm:text-4xl lg:text-5xl">
+          <h1 className="text-3xl font-extrabold tracking-tight text-[#123C3A] dark:text-[#E8F0EA] sm:text-4xl lg:text-5xl">
             Add a New Book
           </h1>
 
-          <p className="mx-auto mt-3 max-w-xl text-sm leading-6 text-[#6B8279] sm:text-base">
+          <p className="mx-auto mt-3 max-w-xl text-sm leading-6 text-[#6B8279] dark:text-[#A8BDB3] sm:text-base">
             Have a book worth sharing? Add it to BookNook and let other readers
             discover something wonderful.
           </p>
         </div>
 
         {/* Form Card */}
-        <Card className="overflow-hidden rounded-2xl border border-[#D5B982]/50 bg-white py-0 shadow-xl shadow-[#123C3A]/5">
+        <Card className="overflow-hidden rounded-2xl border border-[#D5B982]/50 bg-white py-0 shadow-xl shadow-[#123C3A]/5 dark:border-[#526B60] dark:bg-[#20332F] dark:shadow-black/20">
           {/* Card Header */}
-          <div className="relative overflow-hidden bg-[#123C3A] px-6 py-7 text-white sm:px-9">
+          <div className="relative overflow-hidden bg-[#123C3A] px-6 py-7 text-white dark:bg-[#30463D] sm:px-9">
             <div className="absolute -right-10 -top-16 size-48 rounded-full border border-white/10" />
             <div className="absolute -right-2 -top-8 size-32 rounded-full border border-[#D5B982]/20" />
 
@@ -169,15 +168,15 @@ export default function AddBookPage() {
               {/* Book Information */}
               <section className="space-y-5">
                 <div className="flex items-center gap-3">
-                  <div className="flex size-10 items-center justify-center rounded-xl bg-[#E2ECE8] text-[#123C3A]">
+                  <div className="flex size-10 items-center justify-center rounded-xl bg-[#E2ECE8] text-[#123C3A] dark:bg-[#30463D] dark:text-[#A8C9B5]">
                     <BookOpen size={20} />
                   </div>
 
                   <div>
-                    <h3 className="font-bold text-[#123C3A]">
+                    <h3 className="font-bold text-[#123C3A] dark:text-[#E8F0EA]">
                       Book Information
                     </h3>
-                    <p className="text-xs text-[#6B8279]">
+                    <p className="text-xs text-[#6B8279] dark:text-[#A8BDB3]">
                       Enter the basic details of your book.
                     </p>
                   </div>
@@ -188,7 +187,7 @@ export default function AddBookPage() {
                   <div className="space-y-2">
                     <Label
                       htmlFor="title"
-                      className="font-semibold text-[#123C3A]"
+                      className="font-semibold text-[#123C3A] dark:text-[#E8F0EA]"
                     >
                       Book Title <span className="text-red-500">*</span>
                     </Label>
@@ -199,7 +198,7 @@ export default function AddBookPage() {
                       placeholder="e.g. The Great Gatsby"
                       required
                       minLength={2}
-                      className="h-12 border-[#D5B982]/50 bg-[#F4F7F5] focus-visible:border-[#123C3A]"
+                      className="h-12 border-[#D5B982]/50 bg-[#F4F7F5] dark:border-[#526B60] dark:bg-[#30463D] dark:text-[#E8F0EA] dark:placeholder:text-[#A8BDB3] dark:focus-visible:border-[#A8C9B5] focus-visible:border-[#123C3A]"
                     />
                   </div>
 
@@ -207,7 +206,7 @@ export default function AddBookPage() {
                   <div className="space-y-2">
                     <Label
                       htmlFor="author"
-                      className="font-semibold text-[#123C3A]"
+                      className="font-semibold text-[#123C3A] dark:text-[#E8F0EA]"
                     >
                       Author Name <span className="text-red-500">*</span>
                     </Label>
@@ -218,14 +217,14 @@ export default function AddBookPage() {
                       placeholder="e.g. F. Scott Fitzgerald"
                       required
                       minLength={2}
-                      className="h-12 border-[#D5B982]/50 bg-[#F4F7F5] focus-visible:border-[#123C3A]"
+                      className="h-12 border-[#D5B982]/50 bg-[#F4F7F5] dark:border-[#526B60] dark:bg-[#30463D] dark:text-[#E8F0EA] dark:placeholder:text-[#A8BDB3] dark:focus-visible:border-[#A8C9B5] focus-visible:border-[#123C3A]"
                     />
                   </div>
                 </div>
 
                 {/* Category */}
                 <div className="space-y-2">
-                  <Label className="font-semibold text-[#123C3A]">
+                  <Label className="font-semibold text-[#123C3A] dark:text-[#E8F0EA]">
                     Book Category <span className="text-red-500">*</span>
                   </Label>
 
@@ -233,13 +232,17 @@ export default function AddBookPage() {
                     value={category}
                     onValueChange={(value) => setCategory(value ?? "")}
                   >
-                    <SelectTrigger className="h-12 w-full border-[#D5B982]/50 bg-[#F4F7F5]">
+                    <SelectTrigger className="h-12 w-full border-[#D5B982]/50 bg-[#F4F7F5] dark:border-[#526B60] dark:bg-[#30463D] dark:text-[#E8F0EA]">
                       <SelectValue placeholder="Choose a book category" />
                     </SelectTrigger>
 
-                    <SelectContent>
+                    <SelectContent className="dark:border-[#526B60] dark:bg-[#20332F] dark:text-[#E8F0EA]">
                       {categories.map((item) => (
-                        <SelectItem key={item} value={item}>
+                        <SelectItem
+                          key={item}
+                          value={item}
+                          className="dark:focus:bg-[#30463D] dark:focus:text-[#E8F0EA]"
+                        >
                           {item}
                         </SelectItem>
                       ))}
@@ -249,7 +252,7 @@ export default function AddBookPage() {
 
                 {/* Total Copies */}
                 <div className="space-y-2">
-                  <Label className="font-semibold text-[#123C3A]">
+                  <Label className="font-semibold text-[#123C3A] dark:text-[#E8F0EA]">
                     Total Copies <span className="text-red-500">*</span>
                   </Label>
 
@@ -257,14 +260,18 @@ export default function AddBookPage() {
                     value={totalCopies}
                     onValueChange={(value) => setTotalCopies(value ?? "1")}
                   >
-                    <SelectTrigger className="h-12 w-full border-[#D5B982]/50 bg-[#F4F7F5]">
+                    <SelectTrigger className="h-12 w-full border-[#D5B982]/50 bg-[#F4F7F5] dark:border-[#526B60] dark:bg-[#30463D] dark:text-[#E8F0EA]">
                       <SelectValue placeholder="Choose total copies" />
                     </SelectTrigger>
 
-                    <SelectContent>
+                    <SelectContent className="dark:border-[#526B60] dark:bg-[#20332F] dark:text-[#E8F0EA]">
                       {Array.from({ length: 20 }, (_, index) => index + 1).map(
                         (number) => (
-                          <SelectItem key={number} value={String(number)}>
+                          <SelectItem
+                            key={number}
+                            value={String(number)}
+                            className="dark:focus:bg-[#30463D] dark:focus:text-[#E8F0EA]"
+                          >
                             {number} {number === 1 ? "Copy" : "Copies"}
                           </SelectItem>
                         ),
@@ -272,7 +279,7 @@ export default function AddBookPage() {
                     </SelectContent>
                   </Select>
 
-                  <p className="text-xs leading-5 text-[#6B8279]">
+                  <p className="text-xs leading-5 text-[#6B8279] dark:text-[#A8BDB3]">
                     Select how many copies of this book are available in your
                     library.
                   </p>
@@ -282,13 +289,13 @@ export default function AddBookPage() {
                 <div className="space-y-3">
                   <Label
                     htmlFor="image"
-                    className="font-semibold text-[#123C3A]"
+                    className="font-semibold text-[#123C3A] dark:text-[#E8F0EA]"
                   >
                     Book Cover Image <span className="text-red-500">*</span>
                   </Label>
 
                   <div className="relative">
-                    <LinkIcon className="absolute left-3 top-1/2 size-4 -translate-y-1/2 text-[#6B8279]" />
+                    <LinkIcon className="absolute left-3 top-1/2 size-4 -translate-y-1/2 text-[#6B8279] dark:text-[#A8BDB3]" />
 
                     <Input
                       id="image"
@@ -298,17 +305,17 @@ export default function AddBookPage() {
                       value={image}
                       onChange={(e) => setImage(e.target.value)}
                       required
-                      className="h-12 border-[#D5B982]/50 bg-[#F4F7F5] pl-10"
+                      className="h-12 border-[#D5B982]/50 bg-[#F4F7F5] pl-10 dark:border-[#526B60] dark:bg-[#30463D] dark:text-[#E8F0EA] dark:placeholder:text-[#A8BDB3]"
                     />
                   </div>
 
-                  <p className="text-xs leading-5 text-[#6B8279]">
+                  <p className="text-xs leading-5 text-[#6B8279] dark:text-[#A8BDB3]">
                     Upload your book cover to ImgBB or Postimages, then paste
                     the image URL here.
                   </p>
 
                   {image && (
-                    <div className="relative w-fit overflow-hidden rounded-xl border border-[#D5B982]/50 bg-[#F4F7F5] p-2">
+                    <div className="relative w-fit overflow-hidden rounded-xl border border-[#D5B982]/50 bg-[#F4F7F5] p-2 dark:border-[#526B60] dark:bg-[#30463D]">
                       <img
                         src={image}
                         alt="Book cover preview"
@@ -335,7 +342,7 @@ export default function AddBookPage() {
                 <div className="space-y-2">
                   <Label
                     htmlFor="description"
-                    className="font-semibold text-[#123C3A]"
+                    className="font-semibold text-[#123C3A] dark:text-[#E8F0EA]"
                   >
                     Short Description <span className="text-red-500">*</span>
                   </Label>
@@ -347,29 +354,29 @@ export default function AddBookPage() {
                     required
                     minLength={10}
                     rows={5}
-                    className="min-h-32 resize-none border-[#D5B982]/50 bg-[#F4F7F5]"
+                    className="min-h-32 resize-none border-[#D5B982]/50 bg-[#F4F7F5] dark:border-[#526B60] dark:bg-[#30463D] dark:text-[#E8F0EA] dark:placeholder:text-[#A8BDB3]"
                   />
 
-                  <p className="text-right text-xs text-[#6B8279]">
+                  <p className="text-right text-xs text-[#6B8279] dark:text-[#A8BDB3]">
                     Write a short description of your book.
                   </p>
                 </div>
               </section>
 
-              <div className="h-px bg-[#D5B982]/40" />
+              <div className="h-px bg-[#D5B982]/40 dark:bg-[#526B60]" />
 
               {/* Contributor Information */}
               <section className="space-y-5">
                 <div className="flex items-center gap-3">
-                  <div className="flex size-10 items-center justify-center rounded-xl bg-[#E2ECE8] text-[#123C3A]">
+                  <div className="flex size-10 items-center justify-center rounded-xl bg-[#E2ECE8] text-[#123C3A] dark:bg-[#30463D] dark:text-[#A8C9B5]">
                     <User size={20} />
                   </div>
 
                   <div>
-                    <h3 className="font-bold text-[#123C3A]">
+                    <h3 className="font-bold text-[#123C3A] dark:text-[#E8F0EA]">
                       Contributor Information
                     </h3>
-                    <p className="text-xs text-[#6B8279]">
+                    <p className="text-xs text-[#6B8279] dark:text-[#A8BDB3]">
                       Your account details are automatically added.
                     </p>
                   </div>
@@ -378,7 +385,7 @@ export default function AddBookPage() {
                 <div className="grid gap-5 sm:grid-cols-2">
                   {/* User Name */}
                   <div className="space-y-2">
-                    <Label className="flex items-center gap-2 font-semibold text-[#123C3A]">
+                    <Label className="flex items-center gap-2 font-semibold text-[#123C3A] dark:text-[#E8F0EA]">
                       <User size={15} />
                       User Name
                     </Label>
@@ -386,13 +393,13 @@ export default function AddBookPage() {
                     <Input
                       value={user?.name || ""}
                       readOnly
-                      className="h-12 border-[#D5B982]/40 bg-[#F4F7F5] text-[#405A51]"
+                      className="h-12 border-[#D5B982]/40 bg-[#F4F7F5] text-[#405A51] dark:border-[#526B60] dark:bg-[#30463D] dark:text-[#C4D5CA]"
                     />
                   </div>
 
                   {/* User Email */}
                   <div className="space-y-2">
-                    <Label className="flex items-center gap-2 font-semibold text-[#123C3A]">
+                    <Label className="flex items-center gap-2 font-semibold text-[#123C3A] dark:text-[#E8F0EA]">
                       <Mail size={15} />
                       Email Address
                     </Label>
@@ -400,18 +407,18 @@ export default function AddBookPage() {
                     <Input
                       value={user?.email || ""}
                       readOnly
-                      className="h-12 border-[#D5B982]/40 bg-[#F4F7F5] text-[#405A51]"
+                      className="h-12 border-[#D5B982]/40 bg-[#F4F7F5] text-[#405A51] dark:border-[#526B60] dark:bg-[#30463D] dark:text-[#C4D5CA]"
                     />
                   </div>
                 </div>
               </section>
 
               {/* Submit Button */}
-              <div className="space-y-4 border-t border-[#D5B982]/40 pt-6">
+              <div className="space-y-4 border-t border-[#D5B982]/40 pt-6 dark:border-[#526B60]">
                 <Button
                   type="submit"
                   disabled={isLoading}
-                  className="h-13 w-full rounded-xl bg-[#123C3A] text-base font-bold text-white shadow-lg hover:bg-[#1D514D] disabled:opacity-60"
+                  className="h-13 w-full rounded-xl bg-[#123C3A] text-base font-bold text-white shadow-lg hover:bg-[#1D514D] disabled:opacity-60 dark:bg-[#A8C9B5] dark:text-[#172522] dark:hover:bg-[#D5B982]"
                 >
                   {isLoading ? (
                     <>
@@ -427,7 +434,7 @@ export default function AddBookPage() {
                   )}
                 </Button>
 
-                <p className="text-center text-xs text-[#6B8279]">
+                <p className="text-center text-xs text-[#6B8279] dark:text-[#A8BDB3]">
                   By adding this book, you agree to share it with the BookNook
                   community.
                 </p>
@@ -437,8 +444,8 @@ export default function AddBookPage() {
         </Card>
 
         {/* Bottom Note */}
-        <div className="mt-7 flex items-center justify-center gap-2 text-center text-sm text-[#6B8279]">
-          <Sparkles size={15} className="text-[#A88B54]" />
+        <div className="mt-7 flex items-center justify-center gap-2 text-center text-sm text-[#6B8279] dark:text-[#A8BDB3]">
+          <Sparkles size={15} className="text-[#A88B54] dark:text-[#D5B982]" />
           Every book has a story. Let yours be discovered.
         </div>
       </div>

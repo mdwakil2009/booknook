@@ -1,3 +1,4 @@
+
 "use client";
 
 import { useState, type FormEvent } from "react";
@@ -83,20 +84,20 @@ export default function LoginPage() {
   };
 
   return (
-    <main className="flex min-h-[calc(100vh-80px)] items-center justify-center bg-[#E2ECE8] px-4 py-12 sm:px-6">
+    <main className="flex min-h-[calc(100vh-80px)] items-center justify-center bg-[#E2ECE8] px-4 py-12 dark:bg-[#172522] sm:px-6">
       <div className="w-full max-w-lg">
-        <div className="rounded-2xl border border-[#D5B982]/50 bg-white p-6 shadow-xl shadow-[#123C3A]/5 sm:p-8">
+        <div className="rounded-2xl border border-[#D5B982]/50 bg-white p-6 shadow-xl shadow-[#123C3A]/5 dark:border-[#526B60] dark:bg-[#20332F] sm:p-8">
           {/* Logo & Welcome Heading */}
           <div className="mb-7 text-center">
-            <div className="mx-auto mb-4 flex size-14 items-center justify-center rounded-2xl bg-[#123C3A] text-[#D5B982] shadow-md">
+            <div className="mx-auto mb-4 flex size-14 items-center justify-center rounded-2xl bg-[#123C3A] text-[#D5B982] shadow-md dark:bg-[#30463D] dark:text-[#D5B982]">
               <BookOpen size={30} />
             </div>
 
-            <h1 className="text-3xl font-bold tracking-tight text-[#123C3A]">
+            <h1 className="text-3xl font-bold tracking-tight text-[#123C3A] dark:text-[#E8F0EA]">
               Welcome Back!
             </h1>
 
-            <p className="mt-2 text-sm leading-6 text-[#6B8279]">
+            <p className="mt-2 text-sm leading-6 text-[#6B8279] dark:text-[#A8BDB3]">
               Login to your BookNook account and continue your reading journey.
             </p>
           </div>
@@ -107,13 +108,13 @@ export default function LoginPage() {
             <div className="space-y-2">
               <Label
                 htmlFor="email"
-                className="text-sm font-semibold text-[#123C3A]"
+                className="text-sm font-semibold text-[#123C3A] dark:text-[#E8F0EA]"
               >
                 Email Address
               </Label>
 
               <div className="relative">
-                <Mail className="absolute left-3 top-1/2 size-4 -translate-y-1/2 text-[#6B8279]" />
+                <Mail className="absolute left-3 top-1/2 size-4 -translate-y-1/2 text-[#6B8279] dark:text-[#A8BDB3]" />
 
                 <Input
                   id="email"
@@ -123,7 +124,7 @@ export default function LoginPage() {
                   placeholder="you@example.com"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  className="h-11 border-[#D5B982]/60 bg-[#F4F7F5] pl-10 text-[#123C3A] placeholder:text-[#9AA9A2] focus-visible:border-[#123C3A] focus-visible:ring-[#123C3A]/20"
+                  className="h-11 border-[#D5B982]/60 bg-[#F4F7F5] pl-10 text-[#123C3A] placeholder:text-[#9AA9A2] focus-visible:border-[#123C3A] focus-visible:ring-[#123C3A]/20 dark:border-[#526B60] dark:bg-[#30463D] dark:text-[#E8F0EA] dark:placeholder:text-[#A8BDB3] dark:focus-visible:border-[#A8C9B5] dark:focus-visible:ring-[#A8C9B5]/20"
                   required
                 />
               </div>
@@ -134,21 +135,21 @@ export default function LoginPage() {
               <div className="flex items-center justify-between">
                 <Label
                   htmlFor="password"
-                  className="text-sm font-semibold text-[#123C3A]"
+                  className="text-sm font-semibold text-[#123C3A] dark:text-[#E8F0EA]"
                 >
                   Password
                 </Label>
 
                 <Link
                   href="/forgot-password"
-                  className="text-xs font-semibold text-[#A88B54] transition hover:text-[#123C3A] hover:underline"
+                  className="text-xs font-semibold text-[#A88B54] transition hover:text-[#123C3A] hover:underline dark:text-[#D5B982] dark:hover:text-[#A8C9B5]"
                 >
                   Forgot Password?
                 </Link>
               </div>
 
               <div className="relative">
-                <LockKeyhole className="absolute left-3 top-1/2 size-4 -translate-y-1/2 text-[#6B8279]" />
+                <LockKeyhole className="absolute left-3 top-1/2 size-4 -translate-y-1/2 text-[#6B8279] dark:text-[#A8BDB3]" />
 
                 <Input
                   id="password"
@@ -158,14 +159,14 @@ export default function LoginPage() {
                   placeholder="Enter your password"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
-                  className="h-11 border-[#D5B982]/60 bg-[#F4F7F5] pl-10 pr-11 text-[#123C3A] placeholder:text-[#9AA9A2] focus-visible:border-[#123C3A] focus-visible:ring-[#123C3A]/20"
+                  className="h-11 border-[#D5B982]/60 bg-[#F4F7F5] pl-10 pr-11 text-[#123C3A] placeholder:text-[#9AA9A2] focus-visible:border-[#123C3A] focus-visible:ring-[#123C3A]/20 dark:border-[#526B60] dark:bg-[#30463D] dark:text-[#E8F0EA] dark:placeholder:text-[#A8BDB3] dark:focus-visible:border-[#A8C9B5] dark:focus-visible:ring-[#A8C9B5]/20"
                   required
                 />
 
                 <button
                   type="button"
                   onClick={() => setShowPassword(!showPassword)}
-                  className="absolute right-3 top-1/2 -translate-y-1/2 text-[#6B8279] transition hover:text-[#123C3A]"
+                  className="absolute right-3 top-1/2 -translate-y-1/2 text-[#6B8279] transition hover:text-[#123C3A] dark:text-[#A8BDB3] dark:hover:text-[#E8F0EA]"
                   aria-label={showPassword ? "Hide password" : "Show password"}
                 >
                   {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
@@ -177,7 +178,7 @@ export default function LoginPage() {
             <Button
               type="submit"
               disabled={isLoading || isGoogleLoading}
-              className="h-11 w-full bg-[#123C3A] text-sm font-semibold text-white shadow-sm transition hover:bg-[#1D514D] disabled:opacity-60"
+              className="h-11 w-full bg-[#123C3A] text-sm font-semibold text-white shadow-sm transition hover:bg-[#1D514D] disabled:opacity-60 dark:bg-[#A8C9B5] dark:text-[#172522] dark:hover:bg-[#D5B982]"
             >
               {isLoading ? (
                 <>
@@ -195,13 +196,13 @@ export default function LoginPage() {
 
           {/* Divider */}
           <div className="my-6 flex items-center gap-3">
-            <div className="h-px flex-1 bg-[#D5B982]/50" />
+            <div className="h-px flex-1 bg-[#D5B982]/50 dark:bg-[#526B60]" />
 
-            <span className="text-xs font-medium text-[#9AA9A2]">
+            <span className="text-xs font-medium text-[#9AA9A2] dark:text-[#A8BDB3]">
               OR CONTINUE WITH
             </span>
 
-            <div className="h-px flex-1 bg-[#D5B982]/50" />
+            <div className="h-px flex-1 bg-[#D5B982]/50 dark:bg-[#526B60]" />
           </div>
 
           {/* Google Login */}
@@ -210,7 +211,7 @@ export default function LoginPage() {
             variant="outline"
             disabled={isLoading || isGoogleLoading}
             onClick={handleGoogleLogin}
-            className="h-11 w-full border-[#D5B982]/60 bg-white font-semibold text-[#123C3A] transition hover:bg-[#F4F7F5]"
+            className="h-11 w-full border-[#D5B982]/60 bg-white font-semibold text-[#123C3A] transition hover:bg-[#F4F7F5] dark:border-[#526B60] dark:bg-[#30463D] dark:text-[#E8F0EA] dark:hover:bg-[#3B554A]"
           >
             {isGoogleLoading ? (
               <Loader2 className="mr-2 size-4 animate-spin" />
@@ -224,11 +225,11 @@ export default function LoginPage() {
           </Button>
 
           {/* Register Link */}
-          <p className="mt-6 text-center text-sm text-[#6B8279]">
+          <p className="mt-6 text-center text-sm text-[#6B8279] dark:text-[#A8BDB3]">
             Don't have an account?{" "}
             <Link
               href="/register"
-              className="font-bold text-[#123C3A] underline-offset-4 transition hover:text-[#A88B54] hover:underline"
+              className="font-bold text-[#123C3A] underline-offset-4 transition hover:text-[#A88B54] hover:underline dark:text-[#A8C9B5] dark:hover:text-[#D5B982]"
             >
               Create Account
             </Link>
@@ -236,7 +237,7 @@ export default function LoginPage() {
         </div>
 
         {/* Footer */}
-        <p className="mt-6 text-center text-xs text-[#6B8279]">
+        <p className="mt-6 text-center text-xs text-[#6B8279] dark:text-[#A8BDB3]">
           Welcome to BookNook — where every book opens a new world.
         </p>
       </div>

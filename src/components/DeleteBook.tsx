@@ -1,4 +1,3 @@
-
 "use client";
 
 import { useState } from "react";
@@ -55,7 +54,7 @@ const DeleteBook = ({ book }: { book: IBook }) => {
         render={
           <button
             type="button"
-            className="group flex h-10 w-full items-center justify-center gap-2 rounded-xl border border-red-200 bg-red-50 px-3 text-sm font-semibold text-red-600 shadow-sm transition-all duration-300 hover:-translate-y-0.5 hover:border-red-600 hover:bg-red-600 hover:text-white hover:shadow-md hover:shadow-red-600/20"
+            className="group flex h-10 w-full items-center justify-center gap-2 rounded-xl border border-red-200 bg-red-50 px-3 text-sm font-semibold text-red-600 shadow-sm transition-all duration-300 hover:-translate-y-0.5 hover:border-red-600 hover:bg-red-600 hover:text-white hover:shadow-md hover:shadow-red-600/20 dark:border-red-900/60 dark:bg-red-950/40 dark:text-red-400 dark:hover:border-red-600 dark:hover:bg-red-600 dark:hover:text-white"
           >
             <Trash2
               size={16}
@@ -67,19 +66,19 @@ const DeleteBook = ({ book }: { book: IBook }) => {
       />
 
       {/* Confirmation Dialog */}
-      <AlertDialogContent className="max-w-md rounded-2xl border border-[#D5E0D9] bg-[#FAFCFA] p-6">
+      <AlertDialogContent className="max-w-md rounded-2xl border border-[#D5E0D9] bg-[#FAFCFA] p-6 dark:border-[#526B60] dark:bg-[#20332F]">
         <AlertDialogHeader>
-          <div className="mb-3 flex size-14 items-center justify-center rounded-2xl bg-red-50 text-red-600">
+          <div className="mb-3 flex size-14 items-center justify-center rounded-2xl bg-red-50 text-red-600 dark:bg-red-950/50 dark:text-red-400">
             <Trash2 size={27} />
           </div>
 
-          <AlertDialogTitle className="text-xl font-bold text-[#123C3A]">
+          <AlertDialogTitle className="text-xl font-bold text-[#123C3A] dark:text-[#E8F0EA]">
             Remove This Book?
           </AlertDialogTitle>
 
-          <AlertDialogDescription className="text-sm leading-6 text-[#6B8279]">
+          <AlertDialogDescription className="text-sm leading-6 text-[#6B8279] dark:text-[#A8BDB3]">
             Are you sure you want to remove{" "}
-            <span className="font-bold text-[#123C3A]">
+            <span className="font-bold text-[#123C3A] dark:text-[#E8F0EA]">
               {book.title}
             </span>{" "}
             from your library? This action cannot be undone.
@@ -89,7 +88,7 @@ const DeleteBook = ({ book }: { book: IBook }) => {
         <AlertDialogFooter className="mt-5 flex flex-row justify-end gap-2">
           <AlertDialogCancel
             disabled={loading}
-            className="h-10 rounded-xl border border-[#D5E0D9] bg-white px-4 text-sm font-semibold text-[#123C3A] hover:bg-[#E9EDE7]"
+            className="h-10 rounded-xl border border-[#D5E0D9] bg-white px-4 text-sm font-semibold text-[#123C3A] hover:bg-[#E9EDE7] dark:border-[#526B60] dark:bg-[#30463D] dark:text-[#E8F0EA] dark:hover:bg-[#40594D]"
           >
             Cancel
           </AlertDialogCancel>
@@ -98,7 +97,7 @@ const DeleteBook = ({ book }: { book: IBook }) => {
             type="button"
             disabled={loading}
             onClick={handleDelete}
-            className="h-10 rounded-xl bg-red-600 px-5 text-sm font-semibold text-white transition hover:bg-red-700 disabled:cursor-not-allowed disabled:opacity-60"
+            className="h-10 rounded-xl bg-red-600 px-5 text-sm font-semibold text-white transition hover:bg-red-700 disabled:cursor-not-allowed disabled:opacity-60 dark:bg-red-600 dark:hover:bg-red-500"
           >
             {loading ? "Deleting..." : "Yes, Remove"}
           </button>

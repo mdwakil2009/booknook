@@ -24,6 +24,7 @@ import {
 
 import { authClient, useSession } from "@/lib/auth-client";
 import { toast } from "sonner";
+import ThemeToggle from "@/components/Theme/ThemeToggle";
 
 type NavLink = {
   name: string;
@@ -90,8 +91,8 @@ export default function Navbar() {
       onClick={() => setIsMenuOpen(false)}
       className={`flex items-center rounded-lg px-3 py-2 text-sm font-medium transition-all duration-200 ${
         isActive(link.href)
-          ? "bg-[#123C3A] text-white shadow-sm"
-          : "text-[#123C3A] hover:bg-[#D5B982] hover:text-[#123C3A]"
+          ? "bg-[#123C3A] text-white shadow-sm dark:bg-[#A8C9B5] dark:text-[#172522]"
+          : "text-[#123C3A] hover:bg-[#D5B982] hover:text-[#123C3A] dark:text-[#E8F0EA] dark:hover:bg-[#30463D] dark:hover:text-[#E8F0EA]"
       }`}
     >
       {link.name}
@@ -99,20 +100,21 @@ export default function Navbar() {
   );
 
   return (
-    <header className="sticky top-0 z-50 w-full border-b border-[#D5B982]/50 bg-[#E2ECE8] shadow-sm">
+    <header className="sticky top-0 z-50 w-full border-b border-[#D5B982]/50 bg-white shadow-sm dark:border-[#526B60] dark:bg-[#172522]">
       <nav className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
+
         {/* Logo */}
         <Link href="/" className="flex shrink-0 items-center gap-2.5">
-          <div className="flex size-11 items-center justify-center rounded-xl bg-[#123C3A] text-[#D5B982] shadow-sm">
+          <div className="flex size-11 items-center justify-center rounded-xl bg-[#123C3A] text-[#D5B982] shadow-sm dark:bg-[#A8C9B5] dark:text-[#172522]">
             <BookOpen size={24} />
           </div>
 
           <div className="flex flex-col">
-            <span className="text-2xl font-bold tracking-tight text-[#123C3A]">
+            <span className="text-2xl font-bold tracking-tight text-[#123C3A] dark:text-[#E8F0EA]">
               BookNook
             </span>
 
-            <span className="text-[10px] font-semibold tracking-[2px] text-[#6B8279]">
+            <span className="text-[10px] font-semibold tracking-[2px] text-[#6B8279] dark:text-[#A8BDB3]">
               YOUR LITTLE LIBRARY
             </span>
           </div>
@@ -127,18 +129,22 @@ export default function Navbar() {
 
         {/* Desktop Auth Section */}
         <div className="hidden items-center gap-3 lg:flex">
+
+          {/* Desktop Theme Toggle */}
+          <ThemeToggle />
+
           {!isPending && !user && (
             <>
               <Link
                 href="/login"
-                className="rounded-lg px-4 py-2.5 text-sm font-semibold text-[#123C3A] transition hover:bg-[#D5B982]/50"
+                className="rounded-lg px-4 py-2.5 text-sm font-semibold text-[#123C3A] transition hover:bg-[#D5B982]/50 dark:text-[#E8F0EA] dark:hover:bg-[#30463D]"
               >
                 Login
               </Link>
 
               <Link
                 href="/register"
-                className="rounded-lg bg-[#123C3A] px-5 py-2.5 text-sm font-semibold text-white shadow-sm transition hover:bg-[#1D514D] hover:shadow-md"
+                className="rounded-lg bg-[#123C3A] px-5 py-2.5 text-sm font-semibold text-white shadow-sm transition hover:bg-[#1D514D] hover:shadow-md dark:bg-[#A8C9B5] dark:text-[#172522] dark:hover:bg-[#BEDAC8]"
               >
                 Register
               </Link>
@@ -147,52 +153,57 @@ export default function Navbar() {
 
           {!isPending && user && (
             <DropdownMenu>
-              <DropdownMenuTrigger className="flex items-center gap-2 rounded-full border border-[#D5B982] bg-white/70 py-1.5 pl-1.5 pr-3 outline-none transition hover:bg-[#D5B982]/30">
-                <Avatar className="size-9 border border-[#D5B982]">
+              <DropdownMenuTrigger className="flex items-center gap-2 rounded-full border border-[#D5B982] bg-white py-1.5 pl-1.5 pr-3 outline-none transition hover:bg-[#D5B982]/30 dark:border-[#526B60] dark:bg-[#20332F] dark:hover:bg-[#30463D]">
+                <Avatar className="size-9 border border-[#D5B982] dark:border-[#526B60]">
                   <AvatarImage
                     src={user.image || ""}
                     alt={user.name || "User"}
                   />
 
-                  <AvatarFallback className="bg-[#123C3A] font-semibold text-white">
+                  <AvatarFallback className="bg-[#123C3A] font-semibold text-white dark:bg-[#A8C9B5] dark:text-[#172522]">
                     {user.name?.charAt(0).toUpperCase() || "U"}
                   </AvatarFallback>
                 </Avatar>
 
-                <span className="max-w-24 truncate text-sm font-semibold text-[#123C3A]">
+                <span className="max-w-24 truncate text-sm font-semibold text-[#123C3A] dark:text-[#E8F0EA]">
                   {user.name}
                 </span>
 
-                <ChevronDown size={15} className="text-[#6B8279]" />
+                <ChevronDown
+                  size={15}
+                  className="text-[#6B8279] dark:text-[#A8BDB3]"
+                />
               </DropdownMenuTrigger>
 
               <DropdownMenuContent
                 align="end"
-                className="w-60 border-[#D5B982]/60 bg-[#F4F7F5] p-2 text-[#123C3A] shadow-xl"
+                className="w-60 border-[#D5B982]/60 bg-white p-2 text-[#123C3A] shadow-xl dark:border-[#526B60] dark:bg-[#20332F] dark:text-[#E8F0EA]"
               >
                 {/* User Information */}
                 <div className="px-3 py-2">
-                  <p className="text-sm font-bold text-[#123C3A]">
+                  <p className="text-sm font-bold text-[#123C3A] dark:text-[#E8F0EA]">
                     {user.name}
                   </p>
 
-                  <p className="truncate text-xs text-[#6B8279]">
+                  <p className="truncate text-xs text-[#6B8279] dark:text-[#A8BDB3]">
                     {user.email}
                   </p>
                 </div>
 
-                <DropdownMenuSeparator className="bg-[#D5B982]/50" />
+                <DropdownMenuSeparator className="bg-[#D5B982]/50 dark:bg-[#526B60]" />
 
                 {/* Profile */}
-               <Link href={"/profile"} > <DropdownMenuItem
-                  className="cursor-pointer rounded-md text-[#123C3A] focus:bg-[#D5B982]/40 focus:text-[#123C3A]"
-                  onClick={() => router.push("/dashboard/profile")}
-                >
-                  <UserRound size={16} />
-                  My Profile
-                </DropdownMenuItem></Link>
+                <Link href="/profile">
+                  <DropdownMenuItem
+                    className="cursor-pointer rounded-md text-[#123C3A] focus:bg-[#D5B982]/40 focus:text-[#123C3A] dark:text-[#E8F0EA] dark:focus:bg-[#30463D] dark:focus:text-[#E8F0EA]"
+                    onClick={() => router.push("/dashboard/profile")}
+                  >
+                    <UserRound size={16} />
+                    My Profile
+                  </DropdownMenuItem>
+                </Link>
 
-                <DropdownMenuSeparator className="bg-[#D5B982]/50" />
+                <DropdownMenuSeparator className="bg-[#D5B982]/50 dark:bg-[#526B60]" />
 
                 {/* Desktop Logout */}
                 <DropdownMenuItem
@@ -210,28 +221,35 @@ export default function Navbar() {
           )}
         </div>
 
-        {/* Mobile Menu Button */}
-        <button
-          type="button"
-          onClick={() => setIsMenuOpen(!isMenuOpen)}
-          className="flex size-10 items-center justify-center rounded-lg border border-[#123C3A]/20 text-[#123C3A] transition hover:bg-[#D5B982]/50 lg:hidden"
-          aria-label="Toggle navigation menu"
-          aria-expanded={isMenuOpen}
-        >
-          {isMenuOpen ? <X size={23} /> : <Menu size={23} />}
-        </button>
+        {/* Mobile Theme Toggle + Menu Button */}
+        <div className="flex items-center gap-3 lg:hidden">
+
+          {/* Mobile Theme Toggle */}
+          <ThemeToggle />
+
+          {/* Mobile Menu Button */}
+          <button
+            type="button"
+            onClick={() => setIsMenuOpen(!isMenuOpen)}
+            className="flex size-10 items-center justify-center rounded-lg border border-[#123C3A]/20 text-[#123C3A] transition hover:bg-[#D5B982]/50 dark:border-[#A8BDB5]/30 dark:text-[#E8F0EA] dark:hover:bg-[#30463D]"
+            aria-label="Toggle navigation menu"
+            aria-expanded={isMenuOpen}
+          >
+            {isMenuOpen ? <X size={23} /> : <Menu size={23} />}
+          </button>
+        </div>
       </nav>
 
       {/* Mobile Navigation */}
       {isMenuOpen && (
-        <div className="border-t border-[#D5B982]/50 bg-[#E2ECE8] px-4 py-4 shadow-lg sm:px-6 lg:hidden">
+        <div className="border-t border-[#D5B982]/50 bg-white px-4 py-4 shadow-lg sm:px-6 lg:hidden dark:border-[#526B60] dark:bg-[#172522]">
           <div className="flex flex-col gap-1">
             {publicLinks.map(renderLink)}
 
             {!isPending && user && privateLinks.map(renderLink)}
           </div>
 
-          <div className="my-4 border-t border-[#D5B982]/50" />
+          <div className="my-4 border-t border-[#D5B982]/50 dark:border-[#526B60]" />
 
           {/* Mobile Login & Register */}
           {!isPending && !user && (
@@ -239,7 +257,7 @@ export default function Navbar() {
               <Link
                 href="/login"
                 onClick={() => setIsMenuOpen(false)}
-                className="flex-1 rounded-lg border border-[#123C3A] px-4 py-2.5 text-center text-sm font-semibold text-[#123C3A] transition hover:bg-[#D5B982]/40"
+                className="flex-1 rounded-lg border border-[#123C3A] px-4 py-2.5 text-center text-sm font-semibold text-[#123C3A] transition hover:bg-[#D5B982]/40 dark:border-[#A8BDB5] dark:text-[#E8F0EA] dark:hover:bg-[#30463D]"
               >
                 Login
               </Link>
@@ -247,7 +265,7 @@ export default function Navbar() {
               <Link
                 href="/register"
                 onClick={() => setIsMenuOpen(false)}
-                className="flex-1 rounded-lg bg-[#123C3A] px-4 py-2.5 text-center text-sm font-semibold text-white transition hover:bg-[#1D514D]"
+                className="flex-1 rounded-lg bg-[#123C3A] px-4 py-2.5 text-center text-sm font-semibold text-white transition hover:bg-[#1D514D] dark:bg-[#A8C9B5] dark:text-[#172522] dark:hover:bg-[#BEDAC8]"
               >
                 Register
               </Link>
@@ -257,25 +275,26 @@ export default function Navbar() {
           {/* Mobile User Section */}
           {!isPending && user && (
             <div className="space-y-3">
+
               {/* User Information */}
-              <div className="flex items-center gap-3 rounded-xl border border-[#D5B982]/40 bg-white/60 p-3">
+              <div className="flex items-center gap-3 rounded-xl border border-[#D5B982]/40 bg-white p-3 dark:border-[#526B60] dark:bg-[#20332F]">
                 <Avatar className="size-10">
                   <AvatarImage
                     src={user.image || ""}
                     alt={user.name || "User"}
                   />
 
-                  <AvatarFallback className="bg-[#123C3A] text-white">
+                  <AvatarFallback className="bg-[#123C3A] text-white dark:bg-[#A8C9B5] dark:text-[#172522]">
                     {user.name?.charAt(0).toUpperCase() || "U"}
                   </AvatarFallback>
                 </Avatar>
 
                 <div className="min-w-0">
-                  <p className="truncate text-sm font-bold text-[#123C3A]">
+                  <p className="truncate text-sm font-bold text-[#123C3A] dark:text-[#E8F0EA]">
                     {user.name}
                   </p>
 
-                  <p className="truncate text-xs text-[#6B8279]">
+                  <p className="truncate text-xs text-[#6B8279] dark:text-[#A8BDB3]">
                     {user.email}
                   </p>
                 </div>
@@ -285,7 +304,7 @@ export default function Navbar() {
               <Link
                 href="/dashboard/profile"
                 onClick={() => setIsMenuOpen(false)}
-                className="flex items-center gap-2 rounded-lg px-3 py-2.5 text-sm font-medium text-[#123C3A] transition hover:bg-[#D5B982]/40"
+                className="flex items-center gap-2 rounded-lg px-3 py-2.5 text-sm font-medium text-[#123C3A] transition hover:bg-[#D5B982]/40 dark:text-[#E8F0EA] dark:hover:bg-[#30463D]"
               >
                 <UserRound size={17} />
                 My Profile
@@ -296,7 +315,7 @@ export default function Navbar() {
                 type="button"
                 onClick={handleSignOut}
                 disabled={isSigningOut}
-                className="flex w-full items-center gap-2 rounded-lg px-3 py-2.5 text-sm font-semibold text-red-600 transition hover:bg-red-50 disabled:opacity-50"
+                className="flex w-full items-center gap-2 rounded-lg px-3 py-2.5 text-sm font-semibold text-red-600 transition hover:bg-red-50 disabled:opacity-50 dark:text-red-400 dark:hover:bg-red-950/40"
               >
                 <LogOut size={17} />
                 {isSigningOut ? "Logging out..." : "Logout"}

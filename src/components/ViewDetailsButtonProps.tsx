@@ -1,8 +1,7 @@
-
 "use client";
 
 import Link from "next/link";
-import { ArrowUpRight } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import { authClient } from "@/lib/auth-client";
 
 interface ViewDetailsButtonProps {
@@ -15,20 +14,23 @@ const ViewDetailsButton = ({ bookId }: ViewDetailsButtonProps) => {
   const href = session?.user ? `/books/${bookId}` : "/login";
 
   return (
-    <Link
-      href={isPending ? "#" : href}
-      aria-disabled={isPending}
-      onClick={(e) => {
-        if (isPending) e.preventDefault();
-      }}
-      className="mt-auto flex w-full items-center justify-between rounded-xl bg-[#123C3A] px-4 py-3.5 text-sm font-semibold text-white shadow-md shadow-[#123C3A]/10 transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#60766D] hover:shadow-lg"
-    >
-      <span>View Details</span>
+    <div className="mt-auto">
+      <Link
+        href={isPending ? "#" : href}
+        aria-disabled={isPending}
+        onClick={(e) => {
+          if (isPending) e.preventDefault();
+        }}
+        className="group/link flex w-full items-center justify-between rounded-lg px-3 py-2.5 text-sm font-bold text-[#123C3A] transition-all duration-300 hover:bg-[#123C3A] hover:text-white dark:text-[#E8F0EA] dark:hover:bg-[#A8C9B5] dark:hover:text-[#172522]"
+      >
+        <span>{isPending ? "Loading..." : "View Details"}</span>
 
-      <span className="flex size-8 items-center justify-center rounded-lg bg-white/15 transition-transform duration-300 group-hover:rotate-45">
-        <ArrowUpRight size={18} />
-      </span>
-    </Link>
+        <ArrowRight
+          size={17}
+          className="transition-transform duration-300 group-hover/link:translate-x-1"
+        />
+      </Link>
+    </div>
   );
 };
 
