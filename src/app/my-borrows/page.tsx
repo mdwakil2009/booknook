@@ -88,10 +88,6 @@ const MyBorrowsPage = async () => {
         {/* Header */}
         <div className="flex flex-col justify-between gap-4 sm:flex-row sm:items-center">
           <div className="flex items-center gap-3">
-            <div className="flex size-10 shrink-0 items-center justify-center rounded-xl bg-[#123C3A] text-white sm:size-11">
-              <BookMarkedIcon />
-            </div>
-
             <div>
               <h1 className="text-lg font-bold text-[#123C3A] sm:text-xl">
                 My Borrows
@@ -105,11 +101,11 @@ const MyBorrowsPage = async () => {
 
           <Link
             href="/books"
-            className="inline-flex w-fit items-center gap-2 rounded-xl bg-[#123C3A] px-4 py-2 text-xs font-semibold text-white transition hover:bg-[#1B514D]"
+            className="inline-flex w-fit items-center gap-2 rounded-md bg-[#123C3A] px-4 py-2.5 text-xs font-semibold text-white transition hover:bg-[#1B514D]"
           >
             <BookPlus className="size-4" />
             Explore Books
-            <ArrowRight className="size-3.5" />
+        
           </Link>
         </div>
 
