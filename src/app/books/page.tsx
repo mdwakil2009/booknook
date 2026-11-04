@@ -1,9 +1,22 @@
+
 import { BookOpen, Library } from "lucide-react";
 import { IBook } from "@/lib/type";
 import ViewDetailsButton from "@/components/ViewDetailsButtonProps";
 
-const AllBookPage = async () => {
-  const res = await fetch("http://localhost:8000/books", {
+interface AllBookPageProps {
+  searchParams: Promise<{
+    category?: string;
+  }>;
+}
+
+const AllBookPage = async ({ searchParams }: AllBookPageProps) => {
+  const { category } = await searchParams;
+
+  const url = category
+    ? `http://localhost:8000/books?category=${encodeURIComponent(category)}`
+    : "http://localhost:8000/books";
+
+  const res = await fetch(url, {
     cache: "no-store",
   });
 
@@ -39,11 +52,13 @@ const AllBookPage = async () => {
             </p>
 
             <h2 className="font-serif text-2xl font-bold text-[#123C3A] sm:text-3xl">
-              All Books
+              {category || "All Books"}
             </h2>
 
-            <p className="mt-1.5 text-xs text-[#6B8279] sm:text-sm">
-              Browse our collection and find your next read.
+            <p className="mt-1.5 text-xs text-[#123C3A] sm:text-sm">
+              {category
+                ? `Explore our ${category} collection and find your next read.`
+                : "Browse our collection and find your next read."}
             </p>
           </div>
 
@@ -63,8 +78,6 @@ const AllBookPage = async () => {
             </div>
           </div>
         </section>
-
-        {/* Books Grid */}
 
         {/* Books Grid */}
         {data.length > 0 ? (
@@ -145,7 +158,7 @@ const AllBookPage = async () => {
             </h3>
 
             <p className="mt-2 text-xs text-[#718078] sm:text-sm">
-              There are no books available at the moment.
+              There are no books available in this category.
             </p>
           </div>
         )}

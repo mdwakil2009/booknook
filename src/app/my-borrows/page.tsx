@@ -105,7 +105,6 @@ const MyBorrowsPage = async () => {
           >
             <BookPlus className="size-4" />
             Explore Books
-        
           </Link>
         </div>
 
@@ -115,7 +114,7 @@ const MyBorrowsPage = async () => {
         {/* Empty State */}
         {borrows.length === 0 ? (
           <div className="flex min-h-[320px] flex-col items-center justify-center rounded-2xl border border-[#D4E1DA] bg-[#FAFCFA] px-5 py-8 text-center">
-            <div className="relative mb-4 flex size-28 items-center justify-center rounded-full bg-[#EAF1EC]">
+            <div className="relative mb-4 flex size-28 items-center justify-center">
               <Image
                 src="/image/logo1.jpg"
                 alt="BookNook"

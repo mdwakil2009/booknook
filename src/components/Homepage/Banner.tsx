@@ -61,29 +61,27 @@ const Banner = () => {
                 className="object-cover object-center"
               />
 
-              {/* Gradient Overlay */}
               <div className="absolute inset-0 bg-gradient-to-r from-[#25170F]/60 via-[#51351F]/30 to-transparent" />
 
-              {/* Content Container */}
               <div className="relative z-10 w-full px-4 py-16 sm:px-8 lg:px-10">
                 <div className="mx-auto w-full max-w-6xl">
                   <div className="max-w-2xl">
-                    <p className="mb-4 text-xs font-bold tracking-[2px] text-[#E8D4B5] sm:mb-5 sm:text-sm sm:tracking-[3px]">
+                    <p className="mb-4 text-[11px] font-semibold tracking-[2.5px] text-[#E8D4B5] sm:mb-5 sm:text-xs sm:tracking-[3.5px]">
                       WELCOME TO BOOKNOOK
                     </p>
 
-                    <h1 className="text-3xl leading-tight font-bold tracking-tight text-[#FFFDF8] sm:text-4xl md:text-5xl lg:text-6xl">
+                    <h1 className="max-w-xl text-2xl leading-[1.2] font-semibold tracking-tight text-[#FFFDF8] sm:text-3xl md:text-4xl lg:text-5xl">
                       Discover Your Next Favorite Book
                     </h1>
 
-                    <p className="mt-4 max-w-xl text-sm leading-7 text-[#E8DDCE] sm:mt-6 sm:text-base sm:leading-8">
+                    <p className="mt-4 max-w-lg text-[13px] leading-7 font-normal text-[#E8DDCE] sm:mt-5 sm:text-sm sm:leading-8 md:text-base">
                       Explore a world of stories, discover amazing authors, and
                       find the perfect book for every moment of your life.
                     </p>
 
                     <Link
                       href="/books"
-                      className="mt-7 inline-flex h-11 items-center justify-center gap-3 rounded-lg bg-[#E8D4B5] px-6 text-sm font-bold text-[#51351F] transition-all duration-300 hover:bg-[#FFFDF8] sm:mt-8 sm:h-12 sm:px-7 sm:text-base"
+                      className="mt-6 inline-flex h-10 items-center justify-center gap-3 rounded-lg bg-[#E8D4B5] px-5 text-sm font-semibold text-[#51351F] shadow-md transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#FFFDF8] hover:shadow-lg sm:mt-7 sm:h-11 sm:px-6"
                     >
                       Browse Books
                       <FaArrowRightFromBracket />
@@ -110,22 +108,22 @@ const Banner = () => {
               <div className="relative z-10 w-full px-4 py-16 sm:px-8 lg:px-10">
                 <div className="mx-auto w-full max-w-6xl">
                   <div className="max-w-2xl">
-                    <p className="mb-4 text-xs font-bold tracking-[2px] text-[#E8D4B5] sm:mb-5 sm:text-sm sm:tracking-[3px]">
+                    <p className="mb-4 text-[11px] font-semibold tracking-[2.5px] text-[#E8D4B5] sm:mb-5 sm:text-xs sm:tracking-[3.5px]">
                       A WORLD OF STORIES
                     </p>
 
-                    <h1 className="text-3xl leading-tight font-bold tracking-tight text-[#FFFDF8] sm:text-4xl md:text-5xl lg:text-6xl">
+                    <h1 className="max-w-xl text-2xl leading-[1.2] font-semibold tracking-tight text-[#FFFDF8] sm:text-3xl md:text-4xl lg:text-5xl">
                       Every Book Opens a New World
                     </h1>
 
-                    <p className="mt-4 max-w-xl text-sm leading-7 text-[#E8DDCE] sm:mt-6 sm:text-base sm:leading-8">
+                    <p className="mt-4 max-w-lg text-[13px] leading-7 font-normal text-[#E8DDCE] sm:mt-5 sm:text-sm sm:leading-8 md:text-base">
                       Travel through imagination, experience unforgettable
                       adventures, and let every page take you somewhere new.
                     </p>
 
                     <Link
                       href="/books"
-                      className="mt-7 inline-flex h-11 items-center justify-center gap-3 rounded-lg bg-[#E8D4B5] px-6 text-sm font-bold text-[#51351F] transition-all duration-300 hover:bg-[#FFFDF8] sm:mt-8 sm:h-12 sm:px-7 sm:text-base"
+                      className="mt-6 inline-flex h-10 items-center justify-center gap-3 rounded-lg bg-[#E8D4B5] px-5 text-sm font-semibold text-[#51351F] shadow-md transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#FFFDF8] hover:shadow-lg sm:mt-7 sm:h-11 sm:px-6"
                     >
                       Browse Books
                       <FaArrowRightFromBracket />
@@ -152,22 +150,22 @@ const Banner = () => {
               <div className="relative z-10 w-full px-4 py-16 sm:px-8 lg:px-10">
                 <div className="mx-auto w-full max-w-6xl">
                   <div className="max-w-2xl">
-                    <p className="mb-4 text-xs font-bold tracking-[2px] text-[#E8D4B5] sm:mb-5 sm:text-sm sm:tracking-[3px]">
+                    <p className="mb-4 text-[11px] font-semibold tracking-[2.5px] text-[#E8D4B5] sm:mb-5 sm:text-xs sm:tracking-[3.5px]">
                       LOVE READING
                     </p>
 
-                    <h1 className="text-3xl leading-tight font-bold tracking-tight text-[#FFFDF8] sm:text-4xl md:text-5xl lg:text-6xl">
+                    <h1 className="max-w-xl text-2xl leading-[1.2] font-semibold tracking-tight text-[#FFFDF8] sm:text-3xl md:text-4xl lg:text-5xl">
                       Make Reading Your Daily Habit
                     </h1>
 
-                    <p className="mt-4 max-w-xl text-sm leading-7 text-[#E8DDCE] sm:mt-6 sm:text-base sm:leading-8">
+                    <p className="mt-4 max-w-lg text-[13px] leading-7 font-normal text-[#E8DDCE] sm:mt-5 sm:text-sm sm:leading-8 md:text-base">
                       Create beautiful reading moments with books that inspire,
                       educate, and entertain you every day.
                     </p>
 
                     <Link
                       href="/books"
-                      className="mt-7 inline-flex h-11 items-center justify-center gap-3 rounded-lg bg-[#E8D4B5] px-6 text-sm font-bold text-[#51351F] transition-all duration-300 hover:bg-[#FFFDF8] sm:mt-8 sm:h-12 sm:px-7 sm:text-base"
+                      className="mt-6 inline-flex h-10 items-center justify-center gap-3 rounded-lg bg-[#E8D4B5] px-5 text-sm font-semibold text-[#51351F] shadow-md transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#FFFDF8] hover:shadow-lg sm:mt-7 sm:h-11 sm:px-6"
                     >
                       Browse Books
                       <FaArrowRightFromBracket />
@@ -194,22 +192,22 @@ const Banner = () => {
               <div className="relative z-10 w-full px-4 py-16 sm:px-8 lg:px-10">
                 <div className="mx-auto w-full max-w-6xl">
                   <div className="max-w-2xl">
-                    <p className="mb-4 text-xs font-bold tracking-[2px] text-[#E8D4B5] sm:mb-5 sm:text-sm sm:tracking-[3px]">
+                    <p className="mb-4 text-[11px] font-semibold tracking-[2.5px] text-[#E8D4B5] sm:mb-5 sm:text-xs sm:tracking-[3.5px]">
                       BORROW & ENJOY
                     </p>
 
-                    <h1 className="text-3xl leading-tight font-bold tracking-tight text-[#FFFDF8] sm:text-4xl md:text-5xl lg:text-6xl">
+                    <h1 className="max-w-xl text-2xl leading-[1.2] font-semibold tracking-tight text-[#FFFDF8] sm:text-3xl md:text-4xl lg:text-5xl">
                       Your Favorite Books Are Waiting
                     </h1>
 
-                    <p className="mt-4 max-w-xl text-sm leading-7 text-[#E8DDCE] sm:mt-6 sm:text-base sm:leading-8">
+                    <p className="mt-4 max-w-lg text-[13px] leading-7 font-normal text-[#E8DDCE] sm:mt-5 sm:text-sm sm:leading-8 md:text-base">
                       Borrow wonderful books, enjoy your favorite stories, and
                       make every reading experience memorable.
                     </p>
 
                     <Link
                       href="/books"
-                      className="mt-7 inline-flex h-11 items-center justify-center gap-3 rounded-lg bg-[#E8D4B5] px-6 text-sm font-bold text-[#51351F] transition-all duration-300 hover:bg-[#FFFDF8] sm:mt-8 sm:h-12 sm:px-7 sm:text-base"
+                      className="mt-6 inline-flex h-10 items-center justify-center gap-3 rounded-lg bg-[#E8D4B5] px-5 text-sm font-semibold text-[#51351F] shadow-md transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#FFFDF8] hover:shadow-lg sm:mt-7 sm:h-11 sm:px-6"
                     >
                       Browse Books
                       <FaArrowRightFromBracket />
@@ -235,23 +233,23 @@ const Banner = () => {
 
               <div className="relative z-10 w-full px-4 py-16 sm:px-8 lg:px-10">
                 <div className="mx-auto w-full max-w-6xl">
-                  <div className= "max-w-2xl">
-                    <p className="mt-5 text-xs font-bold tracking-[2px] text-[#E8D4B5] sm:mb-5 sm:text-sm sm:tracking-[3px]">
+                  <div className="max-w-2xl">
+                    <p className="mb-4 text-[11px] font-semibold tracking-[2.5px] text-[#E8D4B5] sm:mb-5 sm:text-xs sm:tracking-[3.5px]">
                       EXPLORE OUR COLLECTION
                     </p>
 
-                    <h1 className="text-3xl leading-tight font-bold tracking-tight text-[#FFFDF8] sm:text-4xl md:text-5xl lg:text-6xl">
+                    <h1 className="max-w-xl text-2xl leading-[1.2] font-semibold tracking-tight text-[#FFFDF8] sm:text-3xl md:text-4xl lg:text-5xl">
                       Find Stories That Inspire You
                     </h1>
 
-                    <p className="mt-4 max-w-xl text-sm leading-7 text-[#E8DDCE] sm:mt-6 sm:text-base sm:leading-8">
-                      From timeless classics to modern favorites, discover books
-                      that match your interests and imagination.
+                    <p className="mt-4 max-w-lg text-[13px] leading-7 font-normal text-[#E8DDCE] sm:mt-5 sm:text-sm sm:leading-8 md:text-base">
+                      From timeless classics to modern favorites, discover
+                      books that match your interests and imagination.
                     </p>
 
                     <Link
                       href="/books"
-                      className="mt-7 inline-flex h-11 items-center justify-center gap-3 rounded-lg bg-[#E8D4B5] px-6 text-sm font-bold text-[#51351F] transition-all duration-300 hover:bg-[#FFFDF8] sm:mt-8 sm:h-12 sm:px-7 sm:text-base"
+                      className="mt-6 inline-flex h-10 items-center justify-center gap-3 rounded-lg bg-[#E8D4B5] px-5 text-sm font-semibold text-[#51351F] shadow-md transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#FFFDF8] hover:shadow-lg sm:mt-7 sm:h-11 sm:px-6"
                     >
                       Browse Books
                       <FaArrowRightFromBracket />

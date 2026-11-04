@@ -4,329 +4,357 @@
 import { useState } from "react";
 import Link from "next/link";
 import {
+  ArrowRight,
   ArrowUpRight,
   Atom,
   BookOpen,
   Check,
   Landmark,
-  Library,
   Smile,
+  Sparkles,
 } from "lucide-react";
 
 const TopCategories = () => {
-  const [selectedCategory, setSelectedCategory] = useState<string | null>(
-    null,
-  );
+  const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
 
   return (
-    <section className="bg-[#E2ECE8] px-4 py-16 sm:px-6 lg:px-8 lg:py-24">
-      <div className="mx-auto max-w-7xl">
+    <section className="relative overflow-hidden bg-[#E2ECE8] px-4 py-14 sm:px-6 lg:px-8 lg:py-20">
+      {/* Background Decorations */}
+      <div className="pointer-events-none absolute -left-32 top-20 size-72 rounded-full bg-[#A88B54]/10 blur-3xl" />
+      <div className="pointer-events-none absolute -right-32 bottom-10 size-72 rounded-full bg-[#123C3A]/10 blur-3xl" />
 
+      <div className="relative mx-auto max-w-7xl">
         {/* Section Heading */}
-        <div className="mx-auto mb-12 max-w-2xl text-center">
-          <span className="mb-4 inline-flex items-center gap-2 rounded-full border border-[#D5B982]/50 bg-white px-4 py-2 text-sm font-semibold text-[#A88B54]">
-            <Library size={16} />
-            Explore Our Collection
+        <div className="mx-auto mb-10 max-w-2xl text-center">
+          <span className="mb-4 inline-flex items-center gap-2 rounded-full border border-[#D5B982]/50 bg-white px-4 py-2 text-[10px] font-bold tracking-[2px] text-[#A88B54] shadow-sm">
+            <Sparkles size={14} />
+            EXPLORE OUR LIBRARY
           </span>
 
-          <h2 className="text-3xl font-bold tracking-tight text-[#123C3A] sm:text-4xl lg:text-5xl">
-            Explore Top
-            <span className="text-[#A88B54]"> Categories</span>
+          <h2 className="font-serif text-3xl font-bold tracking-tight text-[#123C3A] sm:text-4xl lg:text-5xl">
+            Find Your Next
+            <span className="mt-2 block text-[#A88B54]">
+              Favorite Collection
+            </span>
           </h2>
 
-          <p className="mt-4 text-sm leading-7 text-[#60766D] sm:text-base">
-            Find your next favorite book from collections made for
-            every curious mind.
+          <p className="mx-auto mt-4 max-w-xl text-sm leading-7 text-[#60766D]">
+            Every great journey begins with a book. Explore our carefully
+            organized collections and discover stories that inspire you.
           </p>
+
+          <div className="mx-auto mt-5 flex items-center justify-center gap-2">
+            <span className="h-1 w-8 rounded-full bg-[#A88B54]" />
+            <span className="h-1 w-12 rounded-full bg-[#123C3A]" />
+            <span className="h-1 w-8 rounded-full bg-[#A88B54]" />
+          </div>
         </div>
 
         {/* Category Cards */}
-        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 xl:grid-cols-4">
 
           {/* Fiction */}
           <div
             onClick={() =>
               setSelectedCategory(
-                selectedCategory === "Fiction" ? null : "Fiction",
+                selectedCategory === "Fiction" ? null : "Fiction"
               )
             }
-            className={`group relative cursor-pointer rounded-2xl border-2 bg-white p-6 transition-all duration-300 hover:-translate-y-2 hover:shadow-xl hover:shadow-[#123C3A]/10 ${
+            className={`group relative flex cursor-pointer flex-col overflow-hidden rounded-2xl border bg-white p-5 transition-all duration-500 hover:-translate-y-1.5 hover:shadow-xl hover:shadow-[#123C3A]/10 ${
               selectedCategory === "Fiction"
-                ? "border-[#A88B54] shadow-lg shadow-[#123C3A]/10 ring-4 ring-[#D5B982]/20"
-                : "border-[#DCE7E1] hover:border-[#D5B982]"
+                ? "border-[#A88B54] shadow-lg ring-4 ring-[#D5B982]/20"
+                : "border-[#DCE7E1] hover:border-[#A88B54]/70"
             }`}
           >
-            {selectedCategory === "Fiction" && (
-              <span className="absolute -right-2 -top-2 flex h-7 w-7 items-center justify-center rounded-full border-2 border-white bg-[#123C3A] text-white shadow-md">
-                <Check size={15} strokeWidth={3} />
-              </span>
-            )}
+            <div className="absolute inset-x-0 top-0 h-28 bg-gradient-to-br from-[#E9EDE7] to-[#F8F3E8] opacity-80 transition-all duration-500 group-hover:h-36" />
 
-            <div className="mb-7 flex items-center justify-between">
-              <div
-                className={`flex h-14 w-14 items-center justify-center rounded-2xl transition-all duration-300 ${
-                  selectedCategory === "Fiction"
-                    ? "bg-[#123C3A] text-white"
-                    : "bg-[#E2ECE8] text-[#123C3A] group-hover:bg-[#123C3A] group-hover:text-white"
-                }`}
-              >
-                <BookOpen size={28} strokeWidth={1.8} />
+            <div className="absolute -right-10 -top-10 size-28 rounded-full border border-[#123C3A]/5 transition-transform duration-700 group-hover:scale-125" />
+
+            <div className="relative z-10 flex items-center justify-between">
+              <span className="text-[10px] font-bold tracking-[2px] text-[#A88B54]">
+                COLLECTION 01
+              </span>
+
+              {selectedCategory === "Fiction" ? (
+                <span className="flex size-7 items-center justify-center rounded-full bg-[#123C3A] text-white shadow-md">
+                  <Check size={14} strokeWidth={3} />
+                </span>
+              ) : (
+                <span className="flex size-7 items-center justify-center rounded-full bg-white/80 text-[#A88B54] transition-all duration-300 group-hover:rotate-45 group-hover:bg-[#123C3A] group-hover:text-white">
+                  <ArrowUpRight size={16} />
+                </span>
+              )}
+            </div>
+
+            <div className="relative z-10 mt-5">
+              <div className="flex size-14 items-center justify-center rounded-xl bg-[#123C3A] text-white shadow-sm transition-all duration-500 group-hover:rotate-[-6deg] group-hover:scale-110">
+                <BookOpen size={26} strokeWidth={1.7} />
               </div>
-
-              <span className="rounded-full bg-[#F8F3E8] px-3 py-1 text-xs font-semibold text-[#A88B54]">
-                {selectedCategory === "Fiction" ? "Selected" : "Popular"}
-              </span>
             </div>
 
-            <h3 className="text-xl font-bold text-[#123C3A]">
-              Fiction
-            </h3>
+            <div className="relative z-10 mt-5 flex-1">
+              <p className="mb-1.5 text-[9px] font-bold uppercase tracking-[1.6px] text-[#A88B54]">
+                Stories & Imagination
+              </p>
 
-            <p className="mt-2 min-h-12 text-sm leading-6 text-[#60766D]">
-              Stories that take you beyond imagination.
-            </p>
+              <h3 className="font-serif text-xl font-bold text-[#123C3A] transition-colors duration-300 group-hover:text-[#A88B54]">
+                Fiction
+              </h3>
 
-    <div className="mt-5 flex min-h-[64px] flex-wrap content-start gap-2">
-              <span className="rounded-lg bg-[#F4F7F5] px-3 py-1.5 text-xs font-medium text-[#405A51]">
-                Romance
-              </span>
-              <span className="rounded-lg bg-[#F4F7F5] px-3 py-1.5 text-xs font-medium text-[#405A51]">
-                Mystery
-              </span>
-              <span className="rounded-lg bg-[#F4F7F5] px-3 py-1.5 text-xs font-medium text-[#405A51]">
-                Fantasy
-              </span>
+              <p className="mt-2 min-h-[66px] text-xs leading-6 text-[#60766D]">
+                Step into extraordinary worlds filled with imagination and unforgettable stories.
+              </p>
             </div>
 
-               <Link
-              href="/books"
-              onClick={(event) => event.stopPropagation()}
-              className="mt-7 flex w-full items-center justify-between rounded-xl bg-[#123C3A] px-4 py-3.5 text-sm font-bold text-white shadow-md shadow-[#123C3A]/15 transition-all duration-300 hover:-translate-y-1 hover:bg-[#60766D] hover:shadow-lg"
-            >
-              Explore Collection
-              <span className="flex size-8 items-center justify-center rounded-lg bg-white/15 transition-all duration-300 group-hover:rotate-45 group-hover:bg-white/25">
-                <ArrowUpRight size={19} />
-              </span>
-            </Link>
+            <div className="mt-5 border-t border-[#E8EEE9] pt-3">
+              <Link
+                href="/books?category=Fiction"
+                onClick={(event) => event.stopPropagation()}
+                className="group/link flex w-full items-center justify-between rounded-lg px-3 py-2.5 text-xs font-bold text-[#123C3A] transition-all duration-300 hover:bg-[#123C3A] hover:text-white"
+              >
+                <span>Explore Collection</span>
+                <ArrowRight
+                  size={16}
+                  className="transition-transform duration-300 group-hover/link:translate-x-1"
+                />
+              </Link>
+            </div>
+
+            {selectedCategory === "Fiction" && (
+              <div className="absolute bottom-0 left-0 h-1 w-full bg-[#A88B54]" />
+            )}
           </div>
 
-          {/* Science & Technology */}
+          {/* Science */}
           <div
             onClick={() =>
               setSelectedCategory(
-                selectedCategory === "Science & Tech"
-                  ? null
-                  : "Science & Tech",
+                selectedCategory === "Science" ? null : "Science"
               )
             }
-            className={`group relative cursor-pointer rounded-2xl border-2 bg-white p-6 transition-all duration-300 hover:-translate-y-2 hover:shadow-xl hover:shadow-[#123C3A]/10 ${
-              selectedCategory === "Science & Tech"
-                ? "border-[#A88B54] shadow-lg shadow-[#123C3A]/10 ring-4 ring-[#D5B982]/20"
-                : "border-[#DCE7E1] hover:border-[#D5B982]"
+            className={`group relative flex cursor-pointer flex-col overflow-hidden rounded-2xl border bg-white p-5 transition-all duration-500 hover:-translate-y-1.5 hover:shadow-xl hover:shadow-[#123C3A]/10 ${
+              selectedCategory === "Science"
+                ? "border-[#A88B54] shadow-lg ring-4 ring-[#D5B982]/20"
+                : "border-[#DCE7E1] hover:border-[#A88B54]/70"
             }`}
           >
-            {selectedCategory === "Science & Tech" && (
-              <span className="absolute -right-2 -top-2 flex h-7 w-7 items-center justify-center rounded-full border-2 border-white bg-[#123C3A] text-white shadow-md">
-                <Check size={15} strokeWidth={3} />
-              </span>
-            )}
+            <div className="absolute inset-x-0 top-0 h-28 bg-gradient-to-br from-[#E3EFEC] to-[#F1F5EF] opacity-80 transition-all duration-500 group-hover:h-36" />
 
-            <div className="mb-7 flex items-center justify-between">
-              <div
-                className={`flex h-14 w-14 items-center justify-center rounded-2xl transition-all duration-300 ${
-                  selectedCategory === "Science & Tech"
-                    ? "bg-[#123C3A] text-white"
-                    : "bg-[#E2ECE8] text-[#123C3A] group-hover:bg-[#123C3A] group-hover:text-white"
-                }`}
-              >
-                <Atom size={28} strokeWidth={1.8} />
+            <div className="absolute -right-10 -top-10 size-28 rounded-full border border-[#123C3A]/5 transition-transform duration-700 group-hover:scale-125" />
+
+            <div className="relative z-10 flex items-center justify-between">
+              <span className="text-[10px] font-bold tracking-[2px] text-[#A88B54]">
+                COLLECTION 02
+              </span>
+
+              {selectedCategory === "Science " ? (
+                <span className="flex size-7 items-center justify-center rounded-full bg-[#123C3A] text-white shadow-md">
+                  <Check size={14} strokeWidth={3} />
+                </span>
+              ) : (
+                <span className="flex size-7 items-center justify-center rounded-full bg-white/80 text-[#A88B54] transition-all duration-300 group-hover:rotate-45 group-hover:bg-[#123C3A] group-hover:text-white">
+                  <ArrowUpRight size={16} />
+                </span>
+              )}
+            </div>
+
+            <div className="relative z-10 mt-5">
+              <div className="flex size-14 items-center justify-center rounded-xl bg-[#123C3A] text-white shadow-sm transition-all duration-500 group-hover:rotate-[-6deg] group-hover:scale-110">
+                <Atom size={26} strokeWidth={1.7} />
               </div>
-
-              <span className="rounded-full bg-[#F4F7F5] px-3 py-1 text-xs font-semibold text-[#405A51]">
-                {selectedCategory === "Science & Tech" ? "Selected" : "Learn"}
-              </span>
             </div>
 
-            <h3 className="text-xl font-bold text-[#123C3A]">
-              Science & Tech
-            </h3>
+            <div className="relative z-10 mt-5 flex-1">
+              <p className="mb-1.5 text-[9px] font-bold uppercase tracking-[1.6px] text-[#A88B54]">
+                Knowledge & Innovation
+              </p>
 
-            <p className="mt-2 min-h-12 text-sm leading-6 text-[#60766D]">
-              Discover ideas that shape our future.
-            </p>
+              <h3 className="font-serif text-xl font-bold text-[#123C3A] transition-colors duration-300 group-hover:text-[#A88B54]">
+                Science & Tech
+              </h3>
 
-      <div className="mt-5 flex min-h-[64px] flex-wrap content-start gap-2">
-              <span className="rounded-lg bg-[#F4F7F5] px-3 py-1.5 text-xs font-medium text-[#405A51]">
-                Programming
-              </span>
-              <span className="rounded-lg bg-[#F4F7F5] px-3 py-1.5 text-xs font-medium text-[#405A51]">
-                Science
-              </span>
-              <span className="rounded-lg bg-[#F4F7F5] px-3 py-1.5 text-xs font-medium text-[#405A51]">
-                Innovation
-              </span>
+              <p className="mt-2 min-h-[66px] text-xs leading-6 text-[#60766D]">
+                Explore groundbreaking discoveries, technology and ideas shaping tomorrow.
+              </p>
             </div>
 
-            <Link
-              href="/books"
-              onClick={(event) => event.stopPropagation()}
-              className="mt-7 flex w-full items-center justify-between rounded-xl bg-[#123C3A] px-4 py-3.5 text-sm font-bold text-white shadow-md shadow-[#123C3A]/15 transition-all duration-300 hover:-translate-y-1 hover:bg-[#60766D] hover:shadow-lg"
-            >
-              Explore Collection
-              <span className="flex size-8 items-center justify-center rounded-lg bg-white/15 transition-all duration-300 group-hover:rotate-45 group-hover:bg-white/25">
-                <ArrowUpRight size={19} />
-              </span>
-            </Link>
+            <div className="mt-5 border-t border-[#E8EEE9] pt-3">
+              <Link
+                href={`/books?category=${encodeURIComponent("Science")}`}
+                onClick={(event) => event.stopPropagation()}
+                className="group/link flex w-full items-center justify-between rounded-lg px-3 py-2.5 text-xs font-bold text-[#123C3A] transition-all duration-300 hover:bg-[#123C3A] hover:text-white"
+              >
+                <span>Explore Collection</span>
+                <ArrowRight
+                  size={16}
+                  className="transition-transform duration-300 group-hover/link:translate-x-1"
+                />
+              </Link>
+            </div>
+
+            {selectedCategory === "Science" && (
+              <div className="absolute bottom-0 left-0 h-1 w-full bg-[#A88B54]" />
+            )}
           </div>
 
           {/* History */}
           <div
             onClick={() =>
               setSelectedCategory(
-                selectedCategory === "History" ? null : "History",
+                selectedCategory === "History" ? null : "History"
               )
             }
-            className={`group relative cursor-pointer rounded-2xl border-2 bg-white p-6 transition-all duration-300 hover:-translate-y-2 hover:shadow-xl hover:shadow-[#123C3A]/10 ${
+            className={`group relative flex cursor-pointer flex-col overflow-hidden rounded-2xl border bg-white p-5 transition-all duration-500 hover:-translate-y-1.5 hover:shadow-xl hover:shadow-[#123C3A]/10 ${
               selectedCategory === "History"
-                ? "border-[#A88B54] shadow-lg shadow-[#123C3A]/10 ring-4 ring-[#D5B982]/20"
-                : "border-[#DCE7E1] hover:border-[#D5B982]"
+                ? "border-[#A88B54] shadow-lg ring-4 ring-[#D5B982]/20"
+                : "border-[#DCE7E1] hover:border-[#A88B54]/70"
             }`}
           >
-            {selectedCategory === "History" && (
-              <span className="absolute -right-2 -top-2 flex h-7 w-7 items-center justify-center rounded-full border-2 border-white bg-[#123C3A] text-white shadow-md">
-                <Check size={15} strokeWidth={3} />
-              </span>
-            )}
+            <div className="absolute inset-x-0 top-0 h-28 bg-gradient-to-br from-[#F5EBDD] to-[#FAF7EF] opacity-80 transition-all duration-500 group-hover:h-36" />
 
-            <div className="mb-7 flex items-center justify-between">
-              <div
-                className={`flex h-14 w-14 items-center justify-center rounded-2xl transition-all duration-300 ${
-                  selectedCategory === "History"
-                    ? "bg-[#123C3A] text-white"
-                    : "bg-[#E2ECE8] text-[#123C3A] group-hover:bg-[#123C3A] group-hover:text-white"
-                }`}
-              >
-                <Landmark size={28} strokeWidth={1.8} />
+            <div className="absolute -right-10 -top-10 size-28 rounded-full border border-[#123C3A]/5 transition-transform duration-700 group-hover:scale-125" />
+
+            <div className="relative z-10 flex items-center justify-between">
+              <span className="text-[10px] font-bold tracking-[2px] text-[#A88B54]">
+                COLLECTION 03
+              </span>
+
+              {selectedCategory === "History" ? (
+                <span className="flex size-7 items-center justify-center rounded-full bg-[#123C3A] text-white shadow-md">
+                  <Check size={14} strokeWidth={3} />
+                </span>
+              ) : (
+                <span className="flex size-7 items-center justify-center rounded-full bg-white/80 text-[#A88B54] transition-all duration-300 group-hover:rotate-45 group-hover:bg-[#123C3A] group-hover:text-white">
+                  <ArrowUpRight size={16} />
+                </span>
+              )}
+            </div>
+
+            <div className="relative z-10 mt-5">
+              <div className="flex size-14 items-center justify-center rounded-xl bg-[#123C3A] text-white shadow-sm transition-all duration-500 group-hover:rotate-[-6deg] group-hover:scale-110">
+                <Landmark size={26} strokeWidth={1.7} />
               </div>
-
-              <span className="rounded-full bg-[#F4F7F5] px-3 py-1 text-xs font-semibold text-[#405A51]">
-                {selectedCategory === "History" ? "Selected" : "Discover"}
-              </span>
             </div>
 
-            <h3 className="text-xl font-bold text-[#123C3A]">
-              History
-            </h3>
+            <div className="relative z-10 mt-5 flex-1">
+              <p className="mb-1.5 text-[9px] font-bold uppercase tracking-[1.6px] text-[#A88B54]">
+                Past & Civilization
+              </p>
 
-            <p className="mt-2 min-h-12 text-sm leading-6 text-[#60766D]">
-              Explore the past and learn from history.
-            </p>
+              <h3 className="font-serif text-xl font-bold text-[#123C3A] transition-colors duration-300 group-hover:text-[#A88B54]">
+                History
+              </h3>
 
-        <div className="mt-5 flex min-h-[64px] flex-wrap content-start gap-2">
-              <span className="rounded-lg bg-[#F4F7F5] px-3 py-1.5 text-xs font-medium text-[#405A51]">
-                Ancient
-              </span>
-              <span className="rounded-lg bg-[#F4F7F5] px-3 py-1.5 text-xs font-medium text-[#405A51]">
-                Biography
-              </span>
-              <span className="rounded-lg bg-[#F4F7F5] px-3 py-1.5 text-xs font-medium text-[#405A51]">
-                Civilization
-              </span>
+              <p className="mt-2 min-h-[66px] text-xs leading-6 text-[#60766D]">
+                Travel through time and discover the events that shaped our world.
+              </p>
             </div>
 
-            <Link
-              href="/books"
-              onClick={(event) => event.stopPropagation()}
-              className="mt-7 flex w-full items-center justify-between rounded-xl bg-[#123C3A] px-4 py-3.5 text-sm font-bold text-white shadow-md shadow-[#123C3A]/15 transition-all duration-300 hover:-translate-y-1 hover:bg-[#60766D] hover:shadow-lg"
-            >
-              Explore Collection
-              <span className="flex size-8 items-center justify-center rounded-lg bg-white/15 transition-all duration-300 group-hover:rotate-45 group-hover:bg-white/25">
-                <ArrowUpRight size={19} />
-              </span>
-            </Link>
+            <div className="mt-5 border-t border-[#E8EEE9] pt-3">
+              <Link
+                href="/books?category=History"
+                onClick={(event) => event.stopPropagation()}
+                className="group/link flex w-full items-center justify-between rounded-lg px-3 py-2.5 text-xs font-bold text-[#123C3A] transition-all duration-300 hover:bg-[#123C3A] hover:text-white"
+              >
+                <span>Explore Collection</span>
+                <ArrowRight
+                  size={16}
+                  className="transition-transform duration-300 group-hover/link:translate-x-1"
+                />
+              </Link>
+            </div>
+
+            {selectedCategory === "History" && (
+              <div className="absolute bottom-0 left-0 h-1 w-full bg-[#A88B54]" />
+            )}
           </div>
 
-          {/* Kids & Comics */}
+          {/* Kids  */}
           <div
             onClick={() =>
               setSelectedCategory(
-                selectedCategory === "Kids & Comics"
-                  ? null
-                  : "Kids & Comics",
+                selectedCategory === "Kids" ? null : "Kids"
               )
             }
-            className={`group relative cursor-pointer rounded-2xl border-2 bg-white p-6 transition-all duration-300 hover:-translate-y-2 hover:shadow-xl hover:shadow-[#123C3A]/10 ${
-              selectedCategory === "Kids & Comics"
-                ? "border-[#A88B54] shadow-lg shadow-[#123C3A]/10 ring-4 ring-[#D5B982]/20"
-                : "border-[#DCE7E1] hover:border-[#D5B982]"
+            className={`group relative flex cursor-pointer flex-col overflow-hidden rounded-2xl border bg-white p-5 transition-all duration-500 hover:-translate-y-1.5 hover:shadow-xl hover:shadow-[#123C3A]/10 ${
+              selectedCategory === "Kids"
+                ? "border-[#A88B54] shadow-lg ring-4 ring-[#D5B982]/20"
+                : "border-[#DCE7E1] hover:border-[#A88B54]/70"
             }`}
           >
-            {selectedCategory === "Kids & Comics" && (
-              <span className="absolute -right-2 -top-2 flex h-7 w-7 items-center justify-center rounded-full border-2 border-white bg-[#123C3A] text-white shadow-md">
-                <Check size={15} strokeWidth={3} />
-              </span>
-            )}
+            <div className="absolute inset-x-0 top-0 h-28 bg-gradient-to-br from-[#EAECE0] to-[#F8F3E8] opacity-80 transition-all duration-500 group-hover:h-36" />
 
-            <div className="mb-7 flex items-center justify-between">
-              <div
-                className={`flex h-14 w-14 items-center justify-center rounded-2xl transition-all duration-300 ${
-                  selectedCategory === "Kids & Comics"
-                    ? "bg-[#123C3A] text-white"
-                    : "bg-[#E2ECE8] text-[#123C3A] group-hover:bg-[#123C3A] group-hover:text-white"
-                }`}
-              >
-                <Smile size={28} strokeWidth={1.8} />
+            <div className="absolute -right-10 -top-10 size-28 rounded-full border border-[#123C3A]/5 transition-transform duration-700 group-hover:scale-125" />
+
+            <div className="relative z-10 flex items-center justify-between">
+              <span className="text-[10px] font-bold tracking-[2px] text-[#A88B54]">
+                COLLECTION 04
+              </span>
+
+              {selectedCategory === "Kids" ? (
+                <span className="flex size-7 items-center justify-center rounded-full bg-[#123C3A] text-white shadow-md">
+                  <Check size={14} strokeWidth={3} />
+                </span>
+              ) : (
+                <span className="flex size-7 items-center justify-center rounded-full bg-white/80 text-[#A88B54] transition-all duration-300 group-hover:rotate-45 group-hover:bg-[#123C3A] group-hover:text-white">
+                  <ArrowUpRight size={16} />
+                </span>
+              )}
+            </div>
+
+            <div className="relative z-10 mt-5">
+              <div className="flex size-14 items-center justify-center rounded-xl bg-[#123C3A] text-white shadow-sm transition-all duration-500 group-hover:rotate-[-6deg] group-hover:scale-110">
+                <Smile size={26} strokeWidth={1.7} />
               </div>
-
-              <span className="rounded-full bg-[#F8F3E8] px-3 py-1 text-xs font-semibold text-[#A88B54]">
-                {selectedCategory === "Kids & Comics" ? "Selected" : "For Kids"}
-              </span>
             </div>
 
-            <h3 className="text-xl font-bold text-[#123C3A]">
-              Kids & Comics
-            </h3>
+            <div className="relative z-10 mt-5 flex-1">
+              <p className="mb-1.5 text-[9px] font-bold uppercase tracking-[1.6px] text-[#A88B54]">
+                Fun & Adventure
+              </p>
 
-            <p className="mt-2 min-h-12 text-sm leading-6 text-[#60766D]">
-              Fun stories and adventures for young readers.
-            </p>
-<div className="mt-5 flex min-h-[64px] flex-wrap content-start gap-2">
-              <span className="rounded-lg bg-[#F4F7F5] px-3 py-1.5 text-xs font-medium text-[#405A51]">
-                Fairy Tales
-              </span>
-              <span className="rounded-lg bg-[#F4F7F5] px-3 py-1.5 text-xs font-medium text-[#405A51]">
-                Comics
-              </span>
-              <span className="rounded-lg bg-[#F4F7F5] px-3 py-1.5 text-xs font-medium text-[#405A51]">
-                Adventure
-              </span>
+              <h3 className="font-serif text-xl font-bold text-[#123C3A] transition-colors duration-300 group-hover:text-[#A88B54]">
+                Kids
+              </h3>
+
+              <p className="mt-2 min-h-[66px] text-xs leading-6 text-[#60766D]">
+                Bring young imaginations to life with fun stories and exciting adventures.
+              </p>
             </div>
 
-            <Link
-              href="/books"
-              onClick={(event) => event.stopPropagation()}
-              className="mt-7 flex w-full items-center justify-between rounded-xl bg-[#123C3A] px-4 py-3.5 text-sm font-bold text-white shadow-md shadow-[#123C3A]/15 transition-all duration-300 hover:-translate-y-1 hover:bg-[#60766D] hover:shadow-lg"
-            >
-              Explore Collection
-              <span className="flex size-8 items-center justify-center rounded-lg bg-white/15 transition-all duration-300 group-hover:rotate-45 group-hover:bg-white/25">
-                <ArrowUpRight size={19} />
-              </span>
-            </Link>
+            <div className="mt-5 border-t border-[#E8EEE9] pt-3">
+              <Link
+                href={`/books?category=${encodeURIComponent("Kids")}`}
+                onClick={(event) => event.stopPropagation()}
+                className="group/link flex w-full items-center justify-between rounded-lg px-3 py-2.5 text-xs font-bold text-[#123C3A] transition-all duration-300 hover:bg-[#123C3A] hover:text-white"
+              >
+                <span>Explore Collection</span>
+                <ArrowRight
+                  size={16}
+                  className="transition-transform duration-300 group-hover/link:translate-x-1"
+                />
+              </Link>
+            </div>
+
+            {selectedCategory === "Kids" && (
+              <div className="absolute bottom-0 left-0 h-1 w-full bg-[#A88B54]" />
+            )}
           </div>
         </div>
 
-        {/* Bottom Note */}
-        <div className="mt-10 flex flex-col items-center justify-center gap-4 text-center sm:flex-row">
-          <p className="text-sm text-[#60766D]">
-            Your next favorite book is waiting to be discovered.
-          </p>
-
+        {/* View All Books */}
+        <div className="mt-6 flex justify-center">
           <Link
             href="/books"
-            className="inline-flex items-center gap-2 rounded-full border border-[#123C3A] bg-transparent px-5 py-2.5 text-sm font-bold text-[#123C3A] transition-all duration-300 hover:bg-[#123C3A] hover:text-white"
+            className="group inline-flex items-center gap-2 border-b-2 border-[#123C3A]/30 pb-1.5 text-sm font-extrabold tracking-wide text-[#123C3A] transition-all duration-300 hover:border-[#123C3A] hover:text-[#60766D]"
           >
-            View All Books
-            <ArrowUpRight size={16} />
+            <span>View All Books</span>
+
+            <ArrowRight
+              size={18}
+              strokeWidth={2.5}
+              className="transition-transform duration-300 group-hover:translate-x-1.5"
+            />
           </Link>
         </div>
       </div>
