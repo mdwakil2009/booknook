@@ -19,7 +19,7 @@ const ReturnButton = ({ borrowId }: ReturnButtonProps) => {
     try {
       setLoading(true);
 
-      const res = await fetch(`http://localhost:8000/borrow/${borrowId}`, {
+      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/borrow/${borrowId}`, {
         method: "DELETE",
         headers: {
           authorization: `Bearer ${token}`,

@@ -26,7 +26,7 @@ const DeleteBook = ({ book }: { book: IBook }) => {
       setLoading(true);
     const token = await GetTokenFromClient()
       const response = await fetch(
-        `http://localhost:8000/my-book/${book._id}`,{
+        `${process.env.NEXT_PUBLIC_API_URL}/my-book/${book._id}`,{
           method: "DELETE",
           headers:{
             authorization: `Bearer ${token}`

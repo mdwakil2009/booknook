@@ -116,7 +116,7 @@ const EditBook = ({ book }: EditBookProps) => {
     setIsLoading(true);
     const token = await GetTokenFromClient();
     try {
-      const res = await fetch(`http://localhost:8000/my-book/${book._id}`, {
+      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/my-book/${book._id}`, {
         method: "PATCH",
         headers: {
           "Content-Type": "application/json",

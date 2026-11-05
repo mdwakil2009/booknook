@@ -5,7 +5,7 @@ import { IBook } from "@/lib/type";
 import ViewDetailsButton from "../ViewDetailsButtonProps";
 
 const Arrivals = async () => {
-  const res = await fetch("http://localhost:8000/arrivals", {
+  const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/arrivals`, {
     cache: "no-store",
   });
 

@@ -55,7 +55,7 @@ const BorrowButton = ({ bookId, bookTitle, bookImage }: BorrowButtonProps) => {
 
       const token = await GetTokenFromClient();
 
-      const res = await fetch("http://localhost:8000/borrows", {
+      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/borrows`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

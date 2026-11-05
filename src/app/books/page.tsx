@@ -13,8 +13,8 @@ const AllBookPage = async ({ searchParams }: AllBookPageProps) => {
   const { category } = await searchParams;
 
   const url = category
-    ? `http://localhost:8000/books?category=${encodeURIComponent(category)}`
-    : "http://localhost:8000/books";
+    ? `${process.env.NEXT_PUBLIC_API_URL}/books?category=${encodeURIComponent(category)}`
+    : `${process.env.NEXT_PUBLIC_API_URL}/books`;
 
   const res = await fetch(url, {
     cache: "no-store",

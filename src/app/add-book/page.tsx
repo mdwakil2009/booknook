@@ -33,6 +33,7 @@ import { Card, CardContent } from "@/components/ui/card";
 
 import ClientPageTitle from "@/lib/ClientPageTitle";
 import { GetTokenFromClient } from "@/lib/GetTokenFromClient";
+import Image from "next/image";
 
 const categories = ["Fiction", "Science", "History", "Kids", "Others"];
 
@@ -91,7 +92,7 @@ export default function AddBookPage() {
     try {
       const token = await GetTokenFromClient();
 
-      const response = await fetch("http://localhost:8000/add-book", {
+      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/add-book`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -322,8 +323,10 @@ export default function AddBookPage() {
 
                   {image && (
                     <div className="relative w-fit overflow-hidden rounded-xl border border-[#D5B982]/50 bg-white p-2">
-                      <img
+                      <Image
                         src={image}
+                        width={100}
+                        height={100}
                         alt="Book cover preview"
                         className="h-36 w-24 rounded-lg object-cover"
                         onError={(e) => {

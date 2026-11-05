@@ -22,7 +22,7 @@ const BookDetailsPage = async ({
 }) => {
   const { id } = await params;
   const token =await GetTokenFromServer()
-  const res = await fetch(`http://localhost:8000/book/${id}`, {
+  const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/book/${id}`, {
      headers: {
       authorization:`Bearer ${token}`,
     },

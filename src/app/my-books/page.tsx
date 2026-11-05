@@ -46,7 +46,7 @@ const MyBooksPage = ({ book: _book }: { book: IBook[] }) => {
         setLoading(true);
 
         const response = await fetch(
-          `http://localhost:8000/my-books/${encodeURIComponent(email)}`,
+          `${process.env.NEXT_PUBLIC_API_URL}/my-books/${encodeURIComponent(email)}`,
           {
             cache: "no-store",
             headers: {
