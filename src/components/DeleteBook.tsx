@@ -15,6 +15,7 @@ import {
 import { Trash2 } from "lucide-react";
 import { toast } from "sonner";
 import { IBook } from "@/lib/type";
+import { GetTokenFromClient } from "@/lib/GetTokenFromClient";
 
 const DeleteBook = ({ book }: { book: IBook }) => {
   const [open, setOpen] = useState(false);
@@ -23,11 +24,13 @@ const DeleteBook = ({ book }: { book: IBook }) => {
   const handleDelete = async () => {
     try {
       setLoading(true);
-
+    const token = await GetTokenFromClient()
       const response = await fetch(
-        `http://localhost:8000/my-book/${book._id}`,
-        {
+        `http://localhost:8000/my-book/${book._id}`,{
           method: "DELETE",
+          headers:{
+            authorization: `Bearer ${token}`
+          }
         },
       );
 

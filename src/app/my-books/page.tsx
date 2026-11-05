@@ -21,6 +21,7 @@ import { IBook } from "@/lib/type";
 import EditBook from "@/components/EditBook";
 import DeleteBook from "@/components/DeleteBook";
 import ClientPageTitle from "@/lib/ClientPageTitle";
+import { GetTokenFromClient } from "@/lib/GetTokenFromClient";
 
 const MyBooksPage = ({ book: _book }: { book: IBook[] }) => {
   const [books, setBooks] = useState<IBook[]>([]);
@@ -40,12 +41,18 @@ const MyBooksPage = ({ book: _book }: { book: IBook[] }) => {
     }
 
     const fetchMyBooks = async () => {
+      const token = await GetTokenFromClient();
       try {
         setLoading(true);
 
         const response = await fetch(
           `http://localhost:8000/my-books/${encodeURIComponent(email)}`,
-          { cache: "no-store" },
+          {
+            cache: "no-store",
+            headers: {
+              authorization: `Bearer ${token}`,
+            },
+          },
         );
         const data = await response.json();
         setBooks(data);
@@ -61,14 +68,14 @@ const MyBooksPage = ({ book: _book }: { book: IBook[] }) => {
 
   if (isPending || loading) {
     return (
-      <div className="flex min-h-[60vh] items-center justify-center bg-[#E2ECE8] dark:bg-[#172522]">
+      <div className="flex min-h-[60vh] items-center justify-center bg-white dark:bg-[#172522]">
         <Loader2 className="size-7 animate-spin text-[#123C3A] dark:text-[#A8C9B5]" />
       </div>
     );
   }
 
   return (
-    <main className="min-h-screen bg-[#E2ECE8] px-3 py-5 dark:bg-[#172522] sm:px-5 lg:px-7 lg:py-7">
+    <main className="min-h-screen bg-white px-3 py-5 dark:bg-[#172522] sm:px-5 lg:px-7 lg:py-7">
       <ClientPageTitle title="My Book" />
       <div className="mx-auto max-w-7xl">
         {/* Header */}
@@ -103,7 +110,7 @@ const MyBooksPage = ({ book: _book }: { book: IBook[] }) => {
 
         {/* Empty State */}
         {books.length === 0 ? (
-          <section className="relative flex min-h-[350px] flex-col items-center justify-center overflow-hidden rounded-2xl border border-[#D4E1DA] bg-[#FAFCFA] px-4 py-8 text-center shadow-sm dark:border-[#526B60] dark:bg-[#20332F]">
+          <section className="relative flex min-h-[350px] flex-col items-center justify-center overflow-hidden rounded-2xl border border-[#D4E1DA] bg-white px-4 py-8 text-center shadow-sm dark:border-[#526B60] dark:bg-[#20332F]">
             {/* Illustration */}
             <div className="relative mb-4 flex size-20 items-center justify-center">
               <Image
@@ -175,11 +182,11 @@ const MyBooksPage = ({ book: _book }: { book: IBook[] }) => {
               {books.map((book) => (
                 <div
                   key={book._id}
-                  className="group overflow-hidden rounded-2xl border border-[#D4E1DA] bg-[#FAFCFA] p-3 shadow-sm transition hover:shadow-lg dark:border-[#526B60] dark:bg-[#20332F] dark:hover:shadow-black/20 sm:p-4"
+                  className="group overflow-hidden rounded-2xl border border-[#D4E1DA] bg-white p-3 shadow-sm transition hover:shadow-lg dark:border-[#526B60] dark:bg-[#20332F] dark:hover:shadow-black/20 sm:p-4"
                 >
                   <div className="flex items-center gap-4">
                     {/* 1. Book Image */}
-                    <div className="relative h-32 w-24 shrink-0 overflow-hidden rounded-xl bg-[#EAF1EC] dark:bg-[#30463D] sm:h-40 sm:w-28">
+                    <div className="relative h-32 w-24 shrink-0 overflow-hidden rounded-xl bg-white dark:bg-[#30463D] sm:h-40 sm:w-28">
                       {book.image ? (
                         <Image
                           src={book.image}

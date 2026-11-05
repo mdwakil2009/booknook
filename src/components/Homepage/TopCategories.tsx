@@ -17,7 +17,7 @@ const TopCategories = () => {
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
 
   return (
-    <section className="relative overflow-hidden bg-[#E2ECE8] px-4 pt-6 pb-14 dark:bg-[#172522] sm:px-6 lg:px-8 lg:pt-8 lg:pb-20">
+    <section className="relative overflow-hidden bg-white px-4 pt-6 pb-14 dark:bg-[#172522] sm:px-6 lg:px-8 lg:pt-8 lg:pb-20">
       {/* Background Decorations */}
       <div className="pointer-events-none absolute -left-32 top-20 size-72 rounded-full bg-[#A88B54]/10 blur-3xl" />
       <div className="pointer-events-none absolute -right-32 bottom-10 size-72 rounded-full bg-[#123C3A]/10 blur-3xl" />

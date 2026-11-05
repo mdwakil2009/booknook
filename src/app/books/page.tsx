@@ -23,7 +23,7 @@ const AllBookPage = async ({ searchParams }: AllBookPageProps) => {
   const data: IBook[] = await res.json();
 
   return (
-    <main className="min-h-screen bg-[#E2ECE8] px-4 py-8 dark:bg-[#172522] sm:px-6 lg:px-10 lg:py-10">
+    <main className="min-h-screen bg-white px-4 py-8 dark:bg-[#172522] sm:px-6 lg:px-10 lg:py-10">
       <div className="mx-auto max-w-7xl">
         {/* Page Header */}
         <section className="mb-10 text-center">
@@ -33,7 +33,10 @@ const AllBookPage = async ({ searchParams }: AllBookPageProps) => {
           </div>
 
           <h1 className="font-serif text-3xl font-bold tracking-tight text-[#123C3A] dark:text-[#E8F0EA] sm:text-5xl lg:text-6xl">
-            Explore Our <span className="text-[#9B704B] dark:text-[#D5B982]">Bookshelf</span>
+            Explore Our{" "}
+            <span className="text-[#9B704B] dark:text-[#D5B982]">
+              Bookshelf
+            </span>
           </h1>
 
           <p className="mx-auto mt-4 max-w-xl text-xs leading-6 text-[#60766D] dark:text-[#A8BDB3] sm:text-sm sm:leading-7">

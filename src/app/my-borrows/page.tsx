@@ -14,6 +14,8 @@ import {
 import { auth } from "@/lib/auth";
 import ReturnButton from "@/components/Borrows/ReturnButton";
 import ClientPageTitle from "@/lib/ClientPageTitle";
+import { GetTokenFromClient } from "@/lib/GetTokenFromClient";
+import { GetTokenFromServer } from "@/lib/GetTokenFromServer";
 
 interface IBorrow {
   _id: string;
@@ -44,7 +46,7 @@ const MyBorrowsPage = async () => {
   // Login Required
   if (!user) {
     return (
-      <main className="flex min-h-screen items-center justify-center bg-[#E2ECE8] px-4 py-8 dark:bg-[#172522]">
+      <main className="flex min-h-screen items-center justify-center bg-white px-4 py-8 dark:bg-[#172522]">
         <div className="w-full max-w-md rounded-2xl border border-[#D4E1DA] bg-[#FAFCFA] p-7 text-center shadow-sm dark:border-[#526B60] dark:bg-[#20332F]">
           <div className="mx-auto mb-4 flex size-14 items-center justify-center rounded-2xl bg-[#EAF1EC] text-[#123C3A] dark:bg-[#30463D] dark:text-[#A8C9B5]">
             <BookOpen className="size-7" />
@@ -69,12 +71,15 @@ const MyBorrowsPage = async () => {
       </main>
     );
   }
-
+  const token = await GetTokenFromServer();
   // Fetch Borrowed Books
   const res = await fetch(
     `http://localhost:8000/my-borrows/${encodeURIComponent(user.email)}`,
     {
       cache: "no-store",
+      headers: {
+        authorization: `Bearer ${token}`,
+      },
     },
   );
 
@@ -85,7 +90,7 @@ const MyBorrowsPage = async () => {
   const borrows: IBorrow[] = await res.json();
 
   return (
-    <main className="min-h-screen bg-[#E2ECE8] px-3 py-4 dark:bg-[#172522] sm:px-5 lg:px-7 lg:py-5">
+    <main className="min-h-screen bg-white px-3 py-4 dark:bg-[#172522] sm:px-5 lg:px-7 lg:py-5">
       <ClientPageTitle title="My Borrows" />
       <div className="mx-auto max-w-7xl">
         {/* Header */}
@@ -116,7 +121,7 @@ const MyBorrowsPage = async () => {
 
         {/* Empty State */}
         {borrows.length === 0 ? (
-          <div className="flex min-h-[320px] flex-col items-center justify-center rounded-2xl border border-[#D4E1DA] bg-[#FAFCFA] px-5 py-8 text-center dark:border-[#526B60] dark:bg-[#20332F]">
+          <div className="flex min-h-[320px] flex-col items-center justify-center rounded-2xl border border-[#D4E1DA] bg-white px-5 py-8 text-center dark:border-[#526B60] dark:bg-[#20332F]">
             <div className="relative mb-4 flex size-20 items-center justify-center">
               <Image
                 src="/image/stack-of-books.png"
@@ -175,11 +180,11 @@ const MyBorrowsPage = async () => {
               {borrows.map((borrow) => (
                 <div
                   key={borrow._id}
-                  className="group overflow-hidden rounded-2xl border border-[#D4E1DA] bg-[#FAFCFA] p-3 shadow-sm transition hover:shadow-lg dark:border-[#526B60] dark:bg-[#20332F] dark:hover:shadow-black/20 sm:p-4"
+                  className="group overflow-hidden rounded-2xl border border-[#D4E1DA] bg-white p-3 shadow-sm transition hover:shadow-lg dark:border-[#526B60] dark:bg-[#20332F] dark:hover:shadow-black/20 sm:p-4"
                 >
                   <div className="flex items-center gap-4">
                     {/* 1. Book Image */}
-                    <div className="relative h-32 w-24 shrink-0 overflow-hidden rounded-xl bg-[#EAF1EC] dark:bg-[#30463D] sm:h-40 sm:w-28">
+                    <div className="relative h-32 w-24 shrink-0 overflow-hidden rounded-xl bg-white dark:bg-[#30463D] sm:h-40 sm:w-28">
                       <Image
                         src={borrow.bookImage}
                         alt={borrow.bookTitle}

@@ -12,7 +12,7 @@ const Arrivals = async () => {
   const data: IBook[] = await res.json();
 
   return (
-    <section className="bg-[#F7F8F5] px-4 py-14 dark:bg-[#172522] sm:px-6 lg:px-10 lg:py-16">
+    <section className="bg-white px-4 py-14 dark:bg-[#172522] sm:px-6 lg:px-10 lg:py-16">
       <div className="mx-auto max-w-7xl">
         {/* Section Heading */}
         <div className="mb-9 text-center sm:mb-12">

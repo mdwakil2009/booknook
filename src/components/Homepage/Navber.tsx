@@ -102,18 +102,12 @@ export default function Navbar() {
   return (
     <header className="sticky top-0 z-50 w-full border-b border-[#D5B982]/50 bg-white shadow-sm dark:border-[#526B60] dark:bg-[#172522]">
       <nav className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
+        {/* logo */}
         <Link href="/" className="group flex shrink-0 items-center gap-2.5">
-          <div className="relative flex size-14 items-center justify-center overflow-hidden rounded-2xl border border-[#E5D8BD]  from-[#FFFDF8] to-[#F0E8D8] shadow-[0_4px_12px_rgba(65,48,29,0.10)] transition-all duration-300 group-hover:-translate-y-0.5 group-hover:shadow-[0_7px_18px_rgba(65,48,29,0.16)] dark:border-[#526B60] dark:from-[#30463D] dark:to-[#20332F]">
-            <Image
-              src="/image/books (4).png"
-              alt="BookNook Logo"
-              width={120}
-              height={120}
-              priority
-              className="size-12 object-contain drop-shadow-md transition-transform duration-300 group-hover:scale-110"
-            />
+          <div className="flex size-11 items-center justify-center rounded-xl bg-[#123C3A] text-[#D5B982] shadow-sm">
+            <BookOpen size={24} />
           </div>
-
+    
           {/* Brand Name */}
           <div className="flex flex-col justify-center">
             <span className="text-[23px] font-extrabold leading-tight tracking-tight text-[#123C3A] transition-colors duration-300 group-hover:text-[#24645E] dark:text-[#E8F0EA] dark:group-hover:text-[#A8C9B5]">

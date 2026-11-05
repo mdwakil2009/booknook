@@ -39,7 +39,7 @@ const ProfilePage = () => {
 
   if (isPending) {
     return (
-      <div className="flex min-h-screen items-center justify-center bg-[#E2ECE8] dark:bg-[#172522]">
+      <div className="flex min-h-screen items-center justify-center bg-white dark:bg-[#172522]">
         <p className="text-sm font-medium text-[#513B2B] dark:text-[#E8F0EA]">
           Loading profile...
         </p>
@@ -49,8 +49,11 @@ const ProfilePage = () => {
 
   if (!user) {
     return (
-      <div className="flex min-h-screen flex-col items-center justify-center bg-[#E2ECE8] px-4 dark:bg-[#172522]">
-        <UserRound size={34} className="text-[#513B2B] dark:text-[#A8C9B5]" />
+      <div className="flex min-h-screen flex-col items-center justify-center bg-white px-4 dark:bg-[#172522]">
+        <UserRound
+          size={34}
+          className="text-[#513B2B] dark:text-[#A8C9B5]"
+        />
 
         <h2 className="mt-3 text-xl font-bold text-[#513B2B] dark:text-[#E8F0EA]">
           Login Required
@@ -71,10 +74,10 @@ const ProfilePage = () => {
   }
 
   return (
-    <main className="min-h-screen bg-[#E2ECE8] px-4 py-6 dark:bg-[#172522] sm:px-6 sm:py-8">
+    <main className="min-h-screen bg-white px-4 py-6 dark:bg-[#172522] sm:px-6 sm:py-8">
       <ClientPageTitle title="My Profile" />
-      <div className="mx-auto max-w-4xl">
 
+      <div className="mx-auto max-w-4xl">
         {/* Page Heading */}
         <div className="mb-6 flex items-end justify-between">
           <div>
@@ -98,11 +101,11 @@ const ProfilePage = () => {
         </div>
 
         {/* Profile Card */}
-        <section className="overflow-hidden rounded-2xl border-2 border-[#B9C9C0] bg-[#E2ECE8] shadow-md dark:border-[#607D70] dark:bg-[#20332F]">
+        <section className="overflow-hidden rounded-2xl border-2 border-[#B9C9C0] bg-white shadow-md dark:border-[#607D70] dark:bg-[#20332F]">
 
           {/* Profile Image */}
-          <div className="flex justify-center border-b-2 border-[#C3D1C8] bg-[#E2ECE8] px-4 py-7 dark:border-[#607D70] dark:bg-[#20332F]">
-            <div className="relative h-24 w-24 overflow-hidden rounded-full border-4 border-[#B9C9C0] bg-[#E2ECE8] shadow-md dark:border-[#789687] dark:bg-[#30463D]">
+          <div className="flex justify-center border-b-2 border-[#C3D1C8] bg-white px-4 py-7 dark:border-[#607D70] dark:bg-[#20332F]">
+            <div className="relative h-24 w-24 overflow-hidden rounded-full border-4 border-[#B9C9C0] bg-white shadow-md dark:border-[#789687] dark:bg-[#30463D]">
               {user.image ? (
                 <Image
                   src={user.image}
@@ -121,7 +124,7 @@ const ProfilePage = () => {
           </div>
 
           {/* Personal Information Heading */}
-          <div className="flex items-center justify-between border-b-2 border-[#C3D1C8] px-4 py-4 dark:border-[#607D70]">
+          <div className="flex items-center justify-between border-b-2 border-[#C3D1C8] bg-white px-4 py-4 dark:border-[#607D70] dark:bg-[#20332F]">
             <div>
               <p className="text-[10px] font-bold uppercase tracking-wider text-[#A1845F] dark:text-[#D5B982]">
                 Account Details
@@ -132,12 +135,15 @@ const ProfilePage = () => {
               </h3>
             </div>
 
-            <UserRound size={20} className="text-[#A1845F] dark:text-[#D5B982]" />
+            <UserRound
+              size={20}
+              className="text-[#A1845F] dark:text-[#D5B982]"
+            />
           </div>
 
           {/* Full Name */}
-          <div className="flex items-center gap-3 border-b border-[#C3D1C8] px-4 py-3 dark:border-[#607D70]">
-            <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl border border-[#C5D2C9] bg-[#F5F8F5] text-[#806343] dark:border-[#607D70] dark:bg-[#30463D] dark:text-[#A8C9B5]">
+          <div className="flex items-center gap-3 border-b border-[#C3D1C8] bg-white px-4 py-3 dark:border-[#607D70] dark:bg-[#20332F]">
+            <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl border border-[#C5D2C9] bg-white text-[#806343] dark:border-[#607D70] dark:bg-[#30463D] dark:text-[#A8C9B5]">
               <UserRound size={17} />
             </div>
 
@@ -153,8 +159,8 @@ const ProfilePage = () => {
           </div>
 
           {/* Email */}
-          <div className="flex items-center gap-3 border-b border-[#C3D1C8] px-4 py-3 dark:border-[#607D70]">
-            <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl border border-[#C5D2C9] bg-[#F5F8F5] text-[#806343] dark:border-[#607D70] dark:bg-[#30463D] dark:text-[#A8C9B5]">
+          <div className="flex items-center gap-3 border-b border-[#C3D1C8] bg-white px-4 py-3 dark:border-[#607D70] dark:bg-[#20332F]">
+            <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl border border-[#C5D2C9] bg-white text-[#806343] dark:border-[#607D70] dark:bg-[#30463D] dark:text-[#A8C9B5]">
               <Mail size={17} />
             </div>
 
@@ -170,8 +176,8 @@ const ProfilePage = () => {
           </div>
 
           {/* Account Created */}
-          <div className="flex items-center gap-3 border-b border-[#C3D1C8] px-4 py-3 dark:border-[#607D70]">
-            <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl border border-[#C5D2C9] bg-[#F5F8F5] text-[#806343] dark:border-[#607D70] dark:bg-[#30463D] dark:text-[#A8C9B5]">
+          <div className="flex items-center gap-3 border-b border-[#C3D1C8] bg-white px-4 py-3 dark:border-[#607D70] dark:bg-[#20332F]">
+            <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl border border-[#C5D2C9] bg-white text-[#806343] dark:border-[#607D70] dark:bg-[#30463D] dark:text-[#A8C9B5]">
               <CalendarDays size={17} />
             </div>
 
@@ -187,8 +193,8 @@ const ProfilePage = () => {
           </div>
 
           {/* User ID */}
-          <div className="flex items-center gap-3 px-4 py-3">
-            <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl border border-[#C5D2C9] bg-[#F5F8F5] text-[#806343] dark:border-[#607D70] dark:bg-[#30463D] dark:text-[#A8C9B5]">
+          <div className="flex items-center gap-3 bg-white px-4 py-3 dark:bg-[#20332F]">
+            <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl border border-[#C5D2C9] bg-white text-[#806343] dark:border-[#607D70] dark:bg-[#30463D] dark:text-[#A8C9B5]">
               <Fingerprint size={17} />
             </div>
 
@@ -205,13 +211,12 @@ const ProfilePage = () => {
             <button
               onClick={handleCopyId}
               title="Copy User ID"
-              className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg border-2 border-[#B9C9C0] bg-[#F5F8F5] text-[#513B2B] transition hover:bg-[#513B2B] hover:text-white dark:border-[#607D70] dark:bg-[#30463D] dark:text-[#E8F0EA] dark:hover:bg-[#A8C9B5] dark:hover:text-[#172522]"
+              className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg border-2 border-[#B9C9C0] bg-white text-[#513B2B] transition hover:bg-[#513B2B] hover:text-white dark:border-[#607D70] dark:bg-[#30463D] dark:text-[#E8F0EA] dark:hover:bg-[#A8C9B5] dark:hover:text-[#172522]"
             >
               {copied ? <Check size={15} /> : <Copy size={15} />}
             </button>
           </div>
         </section>
-
       </div>
     </main>
   );

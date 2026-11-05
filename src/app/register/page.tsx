@@ -1,4 +1,4 @@
-  
+
 "use client";
 
 import { useState, type FormEvent } from "react";
@@ -156,7 +156,7 @@ export default function RegisterPage() {
   const hasLowercase = /[a-z]/.test(password);
 
   return (
-    <main className="flex min-h-[calc(100vh-80px)] items-center justify-center bg-[#E2ECE8] px-4 py-12 dark:bg-[#172522] sm:px-6">
+    <main className="flex min-h-[calc(100vh-80px)] items-center justify-center bg-white px-4 py-12 dark:bg-[#172522] sm:px-6">
       <div className="w-full max-w-lg">
 
         <div className="rounded-2xl border border-[#D5B982]/50 bg-white p-6 shadow-xl shadow-[#123C3A]/5 dark:border-[#526B60] dark:bg-[#20332F] sm:p-8">
@@ -203,7 +203,7 @@ export default function RegisterPage() {
                   placeholder="Enter your full name"
                   value={name}
                   onChange={(e) => setName(e.target.value)}
-                  className="h-11 border-[#D5B982]/60 bg-[#F4F7F5] pl-10 text-[#123C3A] dark:border-[#526B60] dark:bg-[#30463D] dark:text-[#E8F0EA] dark:placeholder:text-[#A8BDB3]"
+                  className="h-11 border-[#D5B982]/60 bg-white pl-10 text-[#123C3A] placeholder:text-gray-400 dark:border-[#D5B982]/60 dark:bg-white dark:text-[#123C3A] dark:placeholder:text-gray-400"
                   required
                 />
               </div>
@@ -229,7 +229,7 @@ export default function RegisterPage() {
                   placeholder="you@example.com"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  className="h-11 border-[#D5B982]/60 bg-[#F4F7F5] pl-10 text-[#123C3A] dark:border-[#526B60] dark:bg-[#30463D] dark:text-[#E8F0EA] dark:placeholder:text-[#A8BDB3]"
+                  className="h-11 border-[#D5B982]/60 bg-white pl-10 text-[#123C3A] placeholder:text-gray-400 dark:border-[#D5B982]/60 dark:bg-white dark:text-[#123C3A] dark:placeholder:text-gray-400"
                   required
                 />
               </div>
@@ -257,7 +257,7 @@ export default function RegisterPage() {
                   placeholder="https://example.com/photo.jpg"
                   value={photoUrl}
                   onChange={(e) => setPhotoUrl(e.target.value)}
-                  className="h-11 border-[#D5B982]/60 bg-[#F4F7F5] pl-10 text-[#123C3A] dark:border-[#526B60] dark:bg-[#30463D] dark:text-[#E8F0EA] dark:placeholder:text-[#A8BDB3]"
+                  className="h-11 border-[#D5B982]/60 bg-white pl-10 text-[#123C3A] placeholder:text-gray-400 dark:border-[#D5B982]/60 dark:bg-white dark:text-[#123C3A] dark:placeholder:text-gray-400"
                 />
               </div>
             </div>
@@ -285,14 +285,14 @@ export default function RegisterPage() {
                     setPassword(e.target.value);
                     setPasswordError(validatePassword(e.target.value));
                   }}
-                  className="h-11 border-[#D5B982]/60 bg-[#F4F7F5] pl-10 pr-11 text-[#123C3A] dark:border-[#526B60] dark:bg-[#30463D] dark:text-[#E8F0EA] dark:placeholder:text-[#A8BDB3]"
+                  className="h-11 border-[#D5B982]/60 bg-white pl-10 pr-11 text-[#123C3A] placeholder:text-gray-400 dark:border-[#D5B982]/60 dark:bg-white dark:text-[#123C3A] dark:placeholder:text-gray-400"
                   required
                 />
 
                 <button
                   type="button"
                   onClick={() => setShowPassword(!showPassword)}
-                  className="absolute right-3 top-1/2 -translate-y-1/2 text-[#6B8279] hover:text-[#123C3A] dark:text-[#A8BDB3] dark:hover:text-[#E8F0EA]"
+                  className="absolute right-3 top-1/2 -translate-y-1/2 text-[#6B8279] hover:text-[#123C3A] dark:text-[#6B8279] dark:hover:text-[#123C3A]"
                   aria-label={showPassword ? "Hide password" : "Show password"}
                 >
                   {showPassword ? (

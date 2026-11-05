@@ -1,4 +1,3 @@
-
 "use client";
 
 import { useState } from "react";
@@ -44,6 +43,7 @@ import {
 import { authClient } from "@/lib/auth-client";
 import { toast } from "sonner";
 import { IBook } from "@/lib/type";
+import { GetTokenFromClient } from "@/lib/GetTokenFromClient";
 
 interface EditBookProps {
   book: IBook;
@@ -114,18 +114,16 @@ const EditBook = ({ book }: EditBookProps) => {
     };
 
     setIsLoading(true);
-
+    const token = await GetTokenFromClient();
     try {
-      const res = await fetch(
-        `http://localhost:8000/my-book/${book._id}`,
-        {
-          method: "PATCH",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(updatedBook),
+      const res = await fetch(`http://localhost:8000/my-book/${book._id}`, {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+          authorization: `Bearer ${token}`,
         },
-      );
+        body: JSON.stringify(updatedBook),
+      });
 
       const result = await res.json();
       console.log(result);

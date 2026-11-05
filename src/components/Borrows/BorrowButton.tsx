@@ -1,10 +1,10 @@
-
 "use client";
 
 import { useState } from "react";
 import { BookmarkPlus, User, Mail, X } from "lucide-react";
 import { toast } from "sonner";
 import { authClient } from "@/lib/auth-client";
+import { GetTokenFromClient } from "@/lib/GetTokenFromClient";
 
 interface BorrowButtonProps {
   bookId: string;
@@ -12,11 +12,7 @@ interface BorrowButtonProps {
   bookImage: string;
 }
 
-const BorrowButton = ({
-  bookId,
-  bookTitle,
-  bookImage,
-}: BorrowButtonProps) => {
+const BorrowButton = ({ bookId, bookTitle, bookImage }: BorrowButtonProps) => {
   const [open, setOpen] = useState(false);
   const [loading, setLoading] = useState(false);
 
@@ -57,12 +53,13 @@ const BorrowButton = ({
         returnDate: returnDate.toISOString(),
       };
 
-      console.log("Borrow Data:", data);
+      const token = await GetTokenFromClient();
 
       const res = await fetch("http://localhost:8000/borrows", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
+          authorization: `Bearer ${token}`,
         },
         body: JSON.stringify(data),
       });
@@ -77,9 +74,7 @@ const BorrowButton = ({
 
       // Check other errors
       if (!res.ok) {
-        throw new Error(
-          borrowsresponse.message || "Borrow failed"
-        );
+        throw new Error(borrowsresponse.message || "Borrow failed");
       }
 
       console.log("Borrow Success:", borrowsresponse);
@@ -87,16 +82,12 @@ const BorrowButton = ({
       toast.success("Book borrowed successfully!");
 
       setOpen(false);
-
     } catch (error) {
       console.error("Borrow Error:", error);
 
       toast.error(
-        error instanceof Error
-          ? error.message
-          : "Failed to borrow book!"
+        error instanceof Error ? error.message : "Failed to borrow book!",
       );
-
     } finally {
       setLoading(false);
     }
@@ -123,7 +114,6 @@ const BorrowButton = ({
       {open && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 px-4 backdrop-blur-sm">
           <div className="relative w-full max-w-md rounded-2xl border border-[#E8DDCE] bg-[#FFFDF8] p-6 shadow-2xl sm:p-8">
-
             {/* Close Button */}
             <button
               type="button"
@@ -144,14 +134,14 @@ const BorrowButton = ({
               </h2>
 
               <p className="mt-2 text-sm text-[#7B6B59]">
-                Please confirm your account information before borrowing this book.
+                Please confirm your account information before borrowing this
+                book.
               </p>
             </div>
 
             {/* Borrow Form */}
             <form onSubmit={handleBorrows}>
               <div className="space-y-4">
-
                 {/* User Name */}
                 <div>
                   <label className="mb-2 flex items-center gap-2 text-sm font-semibold text-[#654321]">
@@ -181,7 +171,6 @@ const BorrowButton = ({
                     className="w-full rounded-xl border border-[#E8DDCE] bg-[#F7F2E9] px-4 py-3 text-sm text-[#654321] outline-none"
                   />
                 </div>
-
               </div>
 
               {/* Confirm Button */}
@@ -197,7 +186,6 @@ const BorrowButton = ({
             <p className="mt-4 text-center text-xs text-[#9B704B]">
               Your account information cannot be changed.
             </p>
-
           </div>
         </div>
       )}

@@ -10,6 +10,10 @@ import {
 } from "lucide-react";
 import { IBook } from "@/lib/type";
 import BorrowButton from "@/components/Borrows/BorrowButton";
+import Image from "next/image";
+import { auth } from "@/lib/auth";
+import { headers } from "next/headers";
+import { GetTokenFromServer } from "@/lib/GetTokenFromServer";
 
 const BookDetailsPage = async ({
   params,
@@ -17,18 +21,19 @@ const BookDetailsPage = async ({
   params: Promise<{ id: string }>;
 }) => {
   const { id } = await params;
-
-  console.log("Details Page ID:", id);
-
+  const token =await GetTokenFromServer()
   const res = await fetch(`http://localhost:8000/book/${id}`, {
+     headers: {
+      authorization:`Bearer ${token}`,
+    },
     cache: "no-store",
   });
 
-  console.log("API Status:", res.status);
+ 
 
   if (!res.ok) {
     return (
-      <main className="flex min-h-screen items-center justify-center bg-[#E2ECE8] px-4 dark:bg-[#172522]">
+      <main className="flex min-h-screen items-center justify-center bg-white px-4 dark:bg-[#172522]">
         <div className="text-center">
           <BookOpen size={45} className="mx-auto text-[#123C3A] dark:text-[#A8C9B5]" />
 
@@ -55,7 +60,7 @@ const BookDetailsPage = async ({
   const book: IBook = JSON.parse(text);
 
   return (
-    <main className="min-h-screen bg-[#E2ECE8] px-4 py-6 dark:bg-[#172522] sm:px-6 lg:px-10 lg:py-9">
+    <main className="min-h-screen bg-white px-4 py-6 dark:bg-[#172522] sm:px-6 lg:px-10 lg:py-9">
       <div className="mx-auto max-w-5xl">
 
         {/* Back Navigation */}
@@ -71,11 +76,11 @@ const BookDetailsPage = async ({
         </Link>
 
         {/* Details Card */}
-        <div className="overflow-hidden rounded-[22px] border border-[#D5E0D9] bg-[#FAFCFA] shadow-lg shadow-[#123C3A]/10 dark:border-[#526B60] dark:bg-[#20332F] dark:shadow-black/20">
+        <div className="overflow-hidden rounded-[22px] border border-[#D5E0D9] bg-white shadow-lg shadow-[#123C3A]/10 dark:border-[#526B60] dark:bg-[#20332F] dark:shadow-black/20">
           <div className="grid grid-cols-1 lg:grid-cols-2">
 
             {/* Book Cover Section */}
-            <div className="relative flex min-h-[350px] items-center justify-center overflow-hidden bg-[#E9EDE7] p-6 dark:bg-[#30463D] sm:p-8 lg:min-h-[530px]">
+            <div className="relative flex min-h-[350px] items-center justify-center overflow-hidden bg-white p-6 dark:bg-[#30463D] sm:p-8 lg:min-h-[530px]">
               <div className="absolute -left-20 -top-20 size-56 rounded-full bg-[#123C3A]/10 blur-3xl dark:bg-[#A8C9B5]/10" />
               <div className="absolute -bottom-20 -right-20 size-64 rounded-full bg-[#60766D]/10 blur-3xl dark:bg-[#D5B982]/10" />
 

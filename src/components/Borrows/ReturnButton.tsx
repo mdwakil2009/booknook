@@ -4,6 +4,7 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { RotateCcw } from "lucide-react";
 import { toast } from "sonner";
+import { GetTokenFromClient } from "@/lib/GetTokenFromClient";
 
 interface ReturnButtonProps {
   borrowId: string;
@@ -14,15 +15,16 @@ const ReturnButton = ({ borrowId }: ReturnButtonProps) => {
   const router = useRouter();
 
   const handleReturn = async () => {
+    const token = await GetTokenFromClient();
     try {
       setLoading(true);
 
-      const res = await fetch(
-        `http://localhost:8000/borrow/${borrowId}`,
-        {
-          method: "DELETE",
+      const res = await fetch(`http://localhost:8000/borrow/${borrowId}`, {
+        method: "DELETE",
+        headers: {
+          authorization: `Bearer ${token}`,
         },
-      );
+      });
 
       const data = await res.json();
 
@@ -53,4 +55,4 @@ const ReturnButton = ({ borrowId }: ReturnButtonProps) => {
   );
 };
 
-export default ReturnButton;  
+export default ReturnButton;

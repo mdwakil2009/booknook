@@ -84,9 +84,10 @@ export default function LoginPage() {
   };
 
   return (
-    <main className="flex min-h-[calc(100vh-80px)] items-center justify-center bg-[#E2ECE8] px-4 py-12 dark:bg-[#172522] sm:px-6">
+    <main className="flex min-h-[calc(100vh-80px)] items-center justify-center bg-white px-4 py-12 dark:bg-[#172522] sm:px-6">
       <div className="w-full max-w-lg">
         <div className="rounded-2xl border border-[#D5B982]/50 bg-white p-6 shadow-xl shadow-[#123C3A]/5 dark:border-[#526B60] dark:bg-[#20332F] sm:p-8">
+
           {/* Logo & Welcome Heading */}
           <div className="mb-7 text-center">
             <div className="mx-auto mb-4 flex size-14 items-center justify-center rounded-2xl bg-[#123C3A] text-[#D5B982] shadow-md dark:bg-[#30463D] dark:text-[#D5B982]">
@@ -104,6 +105,7 @@ export default function LoginPage() {
 
           {/* Login Form */}
           <form autoComplete="off" onSubmit={handleLogin} className="space-y-4">
+
             {/* Email */}
             <div className="space-y-2">
               <Label
@@ -114,7 +116,7 @@ export default function LoginPage() {
               </Label>
 
               <div className="relative">
-                <Mail className="absolute left-3 top-1/2 size-4 -translate-y-1/2 text-[#6B8279] dark:text-[#A8BDB3]" />
+                <Mail className="absolute left-3 top-1/2 size-4 -translate-y-1/2 text-[#6B8279]" />
 
                 <Input
                   id="email"
@@ -124,7 +126,7 @@ export default function LoginPage() {
                   placeholder="you@example.com"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  className="h-11 border-[#D5B982]/60 bg-[#F4F7F5] pl-10 text-[#123C3A] placeholder:text-[#9AA9A2] focus-visible:border-[#123C3A] focus-visible:ring-[#123C3A]/20 dark:border-[#526B60] dark:bg-[#30463D] dark:text-[#E8F0EA] dark:placeholder:text-[#A8BDB3] dark:focus-visible:border-[#A8C9B5] dark:focus-visible:ring-[#A8C9B5]/20"
+                  className="h-11 border-[#D5B982]/60 bg-white pl-10 text-[#123C3A] placeholder:text-[#9AA9A2] focus-visible:border-[#123C3A] focus-visible:ring-[#123C3A]/20 dark:border-[#526B60] dark:bg-white dark:text-[#123C3A] dark:placeholder:text-[#9AA9A2] dark:focus-visible:border-[#123C3A] dark:focus-visible:ring-[#123C3A]/20"
                   required
                 />
               </div>
@@ -149,7 +151,7 @@ export default function LoginPage() {
               </div>
 
               <div className="relative">
-                <LockKeyhole className="absolute left-3 top-1/2 size-4 -translate-y-1/2 text-[#6B8279] dark:text-[#A8BDB3]" />
+                <LockKeyhole className="absolute left-3 top-1/2 size-4 -translate-y-1/2 text-[#6B8279]" />
 
                 <Input
                   id="password"
@@ -159,14 +161,14 @@ export default function LoginPage() {
                   placeholder="Enter your password"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
-                  className="h-11 border-[#D5B982]/60 bg-[#F4F7F5] pl-10 pr-11 text-[#123C3A] placeholder:text-[#9AA9A2] focus-visible:border-[#123C3A] focus-visible:ring-[#123C3A]/20 dark:border-[#526B60] dark:bg-[#30463D] dark:text-[#E8F0EA] dark:placeholder:text-[#A8BDB3] dark:focus-visible:border-[#A8C9B5] dark:focus-visible:ring-[#A8C9B5]/20"
+                  className="h-11 border-[#D5B982]/60 bg-white pl-10 pr-11 text-[#123C3A] placeholder:text-[#9AA9A2] focus-visible:border-[#123C3A] focus-visible:ring-[#123C3A]/20 dark:border-[#526B60] dark:bg-white dark:text-[#123C3A] dark:placeholder:text-[#9AA9A2] dark:focus-visible:border-[#123C3A] dark:focus-visible:ring-[#123C3A]/20"
                   required
                 />
 
                 <button
                   type="button"
                   onClick={() => setShowPassword(!showPassword)}
-                  className="absolute right-3 top-1/2 -translate-y-1/2 text-[#6B8279] transition hover:text-[#123C3A] dark:text-[#A8BDB3] dark:hover:text-[#E8F0EA]"
+                  className="absolute right-3 top-1/2 -translate-y-1/2 text-[#6B8279] transition hover:text-[#123C3A]"
                   aria-label={showPassword ? "Hide password" : "Show password"}
                 >
                   {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
@@ -211,7 +213,7 @@ export default function LoginPage() {
             variant="outline"
             disabled={isLoading || isGoogleLoading}
             onClick={handleGoogleLogin}
-            className="h-11 w-full border-[#D5B982]/60 bg-white font-semibold text-[#123C3A] transition hover:bg-[#F4F7F5] dark:border-[#526B60] dark:bg-[#30463D] dark:text-[#E8F0EA] dark:hover:bg-[#3B554A]"
+            className="h-11 w-full border-[#D5B982]/60 bg-white font-semibold text-[#123C3A] transition hover:bg-[#F4F7F5] dark:border-[#526B60] dark:bg-white dark:text-[#123C3A] dark:hover:bg-[#F4F7F5]"
           >
             {isGoogleLoading ? (
               <Loader2 className="mr-2 size-4 animate-spin" />
