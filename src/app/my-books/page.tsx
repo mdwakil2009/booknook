@@ -20,6 +20,7 @@ import { authClient } from "@/lib/auth-client";
 import { IBook } from "@/lib/type";
 import EditBook from "@/components/EditBook";
 import DeleteBook from "@/components/DeleteBook";
+import ClientPageTitle from "@/lib/ClientPageTitle";
 
 const MyBooksPage = ({ book: _book }: { book: IBook[] }) => {
   const [books, setBooks] = useState<IBook[]>([]);
@@ -46,11 +47,6 @@ const MyBooksPage = ({ book: _book }: { book: IBook[] }) => {
           `http://localhost:8000/my-books/${encodeURIComponent(email)}`,
           { cache: "no-store" },
         );
-
-        if (!response.ok) {
-          throw new Error("Failed to fetch books");
-        }
-
         const data = await response.json();
         setBooks(data);
       } catch (error) {
@@ -73,6 +69,7 @@ const MyBooksPage = ({ book: _book }: { book: IBook[] }) => {
 
   return (
     <main className="min-h-screen bg-[#E2ECE8] px-3 py-5 dark:bg-[#172522] sm:px-5 lg:px-7 lg:py-7">
+      <ClientPageTitle title="My Book" />
       <div className="mx-auto max-w-7xl">
         {/* Header */}
         <section className="mb-6 flex flex-col justify-between gap-4 sm:flex-row sm:items-center">
@@ -81,7 +78,10 @@ const MyBooksPage = ({ book: _book }: { book: IBook[] }) => {
               <h1 className="text-xl font-bold tracking-tight text-[#123C3A] dark:text-[#E8F0EA] sm:text-2xl">
                 Manage My Books
               </h1>
-              <Sparkles size={15} className="text-[#92764E] dark:text-[#D5B982]" />
+              <Sparkles
+                size={15}
+                className="text-[#92764E] dark:text-[#D5B982]"
+              />
             </div>
 
             <p className="text-xs text-[#81948A] dark:text-[#A8BDB3] sm:text-sm">
@@ -104,18 +104,17 @@ const MyBooksPage = ({ book: _book }: { book: IBook[] }) => {
         {/* Empty State */}
         {books.length === 0 ? (
           <section className="relative flex min-h-[350px] flex-col items-center justify-center overflow-hidden rounded-2xl border border-[#D4E1DA] bg-[#FAFCFA] px-4 py-8 text-center shadow-sm dark:border-[#526B60] dark:bg-[#20332F]">
-         
             {/* Illustration */}
-<div className="relative mb-3 flex h-24 w-28 items-center justify-center">
-  <Image
-    src="/image/logo1.jpg"
-    alt="Colorful stacked books illustration"
-    width={120}
-    height={120}
-    priority
-    className="h-full w-full object-contain"
-  />
-</div>
+            <div className="relative mb-4 flex size-20 items-center justify-center">
+              <Image
+                src="/image/stack-of-books.png"
+                alt="BookNook"
+                width={100}
+                height={100}
+                priority
+                className="h-full w-full object-contain"
+              />
+            </div>
 
             <p className="mb-2 text-[9px] font-bold tracking-[0.25em] text-[#92764E] dark:text-[#D5B982]">
               YOUR PERSONAL LIBRARY

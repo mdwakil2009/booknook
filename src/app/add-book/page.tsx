@@ -30,6 +30,8 @@ import {
 } from "@/components/ui/select";
 import { Card, CardContent } from "@/components/ui/card";
 
+import ClientPageTitle from "@/lib/ClientPageTitle";
+
 const categories = ["Fiction", "Science", "History", "Kids", "Others"];
 
 export default function AddBookPage() {
@@ -128,6 +130,7 @@ export default function AddBookPage() {
 
   return (
     <main className="min-h-screen bg-[#E2ECE8] px-4 pt-4 pb-10 dark:bg-[#172522] sm:px-6 lg:pt-4 lg:pb-14">
+      <ClientPageTitle title="Add Book" />
       <div className="mx-auto max-w-4xl">
         {/* Page Heading */}
         <div className="mb-3 text-center">

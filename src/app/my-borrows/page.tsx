@@ -13,6 +13,7 @@ import {
 
 import { auth } from "@/lib/auth";
 import ReturnButton from "@/components/Borrows/ReturnButton";
+import ClientPageTitle from "@/lib/ClientPageTitle";
 
 interface IBorrow {
   _id: string;
@@ -85,6 +86,7 @@ const MyBorrowsPage = async () => {
 
   return (
     <main className="min-h-screen bg-[#E2ECE8] px-3 py-4 dark:bg-[#172522] sm:px-5 lg:px-7 lg:py-5">
+      <ClientPageTitle title="My Borrows" />
       <div className="mx-auto max-w-7xl">
         {/* Header */}
         <div className="flex flex-col justify-between gap-4 sm:flex-row sm:items-center">
@@ -115,12 +117,12 @@ const MyBorrowsPage = async () => {
         {/* Empty State */}
         {borrows.length === 0 ? (
           <div className="flex min-h-[320px] flex-col items-center justify-center rounded-2xl border border-[#D4E1DA] bg-[#FAFCFA] px-5 py-8 text-center dark:border-[#526B60] dark:bg-[#20332F]">
-            <div className="relative mb-4 flex size-28 items-center justify-center">
+            <div className="relative mb-4 flex size-20 items-center justify-center">
               <Image
-                src="/image/logo1.jpg"
+                src="/image/stack-of-books.png"
                 alt="BookNook"
-                width={120}
-                height={120}
+                width={100}
+                height={100}
                 priority
                 className="h-full w-full object-contain"
               />

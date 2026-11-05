@@ -1,4 +1,3 @@
-
 "use client";
 
 import { useState } from "react";
@@ -25,6 +24,7 @@ import {
 import { authClient, useSession } from "@/lib/auth-client";
 import { toast } from "sonner";
 import ThemeToggle from "@/components/Theme/ThemeToggle";
+import Image from "next/image";
 
 type NavLink = {
   name: string;
@@ -102,19 +102,25 @@ export default function Navbar() {
   return (
     <header className="sticky top-0 z-50 w-full border-b border-[#D5B982]/50 bg-white shadow-sm dark:border-[#526B60] dark:bg-[#172522]">
       <nav className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
-
-        {/* Logo */}
-        <Link href="/" className="flex shrink-0 items-center gap-2.5">
-          <div className="flex size-11 items-center justify-center rounded-xl bg-[#123C3A] text-[#D5B982] shadow-sm dark:bg-[#A8C9B5] dark:text-[#172522]">
-            <BookOpen size={24} />
+        <Link href="/" className="group flex shrink-0 items-center gap-2.5">
+          <div className="relative flex size-14 items-center justify-center overflow-hidden rounded-2xl border border-[#E5D8BD]  from-[#FFFDF8] to-[#F0E8D8] shadow-[0_4px_12px_rgba(65,48,29,0.10)] transition-all duration-300 group-hover:-translate-y-0.5 group-hover:shadow-[0_7px_18px_rgba(65,48,29,0.16)] dark:border-[#526B60] dark:from-[#30463D] dark:to-[#20332F]">
+            <Image
+              src="/image/books (4).png"
+              alt="BookNook Logo"
+              width={120}
+              height={120}
+              priority
+              className="size-12 object-contain drop-shadow-md transition-transform duration-300 group-hover:scale-110"
+            />
           </div>
 
-          <div className="flex flex-col">
-            <span className="text-2xl font-bold tracking-tight text-[#123C3A] dark:text-[#E8F0EA]">
+          {/* Brand Name */}
+          <div className="flex flex-col justify-center">
+            <span className="text-[23px] font-extrabold leading-tight tracking-tight text-[#123C3A] transition-colors duration-300 group-hover:text-[#24645E] dark:text-[#E8F0EA] dark:group-hover:text-[#A8C9B5]">
               BookNook
             </span>
 
-            <span className="text-[10px] font-semibold tracking-[2px] text-[#6B8279] dark:text-[#A8BDB3]">
+            <span className="mt-0.5 text-[9px] font-bold tracking-[2.2px] text-[#8A7658] dark:text-[#A8BDB3]">
               YOUR LITTLE LIBRARY
             </span>
           </div>
@@ -129,7 +135,6 @@ export default function Navbar() {
 
         {/* Desktop Auth Section */}
         <div className="hidden items-center gap-3 lg:flex">
-
           {/* Desktop Theme Toggle */}
           <ThemeToggle />
 
@@ -212,9 +217,7 @@ export default function Navbar() {
                   onClick={handleSignOut}
                 >
                   <LogOut className="mr-2 h-4 w-4" />
-                  <span>
-                    {isSigningOut ? "Logging out..." : "Logout"}
-                  </span>
+                  <span>{isSigningOut ? "Logging out..." : "Logout"}</span>
                 </DropdownMenuItem>
               </DropdownMenuContent>
             </DropdownMenu>
@@ -223,7 +226,6 @@ export default function Navbar() {
 
         {/* Mobile Theme Toggle + Menu Button */}
         <div className="flex items-center gap-3 lg:hidden">
-
           {/* Mobile Theme Toggle */}
           <ThemeToggle />
 
@@ -275,7 +277,6 @@ export default function Navbar() {
           {/* Mobile User Section */}
           {!isPending && user && (
             <div className="space-y-3">
-
               {/* User Information */}
               <div className="flex items-center gap-3 rounded-xl border border-[#D5B982]/40 bg-white p-3 dark:border-[#526B60] dark:bg-[#20332F]">
                 <Avatar className="size-10">

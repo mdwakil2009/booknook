@@ -14,14 +14,13 @@ const playfair = Playfair_Display({
 });
 
 export const metadata: Metadata = {
-  title: "BookNook - A Small Online Library",
-  description:
-    "Discover, borrow, and enjoy your favorite books with BookNook.",
+  title: {
+    default: "BookNook",
+    template: "%s | BookNook",
+  },
+  description: "Discover, borrow, and enjoy your favorite books with BookNook.",
 };
-
-export default function RootLayout({
-  children,
-}: LayoutProps<"/">) {
+export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
       lang="en"

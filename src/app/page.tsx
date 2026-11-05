@@ -2,9 +2,11 @@ import Arrivals from "@/components/Homepage/Arrivals";
 import Banner from "@/components/Homepage/Banner";
 import HowBookNookWorks from "@/components/Homepage/HowBookNookWorks";
 import TopCategories from "@/components/Homepage/TopCategories";
+import { getPageMetadata } from "@/lib/page-title"
 
-import React from "react";
+;
 
+export const metadata = getPageMetadata("Home | BookNook");
 const page = () => {
   return (
     <div>

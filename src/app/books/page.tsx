@@ -1,12 +1,13 @@
 import { BookOpen, Library } from "lucide-react";
 import { IBook } from "@/lib/type";
 import ViewDetailsButton from "@/components/ViewDetailsButtonProps";
-
+import { getPageMetadata } from "@/lib/page-title";
 interface AllBookPageProps {
   searchParams: Promise<{
     category?: string;
   }>;
 }
+export const metadata = getPageMetadata("All Books");
 
 const AllBookPage = async ({ searchParams }: AllBookPageProps) => {
   const { category } = await searchParams;

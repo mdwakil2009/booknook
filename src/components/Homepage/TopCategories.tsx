@@ -1,4 +1,3 @@
-
 "use client";
 
 import { useState } from "react";
@@ -18,7 +17,7 @@ const TopCategories = () => {
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
 
   return (
-    <section className="relative overflow-hidden bg-[#E2ECE8] px-4 py-14 dark:bg-[#172522] sm:px-6 lg:px-8 lg:py-20">
+    <section className="relative overflow-hidden bg-[#E2ECE8] px-4 pt-6 pb-14 dark:bg-[#172522] sm:px-6 lg:px-8 lg:pt-8 lg:pb-20">
       {/* Background Decorations */}
       <div className="pointer-events-none absolute -left-32 top-20 size-72 rounded-full bg-[#A88B54]/10 blur-3xl" />
       <div className="pointer-events-none absolute -right-32 bottom-10 size-72 rounded-full bg-[#123C3A]/10 blur-3xl" />
@@ -52,12 +51,11 @@ const TopCategories = () => {
 
         {/* Category Cards */}
         <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 xl:grid-cols-4">
-
           {/* Fiction */}
           <div
             onClick={() =>
               setSelectedCategory(
-                selectedCategory === "Fiction" ? null : "Fiction"
+                selectedCategory === "Fiction" ? null : "Fiction",
               )
             }
             className={`group relative flex cursor-pointer flex-col overflow-hidden rounded-2xl border bg-white p-5 transition-all duration-500 hover:-translate-y-1.5 hover:shadow-xl hover:shadow-[#123C3A]/10 dark:bg-[#20332F] dark:hover:shadow-black/20 ${
@@ -102,7 +100,8 @@ const TopCategories = () => {
               </h3>
 
               <p className="mt-2 min-h-[66px] text-xs leading-6 text-[#60766D] dark:text-[#A8BDB3]">
-                Step into extraordinary worlds filled with imagination and unforgettable stories.
+                Step into extraordinary worlds filled with imagination and
+                unforgettable stories.
               </p>
             </div>
 
@@ -129,7 +128,7 @@ const TopCategories = () => {
           <div
             onClick={() =>
               setSelectedCategory(
-                selectedCategory === "Science" ? null : "Science"
+                selectedCategory === "Science" ? null : "Science",
               )
             }
             className={`group relative flex cursor-pointer flex-col overflow-hidden rounded-2xl border bg-white p-5 transition-all duration-500 hover:-translate-y-1.5 hover:shadow-xl hover:shadow-[#123C3A]/10 dark:bg-[#20332F] dark:hover:shadow-black/20 ${
@@ -174,7 +173,8 @@ const TopCategories = () => {
               </h3>
 
               <p className="mt-2 min-h-[66px] text-xs leading-6 text-[#60766D] dark:text-[#A8BDB3]">
-                Explore groundbreaking discoveries, technology and ideas shaping tomorrow.
+                Explore groundbreaking discoveries, technology and ideas shaping
+                tomorrow.
               </p>
             </div>
 
@@ -201,7 +201,7 @@ const TopCategories = () => {
           <div
             onClick={() =>
               setSelectedCategory(
-                selectedCategory === "History" ? null : "History"
+                selectedCategory === "History" ? null : "History",
               )
             }
             className={`group relative flex cursor-pointer flex-col overflow-hidden rounded-2xl border bg-white p-5 transition-all duration-500 hover:-translate-y-1.5 hover:shadow-xl hover:shadow-[#123C3A]/10 dark:bg-[#20332F] dark:hover:shadow-black/20 ${
@@ -246,7 +246,8 @@ const TopCategories = () => {
               </h3>
 
               <p className="mt-2 min-h-[66px] text-xs leading-6 text-[#60766D] dark:text-[#A8BDB3]">
-                Travel through time and discover the events that shaped our world.
+                Travel through time and discover the events that shaped our
+                world.
               </p>
             </div>
 
@@ -272,9 +273,7 @@ const TopCategories = () => {
           {/* Kids */}
           <div
             onClick={() =>
-              setSelectedCategory(
-                selectedCategory === "Kids" ? null : "Kids"
-              )
+              setSelectedCategory(selectedCategory === "Kids" ? null : "Kids")
             }
             className={`group relative flex cursor-pointer flex-col overflow-hidden rounded-2xl border bg-white p-5 transition-all duration-500 hover:-translate-y-1.5 hover:shadow-xl hover:shadow-[#123C3A]/10 dark:bg-[#20332F] dark:hover:shadow-black/20 ${
               selectedCategory === "Kids"
@@ -318,7 +317,8 @@ const TopCategories = () => {
               </h3>
 
               <p className="mt-2 min-h-[66px] text-xs leading-6 text-[#60766D] dark:text-[#A8BDB3]">
-                Bring young imaginations to life with fun stories and exciting adventures.
+                Bring young imaginations to life with fun stories and exciting
+                adventures.
               </p>
             </div>
 
